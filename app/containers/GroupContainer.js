@@ -11,7 +11,8 @@ class GroupContainer extends Component {
     super();
     this.state = {
       loading:true,
-      groupData: {}
+      groupData: {},
+      currentDestination: {}
     }
   }
 
@@ -21,15 +22,16 @@ class GroupContainer extends Component {
         if(res.statusText === 'OK'){
           this.setState({
             loading:false,
-            groupData: res.data
+            groupData: res.data,
+            currentDestination: res.data.destinations[0]
           })
-          console.log(this.state.groupData)
+          // console.log(this.state.groupData)
         }
       })
   }
 
   render() {
-    console.log(this.props.routeParams.id)
+    // console.log(this.props.routeParams.id)
     return (
       <div>
       {
@@ -41,7 +43,7 @@ class GroupContainer extends Component {
               destinations={this.state.groupData.destinations}
               routeParams={this.props.routeParams}
             />
-            {this.props.children}
+            {React.cloneElement(this.props.children, { destination:this.state.currentDestination })}
             </div>
       }
       </div>

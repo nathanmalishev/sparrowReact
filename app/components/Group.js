@@ -7,9 +7,23 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
-    color: '#fff',
-    backgroundColor: '#3CBBE6',
+    // color: 'black',
+    width:'80%',
+    backgroundColor:'grey'
   },
+  destinations: {
+    display:'flex',
+    flexDirection:'column',
+    margin:'20px 20px',
+    backgroundColor:'lightgrey'
+  },
+  container:{
+    height: '100%',
+    width: '100%',
+    display:'flex',
+    flexDirection:'row'
+
+  }
 };
 
 class Group extends Component{
@@ -23,16 +37,20 @@ class Group extends Component{
     return (
       <div>
       <h1>{this.props.groupName}</h1>
-        <div style={styles.header}>
-          {listDestinations}
-          <Link to={'group/'+this.props.routeParams.id+'/flights'}>
-            Flights
-          </Link>
-          <p>Hotels</p>
-          <p>Itinerary</p>
-          <p>Chat</p>
-          <p>Expenses</p>
-        </div>
+      <div style={styles.container}>
+          <div style={styles.destinations}>
+            {listDestinations}
+          </div>
+          <div style={styles.header}>
+            <Link to={'group/'+this.props.routeParams.id+'/flights'}>
+              Flights
+            </Link>
+            <p>Hotels</p>
+            <p>Itinerary</p>
+            <p>Chat</p>
+            <p>Expenses</p>
+          </div>
+      </div>
       </div>
     )
   }

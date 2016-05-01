@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import {getGroups} from '../helpers/api'
 import GroupTab from '../components/GroupTab'
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection:'column',
+    alignItems: 'center',
+    padding: 5,
+    color: 'black',
+  },
+};
+
+
 class HomeConatiner extends Component {
 
     constructor() {
@@ -32,11 +43,13 @@ class HomeConatiner extends Component {
   render() {
     const groups = this.state.groups.map((group)=>{
       console.log(group._id)
-      return <GroupTab key={group._id} _id={String(group._id)} groupname={group.name} users={group.users} />
+      return <GroupTab key={group._id} _id={String(group._id)} groupname={group.name} users={group.users} destinations={group.destinations} />
     })
     return (
-      <div>
+      <div style={styles.container}>
         {groups}
+
+        <p>Create new group button</p>
       </div>
     );
   }

@@ -32,6 +32,8 @@ class PasswordContainer extends Component{
   render() {
     return (
         <div>
+        username: nathan
+        password: test
           <form onSubmit={this.handleSubmit}>
             Enter Username
             <input
