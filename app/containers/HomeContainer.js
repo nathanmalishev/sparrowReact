@@ -50,6 +50,7 @@ class HomeConatiner extends Component {
         {groups}
 
         <p>Create new group button</p>
+        <p>must refresh page due to bug</p>
       </div>
     );
   }

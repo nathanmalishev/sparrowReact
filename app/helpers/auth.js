@@ -1,6 +1,7 @@
 const axios = require('axios');
 const tag = 'sparrow-travel-token';
 
+
 export function signIn(username, password) {
   /* post googleid to server */
 
@@ -35,6 +36,8 @@ export function isAuth() {
 export function logout() {
   window.localStorage.removeItem(tag);
   location.reload();
+  location.href = location.origin;
+
 }
 
 export const AUTH_TOKEN = window.localStorage.getItem(tag)

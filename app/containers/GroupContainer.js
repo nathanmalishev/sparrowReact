@@ -19,8 +19,7 @@ class GroupContainer extends Component {
 
   componentDidMount(){
     //split id as there is two
-    const idArray = String(this.props.routeParams.id).split(',')
-    getGroup(idArray[0])
+    getGroup(this.props.routeParams.id)
       .then((res)=>{
         if(res.statusText === 'OK'){
           this.setState({
@@ -31,8 +30,6 @@ class GroupContainer extends Component {
           console.log(res)
         }
 
-        this.context.router.push('group/'+idArray[0]+'/destinations/'
-            +idArray[1]);
       })
   }
 
@@ -41,6 +38,7 @@ class GroupContainer extends Component {
     this.setState({
       currentDestination: destination
     })
+
   }
 
   render() {

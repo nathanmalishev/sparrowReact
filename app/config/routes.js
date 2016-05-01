@@ -11,7 +11,6 @@ const routes = (
     <Route path='/' component={LoginContainer}>
       <IndexRoute component={HomeContainer} />
       <Route path='group/:id' component={GroupContainer}>
-        <Route path='destinations/:id' component={GroupContainer}/>
         <IndexRoute component={FlightContainer}/>
         <Route path='flights' component={FlightContainer}/>
       </Route>
