@@ -19,6 +19,7 @@ class HomeConatiner extends Component {
     super();
     this.state = {
       groups: [],
+      loading: true
     };
 
   }
@@ -26,16 +27,20 @@ class HomeConatiner extends Component {
     componentWillMount() {
     // check if user is logged in
     // then set state
-    console.log('did mount', this.props.token)
+
+    //FIXME:have to get the token on my own and then pass it in
+    //auth file seems to be too slow in getting it??
     getGroups()
-      .then((res)=>{
-        console.log(res)
-        if(res.statusText === 'OK'){
-          this.setState({
-            groups: res.data
-          })
-        }
-      })
+    .then((res)=>{
+      console.log(res)
+      if(res.statusText === 'OK'){
+        this.setState({
+          groups: res.data,
+          loading: false
+        })
+      }
+    })
+
   }
 
 
@@ -47,10 +52,14 @@ class HomeConatiner extends Component {
     })
     return (
       <div style={styles.container}>
-        {groups}
+      {
+        this.state.loading === true
+        ? <p>Loding..</p>
+        : groups
+      }
+
 
         <p>Create new group button</p>
-        <p>must refresh page due to bug</p>
       </div>
     );
   }
