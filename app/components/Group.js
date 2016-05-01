@@ -26,12 +26,17 @@ const styles = {
   }
 };
 
+
 class Group extends Component{
 
 
   render(){
-    const listDestinations = this.props.destinations.map(function(elem){
-      return <li key={elem._id}>{elem.name}</li>
+    const listDestinations = this.props.destinations.map((elem)=>{
+      if(elem._id === this.props.currentDestination._id){
+        return <li key={elem._id} style={{color:'red'}}>{elem.name}</li>
+      }else{
+        return <li key={elem._id}>{elem.name}</li>
+      }
     })
     console.log(this.props.routeParams, 'props')
     return (

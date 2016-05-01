@@ -41,6 +41,7 @@ class GroupContainer extends Component {
               groupName={this.state.groupData.name}
               users={this.state.groupData.users}
               destinations={this.state.groupData.destinations}
+              currentDestination={this.state.currentDestination}
               routeParams={this.props.routeParams}
             />
             {React.cloneElement(this.props.children, { destination:this.state.currentDestination })}
