@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { isAuth, signIn, AUTH_TOKEN } from '../helpers/auth';
+import { isAuth, signIn, AUTH_TOKEN, logout } from '../helpers/auth';
 import PasswordContainer from './PasswordContainer';
+import {Link} from 'react-router'
 
 const styles = {
   container: {
@@ -63,7 +64,11 @@ class Main extends Component{
       <div style={styles.container}>
         <div style={styles.header}>
           <h2 style={{ margin: 0 }}>Sparrow Travel</h2>
-
+          {
+            this.state.authenticated === true
+            ? <p onClick={logout}>Logout</p>
+            : <Link to="/">SignUp</Link>
+          }
         </div>
         {
           this.state.authenticated === true

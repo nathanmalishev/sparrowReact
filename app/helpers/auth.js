@@ -34,6 +34,7 @@ export function isAuth() {
 
 export function logout() {
   window.localStorage.removeItem(tag);
+  location.reload();
 }
 
 export const AUTH_TOKEN = window.localStorage.getItem(tag)
