@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import {Link} from 'react-router'
+import Destination from './Destination'
 
 const styles = {
   header: {
@@ -35,7 +36,7 @@ class Group extends Component{
       if(elem._id === this.props.currentDestination._id){
         return <li key={elem._id} style={{color:'red'}}>{elem.name}</li>
       }else{
-        return <li key={elem._id}>{elem.name}</li>
+        return <li onClick={this.props.onDestinationClick.bind(this,elem)} key={elem._id}>{elem.name}</li>
       }
     })
     console.log(this.props.routeParams, 'props')

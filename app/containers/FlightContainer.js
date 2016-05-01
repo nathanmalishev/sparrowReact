@@ -22,7 +22,7 @@ export default class FlightContainer extends Component {
       <div>
         <p>Flight container, with flight data</p>
 
-        <FlightSearchContainer handleFlightClick={this.onFlightClick}/>
+        <FlightSearchContainer handleFlightClick={this.props.onFlightClick}/>
 
         {JSON.stringify(this.props.destination.flights)}
       </div>
