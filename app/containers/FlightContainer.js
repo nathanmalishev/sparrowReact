@@ -5,6 +5,9 @@ export default class FlightContainer extends Component {
   constructor() {
     super();
     this.state = {
+      to: '',
+      from: '',
+      results:false,
       flightData: {}
     };
 
@@ -14,6 +17,11 @@ export default class FlightContainer extends Component {
   onFlightClick(to, from) {
     //TODO: make flight call API
     console.log(to+from)
+    this.setState({
+      to,
+      from,
+      results: true
+    })
   }
 
   render() {
@@ -22,7 +30,13 @@ export default class FlightContainer extends Component {
       <div>
         <p>Flight container, with flight data</p>
 
-        <FlightSearchContainer handleFlightClick={this.props.onFlightClick}/>
+        <FlightSearchContainer handleFlightClick={this.onFlightClick}/>
+
+        {
+          this.state.results === true
+            ? <p>Results from {this.state.from} to {this.state.to}</p>
+            : <p></p>
+        }
 
         {JSON.stringify(this.props.destination.flights)}
       </div>
