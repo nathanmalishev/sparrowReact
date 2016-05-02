@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {getGroups} from '../helpers/api'
 import GroupTab from '../components/GroupTab'
+import CreateGroupContainer from './CreateGroupContainer'
 
 const styles = {
   container: {
@@ -19,9 +20,12 @@ class HomeConatiner extends Component {
     super();
     this.state = {
       groups: [],
-      loading: true
+      loading: true,
+      createNewGroup: false,
     };
 
+    this.handleGroupClick = this.handleGroupClick.bind(this)
+    this.handleSubmitGroup = this.handleSubmitGroup.bind(this)
   }
 
     componentWillMount() {
@@ -44,6 +48,19 @@ class HomeConatiner extends Component {
   }
 
 
+  handleGroupClick(){
+    this.setState({
+      createNewGroup: true
+    })
+  }
+
+  handleSubmitGroup(groupname){
+    this.setState({
+      createNewGroup: false
+    })
+    console.log(groupname)
+  }
+
 
   render() {
     const groups = this.state.groups.map((group)=>{
@@ -58,8 +75,11 @@ class HomeConatiner extends Component {
         : groups
       }
 
-
-        <p>Create new group button</p>
+      {
+        this.state.createNewGroup === true
+        ? <CreateGroupContainer onSubmitGroup={this.handleSubmitGroup}/>
+        : <p onClick={this.handleGroupClick}>Create new group button</p>
+      }
       </div>
     );
   }
