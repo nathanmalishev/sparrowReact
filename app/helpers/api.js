@@ -1,6 +1,6 @@
 const axios = require('axios');
 const auth = require('./auth');
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth.AUTH_TOKEN;
+// axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth.AUTH_TOKEN;
 /* _baseURL is assumed to be on same directoy as this app is served*/
 const _baseURL = 'http://localhost:3000/';
 

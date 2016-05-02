@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FlightSearchContainer from './FlightSearchContainer'
+import {getFlights} from '../helpers/rome2rio'
+import FlightResults from '../components/FlightResults'
 
 export default class FlightContainer extends Component {
   constructor() {
@@ -17,11 +19,17 @@ export default class FlightContainer extends Component {
   onFlightClick(to, from) {
     //TODO: make flight call API
     console.log(to+from)
-    this.setState({
-      to,
-      from,
-      results: true
-    })
+
+    getFlights(to,from)
+      .then((data)=>{
+        console.log(data)
+        this.setState({
+          to,
+          from,
+          results: true,
+          flightData: data.data
+        })
+      })
   }
 
   render() {
@@ -34,7 +42,7 @@ export default class FlightContainer extends Component {
 
         {
           this.state.results === true
-            ? <p>Results from {this.state.from} to {this.state.to}</p>
+            ? <FlightResults to={this.state.to} from={this.state.from} data={this.state.flightData}/>
             : <p></p>
         }
 

@@ -78,7 +78,7 @@ class HomeConatiner extends Component {
       {
         this.state.createNewGroup === true
         ? <CreateGroupContainer onSubmitGroup={this.handleSubmitGroup}/>
-        : <p onClick={this.handleGroupClick}>Create new group button</p>
+        : <p onClick={this.handleGroupClick}>Create new group button <button>go!</button></p>
       }
       </div>
     );
