@@ -25,6 +25,7 @@
     "jeet": "^6.1.2",
     "jsonwebtoken": "^5.7.0",
     "lodash": "^4.11.1",
+    "material-ui": "^0.14.4",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.11",
     "mongoose-type-email": "^1.0.2",
