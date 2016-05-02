@@ -56,10 +56,16 @@ class PasswordContainer extends Component{
                 <input type="checkbox" />Remember me</label>
             </div>
             
-            <button className="btn btn-primary btn-block btn-lg btn-signin" type="submit" value="Post">Sign in</button>
-            <button className="btn btn-danger btn-block btn-lg btn-signin" type="submit" value="Post">Sign up</button>
+            <button className="btn btn-primary btn-block btn-lg btn-signin" type="submit" value="Post">Sign In</button>
+            <button className="btn btn-danger btn-block btn-lg btn-signup" type="submit" value="Post">Sign Up</button>
+            <a className="btn btn-block btn-social btn-facebook">
+              <span className="fa fa-facebook"></span>
+              Sign in with Facebook
+            </a>
           
           </form>
+          
+          <br/>
           
           <a href="#" className="forgot-password">Forgot your password?</a>     
         </div>

@@ -85,7 +85,22 @@ html, body, .app {
 }
 
 .login-card .btn.btn-signin:hover, .login-card .btn.btn-signin:active, .login-card .btn.btn-signin:focus{
-  background:rgb(12, 97, 33);
+  background: darkgrey
+}
+
+.login-card .btn.btn-signup{
+  font-weight:700;
+  height:36px;
+  line-height:36px;
+  font-size:14px;
+  border-radius:3px;
+  border:none;
+  transition:all 0.218s;
+  padding:0;
+}
+
+.login-card .btn.btn-signup:hover, .login-card .btn.btn-signup:active, .login-card .btn.btn-signup:focus{
+  background: darkgrey
 }
 
 .login-card .forgot-password{
