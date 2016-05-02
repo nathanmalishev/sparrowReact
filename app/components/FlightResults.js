@@ -5,7 +5,7 @@ export default function FlightResults ({to, from, data}) {
       <p>Flight resulsts</p>
       <p>To: {to}</p>
       <p>From: {from}</p>
-      <p>Data: {JSON.stringify(data)}</p>
+      <p>Data: {JSON.stringify(data.agencies)}</p>
     </div>
   )
 }

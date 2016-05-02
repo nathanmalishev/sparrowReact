@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import GoogleLogin from '../components/GoogleLogin';
 
 class PasswordContainer extends Component{
 
@@ -40,9 +41,9 @@ class PasswordContainer extends Component{
               value={this.state.username}
               onChange={this.handleUserChange}
             />
-            
+
             <div className="divider" />
-            
+
             <input
               type="text"
               placeholder="Password = test"
@@ -50,24 +51,25 @@ class PasswordContainer extends Component{
               value={this.state.password}
               onChange={this.handlePassChange}
             />
-            
+
             <div className="checkbox">
               <label>
                 <input type="checkbox" />Remember me</label>
             </div>
-            
+
             <button className="btn btn-primary btn-block btn-lg btn-signin" type="submit" value="Post">Sign In</button>
             <button className="btn btn-danger btn-block btn-lg btn-signup" type="submit" value="Post">Sign Up</button>
-            <a className="btn btn-block btn-social btn-facebook">
-              <span className="fa fa-facebook"></span>
-              Sign in with Facebook
-            </a>
-          
+            <GoogleLogin
+              clientId="203362078403-i81c1cqnqihh3n5pf343eogs7e17t3rg.apps.googleusercontent.com"
+              buttonText="Login with google"
+              callback={this.props.onGoogleClick}
+            />
+
           </form>
-          
+
           <br/>
-          
-          <a href="#" className="forgot-password">Forgot your password?</a>     
+
+          <a href="#" className="forgot-password">Forgot your password?</a>
         </div>
       );
   }

@@ -59,6 +59,10 @@ class Main extends Component{
       })
   }
 
+  handleGoogleClick(){
+    console.log('google click')
+  }
+
   render() {
     return (
       // <div style={styles.container}>
@@ -75,7 +79,9 @@ class Main extends Component{
             ? this.props.children
             : <div>
               <PasswordContainer
-                handleLoginClick={this.onLoginClick}/>
+                handleLoginClick={this.onLoginClick}
+                onGoogleClick={this.handleGoogleClick}
+              />
                 {this.state.message}
               </div>
         }
