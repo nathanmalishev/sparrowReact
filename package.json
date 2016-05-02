@@ -30,10 +30,12 @@
     "mongoose": "^4.4.11",
     "mongoose-type-email": "^1.0.2",
     "morgan": "^1.7.0",
+    "node-sass": "^3.6.0",
     "normalize.css": "^3.0.3",
     "react": "^0.14.7",
     "react-bootstrap": "^0.29.3",
     "react-dom": "^0.14.7",
+    "react-font-awesome": "^1.0.3",
     "react-router": "^2.0.0",
     "rupture": "^0.6.1",
     "style-loader": "^0.13.1"

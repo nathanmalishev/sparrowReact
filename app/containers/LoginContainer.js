@@ -61,15 +61,15 @@ class Main extends Component{
 
   render() {
     return (
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <h2 style={{ margin: 0 }}>Sparrow Travel</h2>
+      // <div style={styles.container}>
+        // <div style={styles.header}>
+      <div className="container">
+          <h2 className="text-nowrap text-center">Sparrow Travel</h2>
           {
             this.state.authenticated === true
             ? <p onClick={logout}>Logout</p>
-            : <Link to="/">SignUp</Link>
+            : <p></p>
           }
-        </div>
         {
           this.state.authenticated === true
             ? this.props.children
