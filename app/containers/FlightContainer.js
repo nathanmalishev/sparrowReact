@@ -20,6 +20,7 @@ export default class FlightContainer extends Component {
     //TODO: make flight call API
     console.log(to+from)
 
+    
     getFlights(to,from)
       .then((data)=>{
         console.log(data)
@@ -30,6 +31,7 @@ export default class FlightContainer extends Component {
           flightData: data.data
         })
       })
+    
   }
 
   render() {
@@ -51,3 +53,5 @@ export default class FlightContainer extends Component {
     );
   }
 }
+
+//data={this.state.flightData}
