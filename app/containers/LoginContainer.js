@@ -73,12 +73,14 @@ class Main extends Component{
     console.log('google click')
   }
 
-  handleSignUp(){
+  handleSignUp(e){
+    e.preventDefault();
     this.setState({
       signUp: !this.state.signUp
     })
   }
-  handleForgot(){
+  handleForgot(e){
+    e.preventDefault();
     this.setState({
       forgot: !this.state.forgot
     })
