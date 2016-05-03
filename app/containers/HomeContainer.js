@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import {getGroups} from '../helpers/api'
-import GroupTab from '../components/GroupTab'
-import CreateGroupContainer from './CreateGroupContainer'
+import { getGroups, createGroup } from '../helpers/api';
+import GroupTab from '../components/GroupTab';
+import CreateGroupContainer from './CreateGroupContainer';
+import _ from 'lodash'
 
 const styles = {
   container: {
     display: 'flex',
-    flexDirection:'column',
+    flexDirection: 'column',
     alignItems: 'center',
     padding: 5,
     color: 'black',
   },
 };
 
-
 class HomeConatiner extends Component {
 
-    constructor() {
+  constructor() {
     super();
     this.state = {
       groups: [],
@@ -24,49 +24,53 @@ class HomeConatiner extends Component {
       createNewGroup: false,
     };
 
-    this.handleGroupClick = this.handleGroupClick.bind(this)
-    this.handleSubmitGroup = this.handleSubmitGroup.bind(this)
+    this.handleGroupClick = this.handleGroupClick.bind(this);
+    this.handleSubmitGroup = this.handleSubmitGroup.bind(this);
   }
 
-    componentWillMount() {
+  componentWillMount() {
     // check if user is logged in
     // then set state
 
     //FIXME:have to get the token on my own and then pass it in
     //auth file seems to be too slow in getting it??
     getGroups()
-    .then((res)=>{
-      console.log(res)
-      if(res.statusText === 'OK'){
+    .then((res)=> {
+      console.log(res);
+      if (res.statusText === 'OK') {
         this.setState({
           groups: res.data,
-          loading: false
-        })
+          loading: false,
+        });
       }
-    })
+    });
 
   }
 
-
-  handleGroupClick(){
+  handleGroupClick() {
     this.setState({
-      createNewGroup: true
-    })
+      createNewGroup: true,
+    });
   }
 
-  handleSubmitGroup(groupname){
+  handleSubmitGroup(groupname) {
     this.setState({
-      createNewGroup: false
-    })
-    console.log(groupname)
-  }
+      createNewGroup: false,
+    });
+    createGroup(groupname)
+      .then((res)=> {
+        this.setState({
+          groups: _.concat(this.state.groups, res.data.group)
+        });
+      });
 
+  }
 
   render() {
-    const groups = this.state.groups.map((group)=>{
-      console.log(group._id)
-      return <GroupTab key={group._id} _id={String(group._id)} groupname={group.name} users={group.users} destinations={group.destinations} />
-    })
+    const groups = this.state.groups.map((group)=> {
+      console.log(group._id);
+      return <GroupTab key={group._id} _id={String(group._id)} groupname={group.name} users={group.users} destinations={group.destinations} />;
+    });
     return (
       <div style={styles.container}>
       {
@@ -84,6 +88,5 @@ class HomeConatiner extends Component {
     );
   }
 }
-
 
 export default HomeConatiner;

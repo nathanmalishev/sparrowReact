@@ -22,6 +22,7 @@ export default function Group ({_id,groupname, users,destinations}) {
     return dest.name.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '
   })
   const userList = users.map((user)=>{
+    console.log(user)
     return user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '
   })
   return (

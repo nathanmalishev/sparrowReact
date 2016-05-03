@@ -35,3 +35,22 @@ export function getGroup(id) {
     console.log(err);
   });
 }
+
+
+export function createGroup(name) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = _baseURL + 'api/groups?access_token=' + token;
+  return axios.post(url, {
+    name
+  })
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}

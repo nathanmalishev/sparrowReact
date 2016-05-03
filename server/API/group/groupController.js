@@ -1,5 +1,7 @@
 var Group = require('./groupModel');
 var _ = require('lodash');
+var User = require('../user/userModel');
+var mongoose = require('mongoose')
 
 var fields_to_polulate = 'users destinations.hotels.users destinations.flights.users';
 
@@ -20,16 +22,15 @@ exports.params = function (req, res, next, id) {
     });
 };
 
-exports.getOne = function(req,res,next){
-  res.json(req.group)
-}
-
+exports.getOne = function (req, res, next) {
+  res.json(req.group);
+};
 
 exports.get = function (req, res, next) {
 
-  console.log(req.user.groups)
+  console.log(req.user.groups);
   Group.find({
-    '_id': { $in: req.user.groups}
+    _id: { $in: req.user.groups },
   })
     .populate(fields_to_polulate, 'username')
     .exec()
@@ -54,22 +55,35 @@ exports.put = function (req, res, next) {
 
   var update = req.body;
 
-  _.merge(group,update);
+  _.merge(group, update);
 
-  group.save(function(err,saved){
-    if(err){
+  group.save(function (err, saved) {
+    if (err) {
       next(err);
-    }else{
+    }else {
       res.json(saved);
     }
-  })
+  });
 };
 
 exports.post = function (req, res, next) {
-  var newGroup = new Group(req.body);
+  var newGroup = req.body;
+  //add the user to the group
+  _.merge(newGroup, { users: [mongoose.Types.ObjectId(req.user._id)] });
+  var newGroup = new Group(newGroup);
+
   newGroup.save(function (err, group) {
       if (err) {next(err);}
+      //add the group to the user
+      req.user.groups.push(mongoose.Types.ObjectId(group._id))
+      User.findOneAndUpdate({ _id: req.user._id }, req.user, function (err, user) {
+        if (err) {
+          console.log(err);
+          next(err);
+        }
 
-      res.json({ group: group });
+        /* when they both update return new group */
+        res.json({ group: group });
+      });
     });
 };
