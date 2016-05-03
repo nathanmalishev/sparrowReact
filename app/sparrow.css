@@ -1,0 +1,45 @@
+.ghost-button {
+  display: inline-block;
+  height: 34px;
+  width: 200px;
+  padding: 8px;
+  font-weight: bold;
+  color: black;
+  border: 2px solid black;
+  background-color: transparent;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+
+.ghost-button:hover,
+.ghost-button:active {
+  background-color: black;
+  border: 2px solid black;
+  color: ghostwhite;
+}
+
+.sparrow-form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  /*border-radius: 4px;*/
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.sparrow-form-control:focus {
+  border-color: black;
+  outline: 0;
+  /*-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px black;*/
+          /*box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px black;*/
+}

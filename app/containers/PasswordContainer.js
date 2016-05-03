@@ -38,7 +38,7 @@ class PasswordContainer extends Component{
             <input
               type="text"
               placeholder="Username = nathan"
-              autofocus className="form-control"
+              autofocus className="sparrow-form-control"
               value={this.state.username}
               onChange={this.handleUserChange}
             />
@@ -48,29 +48,27 @@ class PasswordContainer extends Component{
             <input
               type="password"
               placeholder="Password = test"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.password}
               onChange={this.handlePassChange}
             />
             <div className="divider" />
-            <button className="btn btn-primary btn-block btn-lg btn-signin"
-                    type="submit" value="Post">Sign In</button>
-            <a to="signup" onClick={this.props.onSignUpClick}>
-              <button className="btn btn-danger btn-block btn-lg btn-signup"
-                    type="submit" value="Post">
-                Sign Up
-              </button>
-            </a>
-
-            <a className="btn btn-block btn-social btn-facebook">
+            <button className="ghost-button" type="submit" value="Post" transform="uppercase">
+            SIGN IN
+            </button>
+                       
+            <button className="ghost-button" type="submit" value="Post" to="signup" onClick={this.props.onSignUpClick}>
+            SIGN UP
+            </button>
+            
+            <button className="ghost-button">
               <span className="fa fa-facebook"></span>
-              Sign in with Facebook
-            </a>
-            <a className="btn btn-block btn-social btn-google">
+            </button>
+            
+            <button className="ghost-button">
               <span className="fa fa-google"></span>
-              Sign in with Google
-            </a>
-
+            </button>
+            
           </form>
 
           <br/>
