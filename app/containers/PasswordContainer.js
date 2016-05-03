@@ -55,12 +55,12 @@ class PasswordContainer extends Component{
             <div className="divider" />
             <button className="btn btn-primary btn-block btn-lg btn-signin"
                     type="submit" value="Post">Sign In</button>
-            <Link to="signup" onClick={this.props.onSignUpClick}>
+            <a to="signup" onClick={this.props.onSignUpClick}>
               <button className="btn btn-danger btn-block btn-lg btn-signup"
                     type="submit" value="Post">
                 Sign Up
               </button>
-            </Link>
+            </a>
 
             <a className="btn btn-block btn-social btn-facebook">
               <span className="fa fa-facebook"></span>
@@ -75,9 +75,9 @@ class PasswordContainer extends Component{
 
           <br/>
 
-          <Link to="forgot" className="forgot-password" onClick={this.props.onForgotClick}>
+          <a to="forgot" className="forgot-password" onClick={this.props.onForgotClick}>
             Forgot your password?
-          </Link>
+          </a>
         </div>
       );
   }

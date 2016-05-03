@@ -133,10 +133,10 @@ export default class SignUpContainer extends Component {
               />
             </div>
 
-            <div className="btn btn-danger btn-signup col-sm-offset-2"
+            <button className="btn btn-danger btn-signup col-sm-offset-2"
                   type="submit" value="Post">
               Sign Up
-            </div>
+            </button>
             </div>
           </form>
 

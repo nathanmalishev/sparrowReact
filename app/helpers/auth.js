@@ -25,7 +25,6 @@ export function signIn(username, password) {
 }
 
 export function signUp(username, email, password) {
-  /* post googleid to server */
 
   console.log(username);
   console.log(password);
@@ -49,7 +48,25 @@ export function signUp(username, email, password) {
     console.log(err);
     return err;
   });
+}
 
+export function forgotPassword(username, email, password) {
+
+  console.log(username);
+  console.log(password);
+  console.log(email);
+
+  return axios.put('http://localhost:3000/api/me', {
+    username,
+    password,
+    email,
+  })
+  .then((response) => {
+    return response;
+  })
+  .catch((err) => {
+    return err;
+  });
 }
 
 const saveToken = (token)=> {

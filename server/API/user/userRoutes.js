@@ -6,7 +6,7 @@ var authMiddleware = [auth.decodeToken(), auth.getFreshUser()]
 
 router.route('/')
   .get(authMiddleware, controller.getOne)
-  .put(authMiddleware, controller.put)
+  .put(controller.put)
   .post(controller.post, controller.notUniqueError)
   .delete(authMiddleware, controller.delete);
 

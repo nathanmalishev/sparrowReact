@@ -16,7 +16,6 @@ const routes = (
         <Route path='flights' component={FlightContainer}/>
       </Route>
       <Route path='signup' component={SignUpContainer}/>
-      <Route path='forgot' component={ForgotContainer}/>
     </Route>
   </Router>
 );

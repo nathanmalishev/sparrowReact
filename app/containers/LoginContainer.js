@@ -82,6 +82,7 @@ class Main extends Component{
     this.setState({
       forgot: !this.state.forgot
     })
+
   }
 
 
@@ -94,8 +95,7 @@ class Main extends Component{
           return <SignUpContainer onSignUpClick={this.handleSignUp}/>
         }else if(this.state.forgot === true){
           return <ForgotContainer onForgotClick={this.handleForgot}/>
-        }
-        else{
+        }else{
           return(<div>
                 <PasswordContainer
                   handleLoginClick={this.onLoginClick}
@@ -108,7 +108,6 @@ class Main extends Component{
         }
       }
     }
-
     return (
       // <div style={styles.container}>
         // <div style={styles.header}>

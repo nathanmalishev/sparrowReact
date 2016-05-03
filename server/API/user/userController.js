@@ -1,5 +1,6 @@
 var User = require('./userModel');
 var signToken = require('../auth/auth').signToken;
+var _ = require('lodash')
 
 exports.getOne = function (req, res, next) {
   var user = req.user;
@@ -25,15 +26,32 @@ exports.delete = function (req, res, next) {
 };
 
 exports.put = function (req, res, next) {
-  var user = req.user;
-  res.json(req.body);
-  User.findOneAndUpdate({ _id: req.user.id }, req.body)
-    .then(function (user) {
-        res.status(200).json(user.toJson());
-      }, function (err) {
+  var changedUser = req.body;
 
-      next(err);
-    });
+  // find supposed user
+  User.findOne({username: req.body.username})
+    .then(function(user){
+      if(!user){
+        res.send(401).json({
+          success:false,
+          message:'The username/email combination is inccorect'
+        })
+      }
+
+      //does their email match
+      console.log(user)
+      console.log(changedUser)
+      if(user.email === changedUser.email){
+        _.merge(user,changedUser);
+        user.save()
+        res.status(200).json(user.toJson())
+      }else{
+        res.status(401).json({
+          success:false,
+          message:'The username/email combination is inccorect'
+        })
+      }
+    })
 };
 
 exports.post = function (req, res, next) {
