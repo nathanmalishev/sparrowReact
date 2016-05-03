@@ -5,6 +5,7 @@ import HomeContainer from '../containers/HomeContainer';
 import GroupContainer from '../containers/GroupContainer';
 import FlightContainer from '../containers/FlightContainer';
 import SignUpContainer from '../containers/SignUpContainer';
+import ForgotContainer from '../containers/ForgotContainer';
 
 const routes = (
   <Router history={hashHistory}>
@@ -15,6 +16,7 @@ const routes = (
         <Route path='flights' component={FlightContainer}/>
       </Route>
       <Route path='signup' component={SignUpContainer}/>
+      <Route path='forgot' component={ForgotContainer}/>
     </Route>
   </Router>
 );

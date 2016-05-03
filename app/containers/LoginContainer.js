@@ -3,6 +3,7 @@ import { isAuth, signIn, AUTH_TOKEN, logout } from '../helpers/auth';
 import PasswordContainer from './PasswordContainer';
 import {Link} from 'react-router'
 import SignUpContainer from './SignUpContainer'
+import ForgotContainer from './ForgotContainer'
 
 const styles = {
   container: {
@@ -25,10 +26,13 @@ class Main extends Component{
     this.state = {
       authenticated: false,
       message: '',
+      signUp:false,
+      forgot:false
     };
 
     this.onLoginClick = this.onLoginClick.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleForgot = this.handleForgot.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +41,8 @@ class Main extends Component{
     if (isAuth()) {
       this.setState({
         authenticated: true,
-        signUp:false
+        signUp:false,
+        forgot:false
       });
     }
   }
@@ -47,7 +52,9 @@ class Main extends Component{
       .then((res)=> {
         if(res.token){
           this.setState({
-            authenticated: true
+            authenticated: true,
+            signUp:false,
+            forgot:false
           });
           return
         }else{
@@ -71,8 +78,37 @@ class Main extends Component{
       signUp: !this.state.signUp
     })
   }
+  handleForgot(){
+    this.setState({
+      forgot: !this.state.forgot
+    })
+  }
+
 
   render() {
+    const displayPage = ()=>{
+      if(this.state.authenticated === true){
+        return this.props.children
+      }else{
+        if(this.state.signUp === true){
+          return <SignUpContainer onSignUpClick={this.handleSignUp}/>
+        }else if(this.state.forgot === true){
+          return <ForgotContainer onForgotClick={this.handleForgot}/>
+        }
+        else{
+          return(<div>
+                <PasswordContainer
+                  handleLoginClick={this.onLoginClick}
+                  onGoogleClick={this.handleGoogleClick}
+                  onSignUpClick={this.handleSignUp}
+                  onForgotClick={this.handleForgot}
+                />
+                {this.state.message}
+                </div>)
+        }
+      }
+    }
+
     return (
       // <div style={styles.container}>
         // <div style={styles.header}>
@@ -83,22 +119,7 @@ class Main extends Component{
             ? <p onClick={logout}>Logout</p>
             : <p></p>
           }
-        {
-          this.state.authenticated === true
-            ? this.props.children
-            : <div>
-              {
-                  this.state.signUp === true
-                ? <SignUpContainer onSignUpClick={this.handleSignUp}/>
-                : <PasswordContainer
-                  handleLoginClick={this.onLoginClick}
-                  onGoogleClick={this.handleGoogleClick}
-                  onSignUpClick={this.handleSignUp}
-                />
-              }
-                {this.state.message}
-              </div>
-        }
+        {displayPage()}
       </div>
     );
   }

@@ -85,39 +85,59 @@ export default class SignUpContainer extends Component {
     return (
       <div>
           <h2>Sign up!</h2>
-        <form className="form-signin" onSubmit={this.handleSubmit}>
-            Username
-            <input
-              type="text"
-              placeholder="Username"
-              autofocus className="form-control"
-              value={this.state.username}
-              onChange={this.handleUserChange}
-            />
+        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="username" className="col-sm-2 control-label">
+                Username
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  autofocus className="form-control"
+                  value={this.state.username}
+                  onChange={this.handleUserChange}
+                  id="username"
+                />
+              </div>
+            </div>
              <div className="divider" />
-            Email
-            <input
-              type="email"
-              placeholder="email"
-              className="form-control"
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-            />
-
+            <div className="form-group">
+              <label htmlFor="email" className="col-sm-2 control-label">
+                Email
+              </label>
+            <div className="col-sm-10">
+              <input
+                type="email"
+                placeholder="email"
+                className="form-control"
+                value={this.state.email}
+                onChange={this.handleEmailChange}
+                id="email"
+              />
+            </div>
+            </div>
             <div className="divider" />
-            Password
-            <input
-              type="text"
-              placeholder="Password"
-              className="form-control"
-              value={this.state.password}
-              onChange={this.handlePassChange}
-            />
-              <button className="btn btn-danger btn-block btn-lg btn-signup"
-                    type="submit" value="Post">
-                Sign Up
-              </button>
+            <div className="form-group">
+              <label htmlFor="password" className="col-sm-2 control-label">
+                Password
+              </label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                placeholder="Password"
+                className="form-control"
+                value={this.state.password}
+                onChange={this.handlePassChange}
+                id="password"
+              />
+            </div>
 
+            <div className="btn btn-danger btn-signup col-sm-offset-2"
+                  type="submit" value="Post">
+              Sign Up
+            </div>
+            </div>
           </form>
 
         <SignUpMessage attempt={this.state.attempt} success={this.state.success}/>

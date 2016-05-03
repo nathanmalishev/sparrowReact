@@ -52,12 +52,7 @@ class PasswordContainer extends Component{
               value={this.state.password}
               onChange={this.handlePassChange}
             />
-
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" />Remember me</label>
-            </div>
-
+            <div className="divider" />
             <button className="btn btn-primary btn-block btn-lg btn-signin"
                     type="submit" value="Post">Sign In</button>
             <Link to="signup" onClick={this.props.onSignUpClick}>
@@ -80,7 +75,9 @@ class PasswordContainer extends Component{
 
           <br/>
 
-          <a href="#" className="forgot-password">Forgot your password?</a>
+          <Link to="forgot" className="forgot-password" onClick={this.props.onForgotClick}>
+            Forgot your password?
+          </Link>
         </div>
       );
   }
