@@ -8,7 +8,7 @@ export function signIn(username, password) {
 
   console.log(username);
   console.log(password);
-  return axios.post(config.url+'/api/signin', {
+  return axios.post(config.url+'api/signin', {
     username,
     password,
   })
@@ -32,7 +32,7 @@ export function signUp(username, email, password) {
   console.log(password);
   console.log(email);
 
-  return axios.post(config.url+'/api/me', {
+  return axios.post(config.url+'api/me', {
     username,
     password,
     email,
@@ -56,7 +56,7 @@ export function forgotPassword(username, email, password) {
   console.log(password);
   console.log(email);
 
-  return axios.put(config.url+'/api/me', {
+  return axios.put(config.url+'api/me', {
     username,
     password,
     email,
