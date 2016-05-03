@@ -1,12 +1,14 @@
 const axios = require('axios');
 const tag = 'sparrow-travel-token';
+import {config} from './config'
+
 
 export function signIn(username, password) {
   /* post googleid to server */
 
   console.log(username);
   console.log(password);
-  return axios.post('http://localhost:3000/api/signin', {
+  return axios.post(config.url+'/api/signin', {
     username,
     password,
   })
@@ -30,7 +32,7 @@ export function signUp(username, email, password) {
   console.log(password);
   console.log(email);
 
-  return axios.post('http://localhost:3000/api/me', {
+  return axios.post(config.url+'/api/me', {
     username,
     password,
     email,
@@ -54,7 +56,7 @@ export function forgotPassword(username, email, password) {
   console.log(password);
   console.log(email);
 
-  return axios.put('http://localhost:3000/api/me', {
+  return axios.put(config.url+'/api/me', {
     username,
     password,
     email,

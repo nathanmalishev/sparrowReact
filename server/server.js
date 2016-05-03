@@ -22,6 +22,9 @@ require('./middleware/appMiddleware')(app);
 /* use api routes */
 app.use('/api', apiRoutes);
 
+/* server dist on heroku*/
+app.use(express.static('dist'));
+
 /* Global error handling */
 app.use(function (err, req, res, next) {
   // if error thrown from jwt validation check

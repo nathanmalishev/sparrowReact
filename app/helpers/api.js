@@ -1,8 +1,9 @@
 const axios = require('axios');
 const auth = require('./auth');
+import {config} from './config'
 // axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth.AUTH_TOKEN;
 /* _baseURL is assumed to be on same directoy as this app is served*/
-const _baseURL = 'http://localhost:3000/';
+const _baseURL = config.url;
 
 export function getGroups() {
   const url = _baseURL + 'api/groups';
