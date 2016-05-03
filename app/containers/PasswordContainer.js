@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import GoogleLogin from '../components/GoogleLogin';
+import {Link} from 'react-router'
 
 class PasswordContainer extends Component{
 
@@ -45,7 +46,7 @@ class PasswordContainer extends Component{
             <div className="divider" />
 
             <input
-              type="text"
+              type="password"
               placeholder="Password = test"
               className="form-control"
               value={this.state.password}
@@ -57,8 +58,14 @@ class PasswordContainer extends Component{
                 <input type="checkbox" />Remember me</label>
             </div>
 
-            <button className="btn btn-primary btn-block btn-lg btn-signin" type="submit" value="Post">Sign In</button>
-            <button className="btn btn-danger btn-block btn-lg btn-signup" type="submit" value="Post">Sign Up</button>
+            <button className="btn btn-primary btn-block btn-lg btn-signin"
+                    type="submit" value="Post">Sign In</button>
+            <Link to="signup" onClick={this.props.onSignUpClick}>
+              <button className="btn btn-danger btn-block btn-lg btn-signup"
+                    type="submit" value="Post">
+                Sign Up
+              </button>
+            </Link>
 
             <a className="btn btn-block btn-social btn-facebook">
               <span className="fa fa-facebook"></span>

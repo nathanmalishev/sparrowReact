@@ -37,6 +37,7 @@ exports.put = function (req, res, next) {
 };
 
 exports.post = function (req, res, next) {
+  console.log(req.body)
   var newUser = new User(req.body);
 
   newUser.save(function (err, user) {

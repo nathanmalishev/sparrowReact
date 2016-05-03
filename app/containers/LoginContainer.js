@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { isAuth, signIn, AUTH_TOKEN, logout } from '../helpers/auth';
 import PasswordContainer from './PasswordContainer';
 import {Link} from 'react-router'
+import SignUpContainer from './SignUpContainer'
 
 const styles = {
   container: {
@@ -27,6 +28,7 @@ class Main extends Component{
     };
 
     this.onLoginClick = this.onLoginClick.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +37,7 @@ class Main extends Component{
     if (isAuth()) {
       this.setState({
         authenticated: true,
+        signUp:false
       });
     }
   }
@@ -63,6 +66,12 @@ class Main extends Component{
     console.log('google click')
   }
 
+  handleSignUp(){
+    this.setState({
+      signUp: !this.state.signUp
+    })
+  }
+
   render() {
     return (
       // <div style={styles.container}>
@@ -78,10 +87,15 @@ class Main extends Component{
           this.state.authenticated === true
             ? this.props.children
             : <div>
-              <PasswordContainer
-                handleLoginClick={this.onLoginClick}
-                onGoogleClick={this.handleGoogleClick}
-              />
+              {
+                  this.state.signUp === true
+                ? <SignUpContainer onSignUpClick={this.handleSignUp}/>
+                : <PasswordContainer
+                  handleLoginClick={this.onLoginClick}
+                  onGoogleClick={this.handleGoogleClick}
+                  onSignUpClick={this.handleSignUp}
+                />
+              }
                 {this.state.message}
               </div>
         }
