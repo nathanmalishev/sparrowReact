@@ -26,7 +26,7 @@ export default class SignUpContainer extends Component {
       password: '',
       email: '',
       attempt:false,
-      success:true,
+      success:false,
     };
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -55,6 +55,7 @@ export default class SignUpContainer extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if(!this.state.username || !this.state.email || !this.state.password){
+      this.setState({attempt:true})
       return
     }
     signUp(this.state.username,this.state.email,this.state.password)
