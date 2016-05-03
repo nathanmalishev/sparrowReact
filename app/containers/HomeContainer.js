@@ -84,7 +84,12 @@ class HomeConatiner extends Component {
         ? <CreateGroupContainer onSubmitGroup={this.handleSubmitGroup}/>
         : <button className='ghost-button' onClick={this.handleGroupClick}>Create new group</button>
       }
+      <br/>
+      <br/>
+      <br/>
+      <br/> 
       </div>
+      // Whats the easiest way to add whitepsace lol
     );
   }
 }
