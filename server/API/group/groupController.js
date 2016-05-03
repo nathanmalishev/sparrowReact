@@ -26,7 +26,11 @@ exports.getOne = function(req,res,next){
 
 
 exports.get = function (req, res, next) {
-  Group.find()
+
+  console.log(req.user.groups)
+  Group.find({
+    '_id': { $in: req.user.groups}
+  })
     .populate(fields_to_polulate, 'username')
     .exec()
     .then(function (groups) {
