@@ -36,7 +36,6 @@ export function signUp(username, email, password) {
     email,
   })
   .then((response) => {
-    console.log(response);
     if (response.data.token) {
       saveToken(response.data.token);
       return response;
@@ -45,7 +44,6 @@ export function signUp(username, email, password) {
     }
   })
   .catch((err) => {
-    console.log(err);
     return err;
   });
 }

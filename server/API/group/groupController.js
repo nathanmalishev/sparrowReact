@@ -43,9 +43,7 @@ exports.get = function (req, res, next) {
 };
 
 exports.delete = function (req, res, next) {
-  res.json({
-    username: 'nathan',
-  });
+  res.send('to do')
 };
 
 exports.put = function (req, res, next) {
@@ -82,8 +80,11 @@ exports.post = function (req, res, next) {
           next(err);
         }
 
-        /* when they both update return new group */
-        res.json({ group: group });
+        /* FIXME: bit of a hack, but api expects a group to be returned,
+          thats populated, meaning USER has username, etc not just the id */
+        group.users = [user];
+
+        res.json({group});
       });
     });
 };
