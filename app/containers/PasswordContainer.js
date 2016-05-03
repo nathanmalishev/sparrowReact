@@ -59,18 +59,11 @@ class PasswordContainer extends Component{
 
             <button className="btn btn-primary btn-block btn-lg btn-signin" type="submit" value="Post">Sign In</button>
             <button className="btn btn-danger btn-block btn-lg btn-signup" type="submit" value="Post">Sign Up</button>
-            <GoogleLogin
-              clientId="203362078403-i81c1cqnqihh3n5pf343eogs7e17t3rg.apps.googleusercontent.com"
-              buttonText="Login with google"
-              callback={this.props.onGoogleClick}
-            />
-
 
             <a className="btn btn-block btn-social btn-facebook">
               <span className="fa fa-facebook"></span>
               Sign in with Facebook
             </a>
-
             <a className="btn btn-block btn-social btn-google">
               <span className="fa fa-google"></span>
               Sign in with Google
