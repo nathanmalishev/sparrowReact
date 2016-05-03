@@ -1,7 +1,7 @@
 var Group = require('./groupModel');
 var _ = require('lodash');
 var User = require('../user/userModel');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 var fields_to_polulate = 'users destinations.hotels.users destinations.flights.users';
 
@@ -43,7 +43,7 @@ exports.get = function (req, res, next) {
 };
 
 exports.delete = function (req, res, next) {
-  res.send('to do')
+  res.send('to do');
 };
 
 exports.put = function (req, res, next) {
@@ -68,12 +68,15 @@ exports.post = function (req, res, next) {
   var newGroup = req.body;
   //add the user to the group
   _.merge(newGroup, { users: [mongoose.Types.ObjectId(req.user._id)] });
+
+  _.merge(newGroup, { destinations: [] });
+  console.log(newGroup);
   var newGroup = new Group(newGroup);
 
   newGroup.save(function (err, group) {
       if (err) {next(err);}
       //add the group to the user
-      req.user.groups.push(mongoose.Types.ObjectId(group._id))
+      req.user.groups.push(mongoose.Types.ObjectId(group._id));
       User.findOneAndUpdate({ _id: req.user._id }, req.user, function (err, user) {
         if (err) {
           console.log(err);
@@ -84,7 +87,7 @@ exports.post = function (req, res, next) {
           thats populated, meaning USER has username, etc not just the id */
         group.users = [user];
 
-        res.json({group});
+        res.json({ group });
       });
     });
 };
