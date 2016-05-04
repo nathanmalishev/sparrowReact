@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import {Link} from 'react-router'
 import Destination from './Destination'
+import { logout } from '../helpers/auth';
 
 const styles = {
   header: {
@@ -10,7 +11,7 @@ const styles = {
     padding: 5,
     // color: 'black',
     width:'80%',
-    backgroundColor:'grey'
+    // backgroundColor:'grey'
   },
   destinations: {
     display:'flex',
@@ -42,21 +43,27 @@ class Group extends Component{
     console.log(this.props.routeParams, 'props')
     return (
       <div>
-      <h1>{this.props.groupName}</h1>
-      <div style={styles.container}>
-          <div style={styles.destinations}>
-            {listDestinations}
+        <h1 className="text-nowrap text-center">{this.props.groupName}</h1>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <a className="navbar-brand navbar-link" href="#">
+                Sparrow
+              </a>  
+            </div> 
+            
+            <div className="collapse navbar-collapse" id="navcol-1">
+              <ul className="nav navbar-nav navbar-right">
+                <li class="active" role="presentation"><Link to={'group/'+this.props.routeParams.id+'/flights'}>Flights</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/hotels'}>Hotels</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/itinerary'}>Itinerary</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/chat'}>Chat</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/expenses'}>Expenses</Link></li>
+                <li role="presentation"><a onClick={logout}>Logout</a></li>
+              </ul>
+            </div>
           </div>
-          <div style={styles.header}>
-            <Link to={'group/'+this.props.routeParams.id+'/flights'}>
-              Flights
-            </Link>
-            <p>Hotels</p>
-            <p>Itinerary</p>
-            <p>Chat</p>
-            <p>Expenses</p>
-          </div>
-      </div>
+        </nav>
       </div>
     )
   }
@@ -64,3 +71,21 @@ class Group extends Component{
 
 
 export default Group
+
+// TO-DO: Make navbar repsonosive for all screensizes - collapsable
+// TO-DO: Make onClick have hover for usability - logout button
+
+// <div style={styles.container}>
+//           <div style={styles.destinations}>
+//             {listDestinations}
+//           </div>
+//           <div style={styles.header}>
+//             <Link to={'group/'+this.props.routeParams.id+'/flights'}>
+//               Flights
+//             </Link>
+//             <p>Hotels</p>
+//             <p>Itinerary</p>
+//             <p>Chat</p>
+//             <p>Expenses</p>
+//           </div>
+//       </div>
