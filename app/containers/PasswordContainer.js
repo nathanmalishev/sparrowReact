@@ -41,6 +41,7 @@ class PasswordContainer extends Component{
               autofocus className="sparrow-form-control"
               value={this.state.username}
               onChange={this.handleUserChange}
+              required
             />
 
             <div className="divider" />
@@ -51,6 +52,7 @@ class PasswordContainer extends Component{
               className="sparrow-form-control"
               value={this.state.password}
               onChange={this.handlePassChange}
+              required
             />
             <div className="divider" />
             <button className="ghost-button" type="submit" value="Post" transform="uppercase">

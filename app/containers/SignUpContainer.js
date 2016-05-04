@@ -80,69 +80,63 @@ export default class SignUpContainer extends Component {
   }
 
   render() {
-
-
     return (
-      <div>
-          <h2>Sign up!</h2>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+      <div className="login-card">
+          <form className="form-signin" onSubmit={this.handleSubmit}>
+            <h2 className="text-nowrap text-center">Sign Up</h2><hr/>
             <div className="form-group">
-              <label htmlFor="username" className="col-sm-2 control-label">
-                Username
-              </label>
-              <div className="col-sm-10">
-                <input
-                  type="text"
-                  placeholder="Username"
-                  autofocus className="form-control"
-                  value={this.state.username}
-                  onChange={this.handleUserChange}
-                  id="username"
-                />
-              </div>
+              <input type="text" class="form-control" placeholder="First Name" required/>
             </div>
-             <div className="divider" />
             <div className="form-group">
-              <label htmlFor="email" className="col-sm-2 control-label">
-                Email
-              </label>
-            <div className="col-sm-10">
-              <input
-                type="email"
-                placeholder="email"
-                className="form-control"
+              <input type="text" class="form-control" placeholder="Last Name" required/>
+            </div>
+            <div className="form-group">
+              <input 
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={this.handleUserChange}
+                id="username"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Email Address" 
                 value={this.state.email}
                 onChange={this.handleEmailChange}
                 id="email"
+                required
               />
             </div>
-            </div>
-            <div className="divider" />
             <div className="form-group">
-              <label htmlFor="password" className="col-sm-2 control-label">
-                Password
-              </label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                placeholder="Password"
-                className="form-control"
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Password" 
                 value={this.state.password}
                 onChange={this.handlePassChange}
                 id="password"
+                required
               />
             </div>
-
-            <button className="btn btn-danger btn-signup col-sm-offset-2"
-                  type="submit" value="Post">
-              Sign Up
-            </button>
+            <div className="form-group">
+              <input type="text" class="form-control" placeholder="Repeat Password" required/>
             </div>
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" required/>I&#39;ve read and accept the terms and conditions
+              </label>
+            </div>
+            <button className="ghost-button" type="submit" value="Post">SIGN UP</button>
+            <button className="ghost-button" onClick={this.props.onSignUpClick}>CANCEL</button>
           </form>
-
-        <SignUpMessage attempt={this.state.attempt} success={this.state.success}/>
-
-        <button className="btn" onClick={this.props.onSignUpClick}>Back</button>
+          
+          <SignUpMessage attempt={this.state.attempt} success={this.state.success}/>
+          
       </div>
     );
   }
