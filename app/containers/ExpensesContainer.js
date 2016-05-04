@@ -7,10 +7,11 @@ export default class ExpensesContainer extends Component {
       fee: '',
 	  paidby: '',
 	  loading: true,
-	  groupData: {},
+	  involved: [],
 	};
 	this.handleFeeChange = this.handleFeeChange.bind(this)
 	this.handlePaidByChange = this.handlePaidByChange.bind(this)
+	this.handleInvolved = this.handleInvolved.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -22,21 +23,41 @@ export default class ExpensesContainer extends Component {
     this.setState({ paidby: e.target.value });
   }
 
+  handleInvolved(e){
+  	var input = e.target;
+  	if (input.checked) {
+  		this.setState({ involved: this.state.involved.concat([{id: input.value}])})
+  		
+  	} else {
+  		var newInv = this.state.involved.slice();
+  		newInv.splice(input.value, 1);
+  		this.setState({involved: newInv});
+  	}
+  	;
+  }
+
   handleSubmit(e){
   	console.log(this.state.paidby, "Paiddddd")
   	console.log(this.state.fee, "feeeeeeee")
+  	console.log(this.state.involved, "payusup")
   }
 
  
 
   render() {
   	console.log(this.props.users, "users")
+  	
   	const userList = this.props.users.map((user)=>{
     return <option value={user._id}>{user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}</option>
   })
- // 	const userCheck = this.props.users.map((user)=>{
- // 	return <input type="checkbox"  />{user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}
- // })
+  	const userCheck = this.props.users.map((user)=>{
+  	return <input 
+  	         type="checkbox" 
+  	         value={user._id} 
+  	         onChange={this.handleInvolved}>
+  	         {user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}
+  	         </input>
+  })
   	return (
   	  <div>
   	    <p>Gday</p>
@@ -52,9 +73,9 @@ export default class ExpensesContainer extends Component {
               type="text"
               value={this.state.fee}
               onChange={this.handleFeeChange}/>
-            Who was involved?
             <div>
-              <input type="checkbox" />Hellooooo<input type="checkbox" />Byeeeee
+              Who was involved?
+              {userCheck}
             </div>
             <input type="submit" value="Post" />
   	    </form>
