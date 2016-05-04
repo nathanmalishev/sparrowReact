@@ -54,7 +54,9 @@ class Group extends Component{
             <p>Hotels</p>
             <p>Itinerary</p>
             <p>Chat</p>
-            <p>Expenses</p>
+            <Link to={'group/'+this.props.routeParams.id+'/expenses'}>
+              Expenses
+            </Link>
           </div>
       </div>
       </div>
