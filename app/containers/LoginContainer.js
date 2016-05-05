@@ -106,10 +106,14 @@ class Main extends Component{
                   onForgotClick={this.handleForgot}
                 />
                 {this.state.message}
-                <a href="Carousel.html" style={{textAlign:'center', fontSize:'20px',marginTop:'20px'}}
-                  className="col-md-12">
-                  Carousel (only works on heroku)
-                </a>
+                <hr/>
+                <div className="requirements">
+                  <h2>Requirements</h2>
+                  <a href="Carousel.html"
+                    className="ghost-button" type="button">
+                    Carousel
+                  </a>
+                </div>
                 </div>)
         }
       }

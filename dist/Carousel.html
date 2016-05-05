@@ -1,7 +1,39 @@
     <!DOCTYPE html>
     <html>
     <head>
-    <a href="/">back</a>
+    <style>
+    .requirements{
+      max-width:350px;
+      padding:20px 40px;
+      margin:10px auto;
+      border-radius:2px;
+      text-align:center;
+      position:relative;
+      right:-43.5%;
+    }
+        .ghost-button {
+      display: inline-block;
+      width: 200px;
+      padding: 8px;
+      font-weight: bold;
+      color: black;
+      border: 2px solid black;
+      background-color: transparent;
+      text-align: center;
+      outline: none;
+      text-decoration: none;
+    }
+
+    .ghost-button:hover,
+    .ghost-button:active {
+      background-color: black;
+      border: 2px solid black;
+      color: ghostwhite;
+    }
+
+    </style>
+
+    <a href="/" class="requirements ghost-button">back</a>
     <script>
 
     var NUM_PANELS    = 5;
