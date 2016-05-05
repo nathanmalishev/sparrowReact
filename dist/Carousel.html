@@ -1,0 +1,250 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <a href="/">back</a>
+    <script>
+
+    var NUM_PANELS    = 5;
+    var FULL_ROTATION = 360; // degrees
+    var PANEL_SIZE    = 200; // pixels
+
+    var LEFT = 37;
+    var RIGHT = 39;
+
+    var currentPanels = 0;
+
+    function initCarousel(){
+
+    // These are just test elements, they can be anything.
+    // But change PANEL_SIZE to match
+    // ------------------------
+    for (var i = 0; i<5; i++){
+    var node = document.createElement("img");
+
+    node.style.width  = "200px";
+    node.style.height = "250px";
+    node.style.border = "thick solid black";
+
+
+    if (i==0) {
+        node.setAttribute("src","nathan.jpeg");
+
+    }
+    else if (i==1) {
+        node.setAttribute("src","michael.jpg");
+    }
+    else if (i==2) {
+        node.setAttribute("src","oliver.jpg");
+    }
+    else if (i==3) {
+        node.setAttribute("src","david.jpg");
+    }
+
+    else{
+        node.setAttribute("src","hao.jpg");
+    }
+
+
+    //------------------------------
+
+    // These are needed to properly position panels in parent div
+    node.style.position = "absolute";
+    node.style.display = "block";
+    // these center the panel in the parent div
+    node.style.left = "45%";
+    node.style.top  = "40%";
+    // This alters the transition time/ smoothness
+    node.style.setProperty("-webkit-transition","opacity 1s, -webkit-transform 1s");
+    // Add panel to carousel
+    addPanel(node);
+    }
+
+
+}
+
+function addPanel(node){
+
+    // Make node into a carousel-panel and append to carousel div
+    var caro = document.getElementById("carousel");
+    node.className += "carousel-panel";
+    node.setAttribute("index", currentPanels++);
+
+
+    caro.appendChild(node);
+    placePanel(node);
+
+
+}
+
+function placePanel(node){
+
+    var angle = getRotationAngle();
+    var translateZ = getTranslationZ();
+
+    var index = node.getAttribute("index");
+    node.style.setProperty("-webkit-transform","rotateY(" + (index * angle) + "deg" + ") translateZ(" + translateZ + "px" + ")");
+    // should add other transforms for firefox, safari, &c.
+
+}
+
+function spin(dir){
+
+    var angle      = getRotationAngle();
+    var translateZ = getTranslationZ();
+
+
+    for (var i = NUM_PANELS-1; i > -1; i--){
+    var node = document.querySelector('[index="' + i + '"]');
+    node.style.setProperty("-webkit-transform","rotateY(" + ((i+(dir*1)).mod(NUM_PANELS) * angle) + "deg" + ") translateZ(" + translateZ + "px" + ")");
+    }
+
+    // Increment/decrement indices
+    var nodes = document.getElementsByClassName("carousel-panel");
+    node.setAttribute("index", (i+1)%NUM_PANELS);
+    for (i = 0; i < nodes.length; i++){
+    var tmp = nodes[i].getAttribute("index");
+    var tmp2 = parseInt(tmp) + dir*1;
+    nodes[i].setAttribute("index", (tmp2).mod(NUM_PANELS));
+    }
+}
+
+var scroller = 0;
+function keyCommand(event){
+    var paragraph = document.getElementById("paragraph");
+    if (event.keyCode == LEFT){
+        if (scroller ==5) {
+            scroller=-1;
+        }
+        scroller++;
+        if (scroller==0) {
+            paragraph.innerHTML = "Nathan is a postgraduate student pursuing his Master's of Engineering(Software). " +
+            "He is also our group leader and came up with the technologies we are using for our website. " +
+            "He is managing most of our meetups and is bringing crucial ideas to the team. His tasks involve the implementation " +
+            "of the flight and accomodation APIs, server and database setups and Authorisations.";
+
+        }
+        if (scroller==1) {
+            paragraph.innerHTML = "Michael is a 3rd year Software Engineering student. Michael is a true artist when it comes to User Interface. " +
+            "That's why we as a team have decided to let him work on our front end implementation, working mostly on the design of our pages. "+
+            "He has also been tasked with building the Money Tracker that is keeps track of a traveler's expenses and loans.";
+
+        }
+        if(scroller==2){
+            paragraph.innerHTML = "Oliver";
+
+        }
+        if(scroller==3){
+            paragraph.innerHTML = "David";
+
+        }
+        if(scroller==4){
+            paragraph.innerHTML = "Hao";
+            scroller = -1;
+        }
+
+    spin(-1);
+    }
+
+    if (event.keyCode == RIGHT){
+        if (scroller==5) {
+            scroller=4;
+        }
+        scroller--;
+
+        if (scroller==-2) {
+            scroller =3;
+        }
+        if (scroller==0) {
+            paragraph.innerHTML = "Nathan is a postgraduate student pursuing his Master's of Engineering(Software). " +
+            "He is also our group leader and came up with the technologies we are using for our website. " +
+            "He is managing most of our meetups and is bringing crucial ideas to the team. His tasks involve the implementation " +
+            "of the flight and accomodation APIs, server and database setups and Authorisations.";
+
+        }
+        if (scroller==1) {
+            paragraph.innerHTML = "Michael is a 3rd year Software Engineering student. Michael is a true artist when it comes to User Experience. " +
+            "That's why we as a team have decided to let him work on our front end implementation, working mostly on the design of our pages. "+
+            "He has also been tasked with building the Money Tracker that is keeps track of a traveler's expenses and loans.";
+
+        }
+        if(scroller==2){
+            paragraph.innerHTML = "Oliver";
+
+        }
+        if(scroller==3){
+            paragraph.innerHTML = "David";
+
+        }
+        if (scroller==-1){
+            paragraph.innerHTML = "Hao";
+            scroller= 5
+
+        }
+    spin(1);
+    }
+}
+
+
+
+function getRotationAngle(){
+
+    return FULL_ROTATION/NUM_PANELS;
+
+}
+
+function getTranslationZ(){
+
+    return  Math.round((PANEL_SIZE / 2) / Math.tan(Math.PI / 6));
+}
+
+// Custom modulo operator to handle negative values properly
+Number.prototype.mod = function(n) {
+    return ((this%n)+n)%n;
+};
+
+    </script>
+
+
+
+    <style>
+
+
+    #paragraph {
+    position: relative;
+    height: 200px;
+    width: 800px;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 40%;
+    font-size: 150%;
+    font-family:  Impact, Charcoal, sans-serif;
+    }
+    </style>
+
+
+    </head>
+
+    <body onload="initCarousel()">
+
+    <div style="height: 500px; width:100%; perspective: 800px; perspective-origin: 53% 50%; margin: 0px auto; position:relative; outline:none" onkeydown="keyCommand(event)"tabindex="1">
+
+
+
+
+
+    <div id="carousel" style="height:100%; width:100%; transform-style: preserve-3d; -webkit-transition: -webkit-transform 1s; position:absolute;">
+
+    </div>
+
+    </div>
+
+    <div style="height:300px;width:100%;">
+
+        <p id="paragraph">Please click on the picture to proceed, then use the left
+        and right arrow to spin the carousel</p>
+    </div>
+
+
+</body>
+
+</html>

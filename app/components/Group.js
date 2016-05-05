@@ -49,9 +49,9 @@ class Group extends Component{
             <div className="navbar-header">
               <a className="navbar-brand navbar-link" href="#">
                 Sparrow
-              </a>  
-            </div> 
-            
+              </a>
+            </div>
+
             <div className="collapse navbar-collapse" id="navcol-1">
               <ul className="nav navbar-nav navbar-right">
                 <li class="active" role="presentation"><Link to={'group/'+this.props.routeParams.id+'/flights'}>Flights</Link></li>
