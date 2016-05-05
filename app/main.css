@@ -104,10 +104,14 @@ html, body, .app {
 }
 
 .login-card .forgot-password{
-  color:rgb(104, 145, 162);
+  color: black;
 }
 
 .login-card .forgot-password:hover, .login-card .forgot-password:active, .login-card .forgot-password:focus{
-  color:rgb(12, 97, 33);
+  color: black;
 }
 
+.Link{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}

@@ -23,7 +23,7 @@ export default class createGroupContainer extends Component {
     var groupName = this.state.groupName.trim();
     if( !groupName){
       this.setState({
-        message: 'please enter a group name!'
+        message: 'Please enter a group name...'
       })
       return;
     }
@@ -34,13 +34,17 @@ export default class createGroupContainer extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-            Enter group name
             <input
               type="text"
+              placeholder="Enter group name"
+              autofocus className="sparrow-form-control"
               value={this.state.groupName}
               onChange={this.handleGroupChange}
             />
-            <input type="submit" value="Post" />
+            <br/>
+            <button className="ghost-button" type="submit" transform="uppercase">
+            CREATE
+            </button>
           </form>
           {this.state.message}
       </div>
