@@ -1,43 +1,40 @@
 import React, { Component, PropTypes } from 'react';
-import {getGroup} from '../helpers/api'
-import Group from '../components/Group'
-
-
-
+import { getGroup } from '../helpers/api';
+import Group from '../components/Group';
 
 class GroupContainer extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      loading:true,
+      loading: true,
       groupData: {},
-      currentDestination: {}
-    }
-    this.handleDestinationClick = this.handleDestinationClick.bind(this)
+      currentDestination: {},
+    };
+    this.handleDestinationClick = this.handleDestinationClick.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     //split id as there is two
     getGroup(this.props.routeParams.id)
-      .then((res)=>{
-        if(res.statusText === 'OK'){
+      .then((res)=> {
+        if (res.statusText === 'OK') {
           this.setState({
-            loading:false,
+            loading: false,
             groupData: res.data,
-            currentDestination: res.data.destinations[0]
-          })
-          console.log(res)
+            currentDestination: res.data.destinations[0],
+          });
+          console.log(res);
         }
 
-      })
+      });
   }
 
-  handleDestinationClick(destination){
-    console.log(destination)
+  handleDestinationClick(destination) {
+    console.log(destination);
     this.setState({
-      currentDestination: destination
-    })
+      currentDestination: destination,
+    });
 
   }
 
@@ -57,7 +54,7 @@ class GroupContainer extends Component {
                 onDestinationClick={this.handleDestinationClick}
                 routeParams={this.props.routeParams}
               />
-           {React.cloneElement(this.props.children, { destination:this.state.currentDestination, users:this.state.groupData.users })}
+           {React.cloneElement(this.props.children, { destination: this.state.currentDestination, users: this.state.groupData.users })}
             </div>
       }
       </div>
@@ -66,7 +63,7 @@ class GroupContainer extends Component {
 }
 
 GroupContainer.contextTypes = {
-  router: React.PropTypes.object.isRequired
-}
+  router: React.PropTypes.object.isRequired,
+};
 
 export default GroupContainer;

@@ -17,8 +17,7 @@ var UserSchema = new Schema({
   },
 
   email: {
-    type: mongoose.SchemaTypes.Email,
-    required:true
+    type: mongoose.SchemaTypes.Email
   },
 
   groups: [{ type: Schema.Types.ObjectId, ref: 'groups' }],
