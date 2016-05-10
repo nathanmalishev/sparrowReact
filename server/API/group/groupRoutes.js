@@ -13,6 +13,7 @@ router.route('/:id')
 
 router.route('/:id/expenses')
   .get(controller.getExpenses)
+  .post(controller.postExpenses)
 
 
 module.exports = router;

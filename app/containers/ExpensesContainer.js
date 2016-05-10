@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {postExpenses} from '../helpers/api'
 
 export default class ExpensesContainer extends Component {
   constructor() {
@@ -8,6 +9,7 @@ export default class ExpensesContainer extends Component {
       paidby: {},
       loading: true,
       involved: [],
+      expenses: []
     };
     this.handleFeeChange = this.handleFeeChange.bind(this);
     this.handlePaidByChange = this.handlePaidByChange.bind(this);
@@ -67,6 +69,16 @@ export default class ExpensesContainer extends Component {
       };
     });
     console.log('transaction',transaction);
+    console.log('group id', this.props.params.id)
+    postExpenses(this.props.params.id,transaction)
+      .then((res)=>{
+        this.setState({
+          expenses: res.data.expenses
+        })
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
 
   }
 
@@ -120,7 +132,7 @@ export default class ExpensesContainer extends Component {
                    <input type="submit" value="Post" />
                </form>
 
-            {JSON.stringify(this.props.expenses)}
+            {JSON.stringify(this.state.expenses)}
 
       </div>);
   }

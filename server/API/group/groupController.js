@@ -97,3 +97,21 @@ exports.post = function (req, res, next) {
       });
     });
 };
+
+
+
+exports.postExpenses = function(req, res, next){
+  var group = req.group;
+  var newExpenses = req.body;
+
+  console.log('group ', group.expenses)
+  console.log('new expenses ', newExpenses.expenses)
+
+  group.expenses = _.concat(group.expenses, newExpenses.expenses);
+  console.log('merged after ', group)
+  group.save(function(err,group){
+    if(err){next(err);}
+
+    res.status(201).send(group);
+  })
+}

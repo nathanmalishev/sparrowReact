@@ -54,3 +54,22 @@ export function createGroup(name) {
     console.log(err);
   });
 }
+
+
+export function postExpenses(groupId,expenses) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
+  return axios.post(url, {
+    expenses
+  })
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
