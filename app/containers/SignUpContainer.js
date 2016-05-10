@@ -85,15 +85,15 @@ export default class SignUpContainer extends Component {
           <form className="form-signin" onSubmit={this.handleSubmit}>
             <h2 className="text-nowrap text-center">Sign Up</h2><hr/>
             <div className="form-group">
-              <input type="text" class="form-control" placeholder="First Name" required/>
+              <input type="text" className="form-control" placeholder="First Name" required/>
             </div>
             <div className="form-group">
-              <input type="text" class="form-control" placeholder="Last Name" required/>
+              <input type="text" className="form-control" placeholder="Last Name" required/>
             </div>
             <div className="form-group">
-              <input 
+              <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Username"
                 value={this.state.username}
                 onChange={this.handleUserChange}
@@ -102,10 +102,10 @@ export default class SignUpContainer extends Component {
               />
             </div>
             <div className="form-group">
-              <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Email Address" 
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Email Address"
                 value={this.state.email}
                 onChange={this.handleEmailChange}
                 id="email"
@@ -113,10 +113,10 @@ export default class SignUpContainer extends Component {
               />
             </div>
             <div className="form-group">
-              <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Password" 
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Password"
                 value={this.state.password}
                 onChange={this.handlePassChange}
                 id="password"
@@ -124,7 +124,7 @@ export default class SignUpContainer extends Component {
               />
             </div>
             <div className="form-group">
-              <input type="text" class="form-control" placeholder="Repeat Password" required/>
+              <input type="text" className="form-control" placeholder="Repeat Password" required/>
             </div>
             <div className="checkbox">
               <label>
@@ -134,9 +134,9 @@ export default class SignUpContainer extends Component {
             <button className="ghost-button" type="submit" value="Post">SIGN UP</button>
             <button className="ghost-button" onClick={this.props.onSignUpClick}>CANCEL</button>
           </form>
-          
+
           <SignUpMessage attempt={this.state.attempt} success={this.state.success}/>
-          
+
       </div>
     );
   }

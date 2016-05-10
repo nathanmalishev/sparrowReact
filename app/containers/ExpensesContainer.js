@@ -27,7 +27,7 @@ export default class ExpensesContainer extends Component {
   	var input = e.target;
   	if (input.checked) {
   		this.setState({ involved: this.state.involved.concat([{id: input.value}])})
-  		
+
   	} else {
   		var newInv = this.state.involved.slice();
   		newInv.splice(input.value, 1);
@@ -42,43 +42,43 @@ export default class ExpensesContainer extends Component {
   	console.log(this.state.involved, "payusup")
   }
 
- 
+
 
   render() {
   	console.log(this.props.users, "users")
-  	
+
   	const userList = this.props.users.map((user)=>{
     return <option value={user._id}>{user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}</option>
   })
   	const userCheck = this.props.users.map((user)=>{
-  	return <input 
-  	         type="checkbox" 
-  	         value={user._id} 
+  	return <input
+  	         type="checkbox"
+  	         value={user._id}
   	         onChange={this.handleInvolved}>
   	         {user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}
   	         </input>
   })
   	return (
   	  <div>
-  	    <p>Gday</p>
-  	    <form onSubmit={this.handleSubmit}>
-  	        Who paid?
-  	        <select
-  	          onChange={this.handlePaidByChange}>
-  	          <option value='0'>Please select user</option>
-  	          {userList}
-  	        </select>
-  	        How much?
-  	        <input
-              type="text"
-              value={this.state.fee}
-              onChange={this.handleFeeChange}/>
-            <div>
-              Who was involved?
-              {userCheck}
-            </div>
-            <input type="submit" value="Post" />
-  	    </form>
+        <p>Gday</p>
+               <form onSubmit={this.handleSubmit}>
+                   Who paid?
+                   <select
+                     onChange={this.handlePaidByChange}>
+                     <option value='0'>Please select user</option>
+                     {userList}
+                   </select>
+                   How much?
+                   <input
+                     type="text"
+                     value={this.state.fee}
+                     onChange={this.handleFeeChange}/>
+                   <div>
+                     Who was involved?
+                     {userCheck}
+                   </div>
+                   <input type="submit" value="Post" />
+               </form>
 
   	  </div>)
   }
