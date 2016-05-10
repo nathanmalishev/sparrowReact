@@ -42,6 +42,12 @@ exports.get = function (req, res, next) {
     });
 };
 
+
+exports.getExpenses = function (req, res, next){
+  res.send(req.group.expenses);
+}
+
+
 exports.delete = function (req, res, next) {
   res.send('to do');
 };

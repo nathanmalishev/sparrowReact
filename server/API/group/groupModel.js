@@ -32,7 +32,13 @@ var GroupSchema = new Schema({
     }, ],
   }, ],
   //chat
-  //expenses
+  expenses: [
+  {
+    lender: { type: Schema.Types.ObjectId, ref: 'user' },
+    lendee: { type: Schema.Types.ObjectId, ref: 'user' },
+    amount: { type: Number },
+  },
+  ],
 });
 
 module.exports = mongoose.model('group', GroupSchema);

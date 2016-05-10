@@ -57,7 +57,12 @@ class GroupContainer extends Component {
                 onDestinationClick={this.handleDestinationClick}
                 routeParams={this.props.routeParams}
               />
-           {React.cloneElement(this.props.children, { destination:this.state.currentDestination, users:this.state.groupData.users })}
+           {React.cloneElement(this.props.children,
+              { destination:this.state.currentDestination,
+                users:this.state.groupData.users,
+                expenses:this.state.groupData.expenses
+              }
+            )}
             </div>
       }
       </div>
