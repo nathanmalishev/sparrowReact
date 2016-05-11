@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {postExpenses} from '../helpers/api'
+import { postExpenses,getExpenses } from '../helpers/api';
+import ExpensesHistory from '../components/ExpensesHistory';
+import _ from 'lodash';
 
 export default class ExpensesContainer extends Component {
   constructor() {
@@ -9,7 +11,8 @@ export default class ExpensesContainer extends Component {
       paidby: {},
       loading: true,
       involved: [],
-      expenses: []
+      expenses: [],
+      note: ''
     };
     this.handleFeeChange = this.handleFeeChange.bind(this);
     this.handlePaidByChange = this.handlePaidByChange.bind(this);
@@ -35,14 +38,25 @@ export default class ExpensesContainer extends Component {
         });
     }else {
 
-      console.log(this.state.involved.slice());
       var newInv = this.state.involved.slice();
       newInv.splice(input.value, 1);
-      console.log(newInv);
       this.setState({ involved: newInv });
     }
 
     ;
+  }
+
+  componentDidMount(){
+    getExpenses(this.props.params.id)
+      .then((res)=>{
+        this.setState({
+          expenses: res.data
+        })
+      })
+  }
+
+  handleNoteChange(e) {
+    this.setState({ note: e.target.value });
   }
 
   handleSubmit(e) {
@@ -52,6 +66,7 @@ export default class ExpensesContainer extends Component {
         !this.state.involved[0]) {
       return;
     }
+
     if (isNaN(this.state.fee)) {
       return;
     }
@@ -60,25 +75,24 @@ export default class ExpensesContainer extends Component {
     // x owes y , x owes z, x owes a
     // rather than x owes y,z,a
     // we assume equal split
-    const splitBill = this.state.fee / this.state.involved.length;
+    const splitBill = Math.round(this.state.fee / this.state.involved.length);
     const transaction = this.state.involved.map((user)=> {
       return {
-        lender: this.state.paidby._id,
-        lendee: user._id,
+        lender: this.state.paidby,
+        lendee: user,
         amount: splitBill,
+        note: this.state.note
       };
     });
-    console.log('transaction',transaction);
-    console.log('group id', this.props.params.id)
-    postExpenses(this.props.params.id,transaction)
-      .then((res)=>{
+    postExpenses(this.props.params.id, transaction)
+      .then((res)=> {
         this.setState({
-          expenses: res.data.expenses
-        })
+          expenses: res.data.expenses,
+        });
       })
-      .catch((err)=>{
-        console.log(err)
-      })
+      .catch((err)=> {
+        console.log(err);
+      });
 
   }
 
@@ -125,15 +139,24 @@ export default class ExpensesContainer extends Component {
                       type="text"
                       value={this.state.fee}
                       onChange={this.handleFeeChange}/>
+                  note
+                  <input
+                    type="text"
+                    onChange={this.handleNoteChange.bind(this)}
+                    value={this.state.note}
+                  />
                    <div>
                      Who was involved?
                      {userCheck}
                    </div>
+
                    <input type="submit" value="Post" />
                </form>
 
-            {JSON.stringify(this.state.expenses)}
+
+            <ExpensesHistory expenseHistory={_.concat(this.props.expenses,this.state.expenses)}/>
 
       </div>);
   }
 }
+

@@ -73,3 +73,19 @@ export function postExpenses(groupId,expenses) {
     console.log(err);
   });
 }
+
+export function getExpenses(groupId) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
+  return axios.get(url)
+    .then((res)=> {
+      if (res === undefined) {
+        throw 'response is undefined';
+      }
+
+      return res;
+    })
+    .catch((err)=> {
+      console.log(err);
+    });
+}

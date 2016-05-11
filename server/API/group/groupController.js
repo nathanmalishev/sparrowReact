@@ -109,9 +109,9 @@ exports.postExpenses = function(req, res, next){
 
   group.expenses = _.concat(group.expenses, newExpenses.expenses);
   console.log('merged after ', group)
-  group.save(function(err,group){
+  group.save(function(err,savedGroup){
     if(err){next(err);}
 
-    res.status(201).send(group);
+    res.status(201).send(savedGroup);
   })
 }
