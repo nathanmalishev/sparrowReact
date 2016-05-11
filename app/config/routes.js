@@ -7,6 +7,7 @@ import FlightContainer from '../containers/FlightContainer';
 import ExpensesContainer from '../containers/ExpensesContainer';
 import SignUpContainer from '../containers/SignUpContainer';
 import ForgotContainer from '../containers/ForgotContainer';
+import ChatContainer from '../containers/ChatContainer'
 
 const routes = (
   <Router history={hashHistory}>
@@ -15,6 +16,7 @@ const routes = (
       <Route path='group/:id' component={GroupContainer}>
         <IndexRoute component={FlightContainer}/>
         <Route path='flights' component={FlightContainer}/>
+        <Route path='chat' component={ChatContainer}/>
         <Route path='expenses' component={ExpensesContainer}/>
       </Route>
       <Route path='signup' component={SignUpContainer}/>
