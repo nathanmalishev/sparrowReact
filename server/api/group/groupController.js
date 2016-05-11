@@ -42,6 +42,12 @@ exports.get = function (req, res, next) {
     });
 };
 
+
+exports.getExpenses = function (req, res, next){
+  res.send(req.group.expenses);
+}
+
+
 exports.delete = function (req, res, next) {
   res.send('to do');
 };
@@ -91,3 +97,21 @@ exports.post = function (req, res, next) {
       });
     });
 };
+
+
+
+exports.postExpenses = function(req, res, next){
+  var group = req.group;
+  var newExpenses = req.body;
+
+  console.log('group ', group.expenses)
+  console.log('new expenses ', newExpenses.expenses)
+
+  group.expenses = _.concat(group.expenses, newExpenses.expenses);
+  console.log('merged after ', group)
+  group.save(function(err,savedGroup){
+    if(err){next(err);}
+
+    res.status(201).send(savedGroup);
+  })
+}

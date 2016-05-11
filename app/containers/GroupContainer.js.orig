@@ -30,7 +30,12 @@ class GroupContainer extends Component {
       });
   }
 
+<<<<<<< HEAD
+  handleDestinationClick(destination) {
+    console.log(destination);
+=======
   handleDestinationClick(destination){
+>>>>>>> master
     this.setState({
       currentDestination: destination,
     });
@@ -54,6 +59,9 @@ class GroupContainer extends Component {
                 onDestinationClick={this.handleDestinationClick}
                 routeParams={this.props.routeParams}
               />
+<<<<<<< HEAD
+           {React.cloneElement(this.props.children, { destination: this.state.currentDestination, users: this.state.groupData.users })}
+=======
            {
             React.cloneElement(this.props.children,
               { destination:this.state.currentDestination,
@@ -61,6 +69,7 @@ class GroupContainer extends Component {
                 expenses:this.state.groupData.expenses
               }
             )}
+>>>>>>> master
             </div>
       }
       </div>

@@ -67,7 +67,7 @@ exports.post = function (req, res, next) {
 };
 
 exports.notUniqueError = function (err, req, res, next) {
-  console.log(err);
+  console.log('notUniqueError middleware run')
   res.status(409).json({
     success: false,
     message: 'User not created message: ' + err.message + ' ' + JSON.stringify(err.errors),

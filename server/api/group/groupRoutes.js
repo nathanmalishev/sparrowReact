@@ -9,6 +9,11 @@ router.route('/')
 
 router.route('/:id')
   .get(controller.getOne)
-  .put(controller.put);
+  .put(controller.put)
+
+router.route('/:id/expenses')
+  .get(controller.getExpenses)
+  .post(controller.postExpenses)
+
 
 module.exports = router;
