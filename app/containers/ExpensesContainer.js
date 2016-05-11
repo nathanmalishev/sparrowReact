@@ -154,7 +154,7 @@ export default class ExpensesContainer extends Component {
                </form>
 
 
-            <ExpensesHistory expenseHistory={_.concat(this.props.expenses,this.state.expenses)}/>
+            <ExpensesHistory expenseHistory={this.state.expenses}/>
 
       </div>);
   }
