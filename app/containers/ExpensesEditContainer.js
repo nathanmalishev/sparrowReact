@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-export default class ExpensesCreateContainer extends Component {
+export default class ExpensesEditContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -77,12 +77,12 @@ export default class ExpensesCreateContainer extends Component {
   	         </input>
   })
   	return (
-  	  <div>
-  	  <Link to={'group/'+this.props.routeParams.id+'/expenses'}><button className='ghost-button'>Back to Expenses</button></Link>
+      <div>
+      <Link to={'group/'+this.props.routeParams.id+'/expenseshistory'}><button className='ghost-button'>Back to History</button></Link>
   	  <div style={styles.container}>
   	    <form onSubmit={this.handleSubmit}>
   	      <fieldset>
-  	        <legend>Create a new expense</legend>
+  	        <legend>Edit expense</legend>
   	    	Description:
   	    	<input
               type="text"
@@ -109,11 +109,11 @@ export default class ExpensesCreateContainer extends Component {
               
               {userCheck}
             </div>
-            <input type="submit" className='ghost-button' value="Submit Expense" />
+            <input type="submit" className='ghost-button' value="Save Expense" />
           </fieldset>
   	    </form>
 
   	  </div>
-  	  </div>)
+      </div>)
   }
 }

@@ -31,7 +31,7 @@ export default class ExpensesContainer extends Component {
     const userOwing = this.props.users.map((user)=>{
       return <tr>
                <td>{user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}</td>
-               <td>Owes Nathan 40 bucks</td>
+               <td>Nathan 40 bucks</td>
                <td><button className='small-ghost-button'>Settle up</button></td>
              </tr>
     })
@@ -41,7 +41,14 @@ export default class ExpensesContainer extends Component {
         <br/>
         <br/>
         <h4>Current Owings</h4>
-        <table>
+        <table className="table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Owes</th>
+            <th></th>
+          </tr>
+        </thead>
           {userOwing}
         </table>
         <br/>

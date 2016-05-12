@@ -33,7 +33,11 @@
   color: ghostwhite;
 }
 
-
+tr:nth-child(even) {background-color: #f2f2f2}
+td, th {
+    text-align: center;
+    padding: 8px;
+}
 
 .sparrow-form-control {
   display: block;
