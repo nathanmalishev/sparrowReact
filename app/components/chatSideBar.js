@@ -11,7 +11,7 @@ export default function ChatSideBar ({users, currentUser, ClickChangeUser}) {
       : <UserTab key={user._id} onClick={ClickChangeUser}>{user}</UserTab>
   })
   return (
-    <div className="col-md-3">
+    <div>
       {userList}
     </div>
   )

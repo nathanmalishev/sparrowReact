@@ -7,7 +7,7 @@ import FlightContainer from '../containers/FlightContainer';
 import ExpensesContainer from '../containers/ExpensesContainer';
 import SignUpContainer from '../containers/SignUpContainer';
 import ForgotContainer from '../containers/ForgotContainer';
-import ChatContainer from '../containers/ChatContainer'
+import ChatContainer from '../containers/ChatContainer';
 
 const routes = (
   <Router history={hashHistory}>

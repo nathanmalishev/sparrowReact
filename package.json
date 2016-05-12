@@ -31,6 +31,7 @@
     "mongoose-type-email": "^1.0.2",
     "morgan": "^1.7.0",
     "normalize.css": "^3.0.3",
+    "pubnub": "^3.14.5",
     "react": "^0.14.7",
     "react-bootstrap": "^0.29.3",
     "react-dom": "^0.14.7",
