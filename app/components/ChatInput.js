@@ -4,7 +4,7 @@ export default function ChatInput (props) {
     <div>
     <form>
       <input type="text"/>
-      <input type="submit"/>
+      <input type="submit" className='ghost-button'/>
     </form>
     </div>
   )
