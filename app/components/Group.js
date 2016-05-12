@@ -49,12 +49,12 @@ class Group extends Component{
             <div className="navbar-header">
               <a className="navbar-brand navbar-link" href="#">
                 Sparrow
-              </a>  
-            </div> 
-            
+              </a>
+            </div>
+
             <div className="collapse navbar-collapse" id="navcol-1">
               <ul className="nav navbar-nav navbar-right">
-                <li class="active" role="presentation"><Link to={'group/'+this.props.routeParams.id+'/flights'}>Flights</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/flights'}>Flights</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/hotels'}>Hotels</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/itinerary'}>Itinerary</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/chat'}>Chat</Link></li>

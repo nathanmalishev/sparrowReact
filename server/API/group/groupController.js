@@ -42,6 +42,12 @@ exports.get = function (req, res, next) {
     });
 };
 
+
+exports.getExpenses = function (req, res, next){
+  res.send(req.group.expenses);
+}
+
+
 exports.delete = function (req, res, next) {
   res.send('to do');
 };
@@ -53,7 +59,12 @@ exports.put = function (req, res, next) {
 
   var update = req.body;
 
-  _.merge(group, update);
+  console.log('group',group)
+  console.log('update',update)
+  group = _.merge(group, update);
+  var newGroup = new Group(group);
+
+  console.log('after merge group',group)
 
   group.save(function (err, saved) {
     if (err) {
@@ -63,6 +74,10 @@ exports.put = function (req, res, next) {
     }
   });
 };
+
+
+
+
 
 exports.post = function (req, res, next) {
   var newGroup = req.body;
@@ -90,4 +105,45 @@ exports.post = function (req, res, next) {
         res.json({ group });
       });
     });
+};
+
+
+
+exports.postExpenses = function(req, res, next){
+  var group = req.group;
+  var newExpenses = req.body;
+
+  console.log('group ', group.expenses)
+  console.log('new expenses ', newExpenses.expenses)
+
+  group.expenses = _.concat(group.expenses, newExpenses.expenses);
+  console.log('merged after ', group)
+  group.save(function(err,savedGroup){
+    if(err){next(err);}
+
+    res.status(201).send(savedGroup);
+  })
+}
+
+
+exports.deleteExpense = function (req, res, next) {
+  var group = req.group;
+
+  var expense = req.body.expense;
+
+
+  group.expenses = _.remove(group.expenses, function(oldExpense){
+    console.log(expense)
+    console.log(oldExpense)
+    return JSON.stringify(expense) !== JSON.stringify(oldExpense)
+  });
+  var newGroup = new Group(group);
+
+  newGroup.save(function (err, saved) {
+    if (err) {
+      next(err);
+    }else {
+      res.json(saved);
+    }
+  });
 };

@@ -106,6 +106,14 @@ class Main extends Component{
                   onForgotClick={this.handleForgot}
                 />
                 {this.state.message}
+                <hr/>
+                <div className="requirements">
+                  <h2>Requirements</h2>
+                  <a href="Carousel.html"
+                    className="ghost-button" type="button">
+                    Carousel
+                  </a>
+                </div>
                 </div>)
         }
       }
@@ -121,6 +129,8 @@ class Main extends Component{
             : <p></p>
           }
         {displayPage()}
+
+
       </div>
     );
   }

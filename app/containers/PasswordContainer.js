@@ -58,19 +58,19 @@ class PasswordContainer extends Component{
             <button className="ghost-button" type="submit" value="Post" transform="uppercase">
             SIGN IN
             </button>
-                       
+
             <button className="ghost-button" type="submit" value="Post" to="signup" onClick={this.props.onSignUpClick}>
             SIGN UP
             </button>
-            
+
             <button className="ghost-button">
               <span className="fa fa-facebook"></span>
             </button>
-            
+
             <button className="ghost-button">
               <span className="fa fa-google"></span>
             </button>
-            
+
           </form>
 
           <br/>
@@ -78,6 +78,8 @@ class PasswordContainer extends Component{
           <a to="forgot" className="forgot-password" onClick={this.props.onForgotClick}>
             Forgot your password?
           </a>
+
+
         </div>
       );
   }
