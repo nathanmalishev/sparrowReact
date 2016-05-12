@@ -3,8 +3,8 @@ export default function ChatInput (props) {
   return (
     <div>
     <form>
-      <input type="text"/>
-      <input type="submit" className='ghost-button'/>
+      <input type="text" autofocus className="sparrow-form-control"/>
+      <input type="submit" className='small-ghost-button' value='Send'/>
     </form>
     </div>
   )
