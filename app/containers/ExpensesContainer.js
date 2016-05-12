@@ -37,14 +37,12 @@ export default class ExpensesContainer extends Component {
   }
 
   handleDisplaySettled(){
-    console.log('handle settled')
     this.setState({
       displaySettled: !this.state.displaySettled
     })
   }
 
   componentDidMount(){
-    console.log(this.props)
     getExpenses(this.props.params.id)
       .then((res)=>{
         this.setState({
@@ -55,7 +53,6 @@ export default class ExpensesContainer extends Component {
   }
 
   handleSettle(expense){
-    console.log('clicked on settle!')
     const newExpenses = this.state.expenses.map((oldExpense)=>{
       if(JSON.stringify(oldExpense) === JSON.stringify(expense)){
         return  _.merge(oldExpense, {settled:!oldExpense.settled})
@@ -74,7 +71,6 @@ export default class ExpensesContainer extends Component {
   }
 
   handleDelete(expense){
-    console.log('being deleted', expense)
     deleteExpense(this.props.params.id, expense)
       .then((res)=>{
         this.setState({
