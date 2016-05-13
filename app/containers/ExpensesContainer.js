@@ -118,7 +118,7 @@ export default class ExpensesContainer extends Component {
         <tbody>
         {
           this.state.isLoading === true
-          ? <th>Loading</th>
+          ? <td>Loading</td>
           : userOwingRow
         }
         </tbody>
