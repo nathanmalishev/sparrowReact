@@ -4,6 +4,7 @@ const styles = {
   chatinp:{
     float:'left',
     width:'calc(100% - 100px)',
+    borderRadius: '5px',
   }
 }
 

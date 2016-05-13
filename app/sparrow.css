@@ -28,10 +28,12 @@
   display: inline-block;
   float: right;
   width: 100px;
+  height: 100%;
   padding: 4px;
   font-weight: bold;
   color: black;
   border: 2px solid black;
+  border-radius: 5px;
   background-color: transparent;
   text-align: center;
   outline: none;
@@ -56,11 +58,23 @@ td, th {
 }
 
 .chat-log {
+  padding: 10px;
   border:1px solid #ccc;
   border-radius: 5px;
   overflow-y:scroll;
   height:400px;
   background-color:#F7F7F7;
+}
+
+.chat-active {
+  background-color:#4aa3df;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: ghostwhite;
+}
+
+.chat-inactive{
+  font-weight: bold;
 }
 
 .chat-user {
@@ -70,7 +84,12 @@ td, th {
 }
 
 .chat-message {
-  border-bottom: 1px dashed #555;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  background-color: #9AD0F5;
+}
+
+.chat-message-text {
   padding-left: 50px;
   padding-bottom: 10px;
 }
