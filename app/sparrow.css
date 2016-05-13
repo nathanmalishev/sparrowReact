@@ -55,6 +55,14 @@ td, th {
     padding: 8px;
 }
 
+.chat-user {
+  font-weight: bold;
+}
+
+.chat-message {
+  border-bottom: 1px dashed #555;
+}
+
 .sparrow-form-control {
   display: block;
   width: 100%;
