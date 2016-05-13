@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatSideBar from '../components/ChatSideBar'
+import ChatSideBar from '../components/chatSideBar'
 import ChatLog from '../components/ChatLog'
 import ChatInput from '../components/ChatInput'
 import {postChat} from '../helpers/api'
