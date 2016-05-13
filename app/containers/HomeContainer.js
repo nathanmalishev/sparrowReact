@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getGroups, createGroup } from '../helpers/api';
 import GroupTab from '../components/GroupTab';
-import CreateGroupContainer from './CreateGroupContainer';
+import CreateGroupContainer from './createGroupContainer';
 import _ from 'lodash'
 
 const styles = {
@@ -87,7 +87,7 @@ class HomeConatiner extends Component {
       <br/>
       <br/>
       <br/>
-      <br/> 
+      <br/>
       </div>
       // Whats the easiest way to add whitepsace lol
     );

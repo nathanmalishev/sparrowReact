@@ -4,7 +4,7 @@ const _baseURL = 'http://free.rome2rio.com/api/1.2/json/Search?key=9phTEymq&o';
 
 export function getFlights(to,from) {
   const url = `${_baseURL}Name=${to}&dName=${from}`;
-  return axios.get(`http://free.rome2rio.com/api/1.2/json/Search?key=9phTEymq&oName=${to}&dName=${from}`)
+  return axios.get(`http://free.rome2rio.com/api/1.2/json/Search?key=9phTEymq&oName=${from}&dName=${to}`)
     .then((res)=> {
       if (res === undefined) {
         throw 'response is undefined';
@@ -17,5 +17,3 @@ export function getFlights(to,from) {
       return err
     });
 }
-
-

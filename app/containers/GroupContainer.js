@@ -43,7 +43,7 @@ class GroupContainer extends Component {
   }
 
   render() {
-    console.log("GROUP DATA", this.state.groupData.expenses)
+    console.log("GROUP DATA", this.state.groupData)
     console.log(this.props.children.type.name)
     return (
       <div>
@@ -62,6 +62,7 @@ class GroupContainer extends Component {
            {
             React.cloneElement(this.props.children,
               {
+                groupId:this.state.groupData._id,
                 destination:this.state.currentDestination,
                 users:this.state.groupData.users,
               }

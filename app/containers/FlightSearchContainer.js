@@ -30,22 +30,17 @@ export default class FlightSearchContainer extends Component {
 
 
   render() {
+    this.state.to = this.props.destination.name;
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
-            Enter to
-            <input
-              type="text"
-              value={this.state.to}
-              onChange={this.handleToChange}
-            />
-            Enter from
+          <b> From </b>
             <input
               type="text"
               value={this.state.from}
               onChange={this.handleFromChange}
             />
-
+            <b> To {this.state.to}  </b>
             <input type="submit" value="Post" />
           </form>
 
