@@ -56,7 +56,7 @@ class Group extends Component{
               <ul className="nav navbar-nav navbar-right">
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/flights'}>Flights</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/hotels'}>Hotels</Link></li>
-                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/itinerary'}>Itinerary</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/itin'}>Itinerary</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/chat'}>Chat</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/expenses'}>Expenses</Link></li>
                 <li role="presentation"><a onClick={logout}>Logout</a></li>
