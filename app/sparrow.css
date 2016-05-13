@@ -55,12 +55,24 @@ td, th {
     padding: 8px;
 }
 
+.chat-log {
+  border:1px solid #ccc;
+  border-radius: 5px;
+  overflow-y:scroll;
+  height:400px;
+  background-color:#F7F7F7;
+}
+
 .chat-user {
   font-weight: bold;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 .chat-message {
   border-bottom: 1px dashed #555;
+  padding-left: 50px;
+  padding-bottom: 10px;
 }
 
 .sparrow-form-control {

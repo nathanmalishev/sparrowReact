@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 const styles = {
   chatinp:{
     float:'left',
-    width:'100%',
+    width:'calc(100% - 100px)',
   }
 }
 
