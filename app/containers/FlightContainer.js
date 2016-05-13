@@ -23,6 +23,7 @@ export default class FlightContainer extends Component {
 
     getFlights(to,from)
       .then((data)=>{
+        console.log("API DATA")
         console.log(data)
         this.setState({
           to,
@@ -44,7 +45,7 @@ export default class FlightContainer extends Component {
 
         {
           this.state.results === true
-            ? <FlightResults to={this.state.to} from={this.state.from} data={this.state.flightData}/>
+            ? <FlightResults data={this.state.flightData}/>
             : <p></p>
         }
 
