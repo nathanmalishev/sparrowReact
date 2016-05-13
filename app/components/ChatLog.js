@@ -14,7 +14,7 @@ export default function ChatLog ({messages}) {
   const messageList = messages.map((message)=>{
     return(
       <div style={styles.log}>
-        <p>{message.username} : {message.msg}</p>
+        <p>{message.username} :</p><p> {message.msg}</p>
       </div>
     )
   })

@@ -24,10 +24,26 @@
   text-decoration: none;
 }
 
+.send-ghost-button {
+  display: inline-block;
+  float: right;
+  width: 100px;
+  padding: 4px;
+  font-weight: bold;
+  color: black;
+  border: 2px solid black;
+  background-color: transparent;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+
 .ghost-button:hover,
 .small-ghost-button:hover,
+.send-ghost-button:hover,
 .ghost-button:active,
-.small-ghost-button:active {
+.small-ghost-button:active,
+.send-ghost-button:active {
   background-color: black;
   border: 2px solid black;
   color: ghostwhite;
