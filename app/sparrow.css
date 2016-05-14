@@ -24,10 +24,28 @@
   text-decoration: none;
 }
 
+.send-ghost-button {
+  display: inline-block;
+  float: right;
+  width: 100px;
+  height: 100%;
+  padding: 4px;
+  font-weight: bold;
+  color: black;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+
 .ghost-button:hover,
 .small-ghost-button:hover,
+.send-ghost-button:hover,
 .ghost-button:active,
-.small-ghost-button:active {
+.small-ghost-button:active,
+.send-ghost-button:active {
   background-color: black;
   border: 2px solid black;
   color: ghostwhite;
@@ -37,6 +55,48 @@ tr:nth-child(even) {background-color: #f2f2f2}
 td, th {
     text-align: center;
     padding: 8px;
+}
+
+.chat-log {
+  padding: 10px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  overflow-y:scroll;
+  height:400px;
+  background-color:#F7F7F7;
+}
+
+.chat-active {
+  background-color:#4aa3df;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: ghostwhite;
+}
+
+.chat-inactive{
+  font-weight: bold;
+}
+
+.chat-user {
+  font-weight: bold;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.chat-message {
+  border:1px solid #ccc;
+  border-radius: 5px;
+  background-color: #9AD0F5;
+}
+
+.chat-message-other {
+  border:1px solid #ccc;
+  border-radius: 5px;
+  background-color: #3498db;
+}
+.chat-message-text {
+  padding-left: 50px;
+  padding-bottom: 10px;
 }
 
 .sparrow-form-control {

@@ -25,10 +25,10 @@ class GroupContainer extends Component {
           if(res.statusText === 'OK'){
             this.setState({
               loading:false,
-              groupData: res.data,
-              currentDestination: res.data.destinations[0]
+              groupData: res.data.group,
+              currentDestination: res.data.group.destinations[0],
+              authUser: res.data.user
             })
-            console.log(res)
           }
         }
 
@@ -43,8 +43,7 @@ class GroupContainer extends Component {
   }
 
   render() {
-    console.log("GROUP DATA", this.state.groupData.expenses)
-    console.log(this.props.children.type.name)
+
     return (
       <div>
       {
@@ -58,12 +57,16 @@ class GroupContainer extends Component {
                 currentDestination={this.state.currentDestination}
                 onDestinationClick={this.handleDestinationClick}
                 routeParams={this.props.routeParams}
+                authUser={this.state.authUser}
               />
            {
             React.cloneElement(this.props.children,
               {
                 destination:this.state.currentDestination,
                 users:this.state.groupData.users,
+                loggedInUser: this.props.loggedInUser,
+                authUser:this.state.authUser,
+                chat:this.state.groupData.chat
               }
             )}
             </div>
