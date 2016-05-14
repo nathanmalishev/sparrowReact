@@ -1,3 +1,9 @@
+.leaflet-container {
+        height: 400px;
+        width: 80%;
+        margin: 0 auto;
+      }
+
 .ghost-button {
   display: inline-block;
   width: 200px;
