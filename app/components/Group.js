@@ -25,6 +25,9 @@ const styles = {
     display:'flex',
     flexDirection:'row'
 
+  },
+  username:{
+    fontSize:'16px'
   }
 };
 
@@ -47,9 +50,13 @@ class Group extends Component{
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
+
               <a className="navbar-brand navbar-link" href="#">
                 Sparrow
               </a>
+              <p className="navbar-brand" style={styles.username}>
+                - Welcome {this.props.authUser.username}
+              </p>
             </div>
 
             <div className="collapse navbar-collapse" id="navcol-1">

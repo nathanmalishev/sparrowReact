@@ -23,7 +23,7 @@ exports.params = function (req, res, next, id) {
 };
 
 exports.getOne = function (req, res, next) {
-  res.json(req.group);
+  res.json({group: req.group, user:req.user.toJson()});
 };
 
 exports.get = function (req, res, next) {
@@ -35,7 +35,7 @@ exports.get = function (req, res, next) {
     .populate(fields_to_polulate, 'username')
     .exec()
     .then(function (groups) {
-      res.json(groups);
+      res.json({groups: groups, user:req.user.toJson()});
     }, function (err) {
 
       next(err);

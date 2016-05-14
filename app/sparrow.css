@@ -89,6 +89,11 @@ td, th {
   background-color: #9AD0F5;
 }
 
+.chat-message-other {
+  border:1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1abc9c;
+}
 .chat-message-text {
   padding-left: 50px;
   padding-bottom: 10px;
