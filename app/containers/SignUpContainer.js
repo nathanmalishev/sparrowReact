@@ -60,7 +60,6 @@ export default class SignUpContainer extends Component {
     }
     signUp(this.state.username,this.state.email,this.state.password)
       .then((res)=>{
-        console.log(res)
         if(res.data.success === true){
           this.setState({
             username: '',

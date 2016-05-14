@@ -33,7 +33,7 @@
     "normalize.css": "^3.0.3",
     "pubnub": "^3.14.5",
     "react": "^0.14.7",
-    "react-bootstrap": "^0.29.3",
+    "react-bootstrap": "^0.29.4",
     "react-dom": "^0.14.7",
     "react-font-awesome": "^1.0.3",
     "react-router": "^2.0.0",

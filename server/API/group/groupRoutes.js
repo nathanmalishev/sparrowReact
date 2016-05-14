@@ -18,4 +18,9 @@ router.route('/:id/expenses')
   .patch(controller.deleteExpense)
 
 
+router.route('/:id/chat')
+  // .get(controller.getExpenses)
+  .post(controller.postChat)
+
+
 module.exports = router;

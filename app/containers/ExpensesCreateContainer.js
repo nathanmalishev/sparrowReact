@@ -59,10 +59,6 @@ export default class ExpensesCreateContainer extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-  	console.log(this.state.paidby, 'Paiddddd')
-  	console.log(this.state.fee, 'feeeeeeee')
-  	console.log(this.state.involved, 'payusup')
-  	console.log(this.state.desc, 'Descrip')
 
     if (!this.state.fee || !this.state.paidby.username || !this.state.involved[0]) {
       return;
@@ -89,7 +85,6 @@ export default class ExpensesCreateContainer extends Component {
         settled:false
       };
     });
-        console.log(transaction)
 
     //if the transaction only involves themself do not save
     transaction = _.compact(transaction);
@@ -97,9 +92,9 @@ export default class ExpensesCreateContainer extends Component {
     postExpenses(this.props.params.id, transaction)
       .then((res)=> {
         this.setState({
-          expenses: res.data.expenses,
-          createSuccess:true
+          createSuccess:true,
         });
+        this.forceUpdate();
       })
       .catch((err)=> {
         console.log(err);
