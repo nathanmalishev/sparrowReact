@@ -92,7 +92,7 @@ td, th {
 .chat-message-other {
   border:1px solid #ccc;
   border-radius: 5px;
-  background-color: #1abc9c;
+  background-color: #3498db;
 }
 .chat-message-text {
   padding-left: 50px;
