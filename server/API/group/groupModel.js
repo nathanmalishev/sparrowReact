@@ -31,7 +31,11 @@ var GroupSchema = new Schema({
       data: { type: Schema.Types.Mixed },
     }, ],
   }, ],
-  //chat
+  chat:[{
+    username: {type:String},
+    msg: {type:String}
+  }
+  ],
   expenses: [
   {
     lender: {

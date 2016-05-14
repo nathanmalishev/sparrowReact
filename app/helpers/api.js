@@ -56,6 +56,25 @@ export function createGroup(name) {
 }
 
 
+export function postChat(groupId, chat) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/chat?access_token=${token}`;
+  return axios.post(url, chat)
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
+
+
+
 export function postExpenses(groupId,expenses) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
@@ -74,21 +93,7 @@ export function postExpenses(groupId,expenses) {
   });
 }
 
-export function getExpenses(groupId) {
-  const token = window.localStorage.getItem('sparrow-travel-token');
-  const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
-  return axios.get(url)
-    .then((res)=> {
-      if (res === undefined) {
-        throw 'response is undefined';
-      }
 
-      return res;
-    })
-    .catch((err)=> {
-      console.log(err);
-    });
-}
 
 export function putExpenses(groupId,expenses) {
   const token = window.localStorage.getItem('sparrow-travel-token');

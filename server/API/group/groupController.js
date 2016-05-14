@@ -76,6 +76,28 @@ exports.put = function (req, res, next) {
 };
 
 
+exports.postChat = function(req, res, next){
+  var group = req.group;
+
+  var chat = req.body;
+  console.log('group',group)
+  console.log('chat',chat)
+  group.chat = _.concat(group.chat, chat);
+  var newGroup = new Group(group);
+
+  console.log('after merge group',group)
+
+  group.save(function(err, saved){
+    if(err){
+      next(err);
+    }else{
+      res.json(saved);
+    }
+  })
+
+
+}
+
 
 
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ChatSideBar from '../components/ChatSideBar'
 import ChatLog from '../components/ChatLog'
 import ChatInput from '../components/ChatInput'
+import {postChat} from '../helpers/api'
 
 import PUBNUB from 'pubnub'
 
@@ -27,7 +28,6 @@ export default class ChatContainer extends Component {
     //   publish_key: 'pub-c-ceb946c9-cf37-48de-9420-c9722c4053ff',
     //   subscribe_key: 'sub-c-d3f93cd2-1733-11e6-b700-0619f8945a4f'
     // })
-
     this.state.pubnubCONN.channel_group_add_channel({
         channel: this.props.params.id,
         channel_group: 'global'
@@ -36,27 +36,28 @@ export default class ChatContainer extends Component {
     this.state.pubnubCONN.subscribe({
       channel_group: 'global',
       callback:(m)=>{
-        console.log('recieved', m)
         this.state.messageLog.global.push(m)
         this.setState({
           messageLog: this.state.messageLog
         })
+
+        postChat(this.props.params.id, m)
+          .then((res)=>{
+            console.log(res)
+          })
       }
     })
-    console.log('users',this.props.users)
     this.setState({
       currentUser: {username:'Group',_id:'0'},
+      messageLog: {global:this.props.chat},
       isLoading: false
     })
   }
 
   handleChangeUser(user){
-    console.log(user)
-    console.log('click')
     this.setState({
       currentUser: user
     })
-
   }
 
 
@@ -68,7 +69,8 @@ export default class ChatContainer extends Component {
         console.log('sent', m)
       }
     })
-    console.log(this.state)
+
+
   }
   render() {
 

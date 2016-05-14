@@ -65,7 +65,8 @@ class GroupContainer extends Component {
                 destination:this.state.currentDestination,
                 users:this.state.groupData.users,
                 loggedInUser: this.props.loggedInUser,
-                authUser:this.state.authUser
+                authUser:this.state.authUser,
+                chat:this.state.groupData.chat
               }
             )}
             </div>
