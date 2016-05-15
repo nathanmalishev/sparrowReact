@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getGroups, createGroup } from '../helpers/api';
 import GroupTab from '../components/GroupTab';
-import CreateGroupContainer from './createGroupContainer';
+import CreateGroupContainer from './CreateGroupContainer';
 import _ from 'lodash'
 
 const styles = {
@@ -32,12 +32,14 @@ class HomeConatiner extends Component {
     // check if user is logged in
     // then set state
 
+    //FIXME:have to get the token on my own and then pass it in
+    //auth file seems to be too slow in getting it??
     getGroups()
     .then((res)=> {
+      console.log(res);
       if (res.statusText === 'OK') {
         this.setState({
-          groups: res.data.groups,
-          authUser: res.data.user,
+          groups: res.data,
           loading: false,
         });
       }
@@ -58,7 +60,7 @@ class HomeConatiner extends Component {
     createGroup(groupname)
       .then((res)=> {
         this.setState({
-          groups: res.data.group
+          groups: _.concat(this.state.groups, res.data.group)
         });
       });
 
@@ -66,6 +68,7 @@ class HomeConatiner extends Component {
 
   render() {
     const groups = this.state.groups.map((group)=> {
+      console.log(group._id);
       return <GroupTab key={group._id} _id={String(group._id)} groupname={group.name} users={group.users} destinations={group.destinations} />;
     });
     return (
@@ -73,7 +76,7 @@ class HomeConatiner extends Component {
       {
         this.state.loading === true
         ? <p>Loding..</p>
-        : (groups)
+        : groups
       }
 
       {
