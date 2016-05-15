@@ -3,14 +3,14 @@ import {Accordion, Panel, Button} from 'react-bootstrap'
 import {addRoute} from '../helpers/api'
 
 
-export default class FlightResults extends React.Component {
+export default class FlightResults extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
 
   routeDisplay(route) {
-
+    console.log(route)
     var segs = route.segments.map(function(seg) {
       return <li>{seg.kind}</li>;
     });
@@ -24,20 +24,22 @@ export default class FlightResults extends React.Component {
   }
 
   onRouteSelect(route) {
-    addRoute(this.props.groupId, route).then((res)=> {
-      console.log(res);
-    })
-    .catch((err)=> {
-      console.log(err);
-    });
+    addRoute(this.props.groupId, route)
+      .then((res)=> {
+        console.log(res);
+      })
+      .catch((err)=> {
+        console.log(err);
+      });
   }
 
   render() {
     this.count=0;
     return (
-      <div>
+      <div className="col-md-12">
       <Accordion>
       {this.props.data.routes.map(this.routeDisplay, this)}
+
       </Accordion>
       </div>
     )
