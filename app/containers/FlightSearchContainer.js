@@ -30,7 +30,6 @@ export default class FlightSearchContainer extends Component {
 
 
   render() {
-    this.state.to = this.props.destination.name;
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
@@ -40,7 +39,7 @@ export default class FlightSearchContainer extends Component {
               value={this.state.from}
               onChange={this.handleFromChange}
             />
-            <b> To {this.state.to}  </b>
+            <b> To   </b>
             <input type="submit" value="Post" />
           </form>
 

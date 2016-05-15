@@ -65,6 +65,7 @@ class Group extends Component{
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/itinerary'}>Itinerary</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/chat'}>Chat</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/expenses'}>Expenses</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/settings'}>Settings</Link></li>
                 <li role="presentation"><a onClick={logout}>Logout</a></li>
               </ul>
             </div>
