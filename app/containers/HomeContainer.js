@@ -58,7 +58,7 @@ class HomeConatiner extends Component {
     createGroup(groupname)
       .then((res)=> {
         this.setState({
-          groups: _.concat(this.state.groups, res.data.group)
+          groups: res.data.group
         });
       });
 
