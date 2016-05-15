@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FlightSearchContainer from './FlightSearchContainer'
 import {getFlights} from '../helpers/rome2rio'
+import {postRoute} from '../helpers/api'
 import FlightResults from '../components/FlightResults'
 
 export default class FlightContainer extends Component {
@@ -37,9 +38,15 @@ export default class FlightContainer extends Component {
   }
 
   handleSelect(segments){
-    console.log('recived',segments)
     segments.user = this.props.authUser;
-    console.log(segments)
+
+    postRoute(this.props.params.id, segments)
+      .then((res)=>{
+        //data saved in db
+        setTimeout(()=>{
+          this.props.history.pushState(null, `group/${this.props.params.id}/itineray`)}
+          , 300)
+      })
   }
 
   render() {

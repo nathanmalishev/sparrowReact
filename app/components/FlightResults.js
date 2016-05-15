@@ -8,6 +8,9 @@ export default class FlightResults extends Component {
 
   constructor() {
     super();
+    this.state = {
+      message:''
+    }
   }
 
   routeDisplay(route) {
@@ -19,6 +22,7 @@ export default class FlightResults extends Component {
         <p> Duration : {route.duration} minutes, Price: ${route.indicativePrice.price} </p>
         <ul>{segs}</ul>
         <Button onClick={ () => { this.onRouteSelect(route) } }> Select </Button>
+        {this.state.message}
       </Panel>
     );
   }
@@ -31,7 +35,10 @@ export default class FlightResults extends Component {
       return { lat: segment.tPos.split(',')[0], lon: segment.tPos.split(',')[1] }
     })
 
-    this.props.onSelect(_.compact(coord))
+    this.props.onSelect({segments:_.compact(coord)})
+    this.setState({
+      message:'  selected!'
+    })
   }
 
   render() {
