@@ -1,116 +1,161 @@
 import React, { Component } from 'react';
-import Autocomplete from 'react-autocomplete'
-import {getUsernames, postUser} from '../helpers/api'
-import _ from 'lodash'
+import Autocomplete from 'react-autocomplete';
+import { getUsernames, postUser } from '../helpers/api';
+import _ from 'lodash';
+var Modal = require('react-modal');
 
 export let styles = {
   item: {
     padding: '2px 6px',
-    cursor: 'default'
+    cursor: 'default',
   },
 
   highlightedItem: {
     color: 'white',
     background: 'hsl(200, 50%, 50%)',
     padding: '2px 6px',
-    cursor: 'default'
+    cursor: 'default',
   },
 
   menu: {
-    border: 'solid 1px #ccc'
+    border: 'solid 1px #ccc',
   },
-  container:{
-    display:'flex',
-    flexDirection:'column',
-    justifyContent:'center',
-    margin:'auto'
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    margin: 'auto',
+  },
+  danger: {
+    backgroundColor: '#e74c3c',
+  },
+  modal:{
+    overlay : {
+      position          : 'fixed',
+      top               : 0,
+      left              : 0,
+      right             : 0,
+      bottom            : 0,
+      backgroundColor   : 'rgba(255, 255, 255, 0.75)',
+
+    },
+    content : {
+      position                   : 'absolute',
+      top                        : '120px',
+      left                       : '120px',
+      right                      : '120px',
+      bottom                     : '120px',
+      border                     : '1px solid #ccc',
+      background                 : '#fff',
+      overflow                   : 'auto',
+      WebkitOverflowScrolling    : 'touch',
+      borderRadius               : '4px',
+      outline                    : 'none',
+      padding                    : '20px'
   }
-}
-
-
-
+  }
+};
 
 export default class SettingsContainer extends Component {
 
-  constructor(){
+  constructor() {
     super();
-    this.state= {
+    this.state = {
       usernames: [],
       value: '',
       loading: false,
-      message: ''
-    }
+      message: '',
+      modalIsOpen:false
+    };
   }
 
-  componentDidMount(){
-    let newUsers = []
+  componentDidMount() {
+    let newUsers = [];
     getUsernames()
-      .then((res)=>{
+      .then((res)=> {
 
-        res.data.map((Nuser)=>{
-          newUsers.push(Nuser)
-        })
+        res.data.map((Nuser)=> {
+          newUsers.push(Nuser);
+        });
 
-        this.props.users.map((user)=>{
-          newUsers.map((Nuser)=>{
-            if(user._id === Nuser._id){
-              _.pull(newUsers, Nuser)
+        this.props.users.map((user)=> {
+          newUsers.map((Nuser)=> {
+            if (user._id === Nuser._id) {
+              _.pull(newUsers, Nuser);
             }
-          })
-        })
+          });
+        });
         this.setState({
-          usernames: newUsers
-        })
-      })
+          usernames: newUsers,
+        });
+      });
 
   }
 
-  addUser(e){
+  addUser(e) {
     e.preventDefault();
     const selectedUser = this.state.value;
     let fullUser = {};
-    if(!selectedUser){
-      return
+    if (!selectedUser) {
+      return;
     }
-    this.state.usernames.map((user)=>{
-      if (user.username === selectedUser) {
-        fullUser = user
-      }
-    })
 
+    this.state.usernames.map((user)=> {
+      if (user.username === selectedUser) {
+        fullUser = user;
+      }
+    });
 
     postUser(this.props.params.id, fullUser)
-      .then((res)=>{
-        console.log(res)
+      .then((res)=> {
+        console.log(res);
 
         //lets remove user from state
-        const newUsers = this.state.usernames.map((user)=>{
-            if(user.username !== fullUser.username){
-              return user
+        const newUsers = this.state.usernames.map((user)=> {
+            if (user.username !== fullUser.username) {
+              return user;
             }
-        })
+          });
 
         //make api call to add to group
         this.setState({
-          message:'Successfully added to the group',
+          message: 'Successfully added to the group',
           usernames: _.compact(newUsers),
-          value: ''
-        })
+          value: '',
+        });
       })
-      .catch((res)=>{
+      .catch((res)=> {
         this.setState({
-          message:'There was an error, user not added to group'
-        })
-      })
-
+          message: 'There was an error, user not added to group',
+        });
+      });
 
   }
 
+  leave(e){
+    e.preventDefault();
+    alert('Leaving a group is ireversible')
+    console.log('a')
+  }
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.refs.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+
   render() {
-    console.log(this.state.value)
+    console.log(this.state.value);
     return (
       <div style={styles.container}>
-
+      <h2>Add users to group</h2>
       <label htmlFor="">Select User</label>
       <Autocomplete
           ref="autocomplete"
@@ -138,6 +183,22 @@ export default class SettingsContainer extends Component {
         {
           this.state.message
         }
+
+
+        <h2>Leave group</h2>
+        <button className='ghost-button' style={styles.danger}
+          onClick={this.openModal.bind(this)}>
+          Leave Group
+        </button>
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={styles.modal}>
+        <p>After you leave a group someone needs to invite you back</p>
+        <button className='ghost-button' onClick={this.closeModal.bind(this)}>Close</button>
+        <button className='ghost-button' style={styles.danger}>Leave</button>
+        </Modal>
 
       </div>
     );
