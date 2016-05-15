@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import GoogleLogin from '../components/GoogleLogin';
 import {Link} from 'react-router'
 
 class PasswordContainer extends Component{
