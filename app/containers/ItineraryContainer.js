@@ -72,6 +72,16 @@ export default class ItineraryContainer extends Component {
   render() {
     var markerData = this.state.segments;
 
+
+    if(!markerData[0]){
+      return (
+          <div>
+            <p>Please find a flight</p>
+          </div>
+        )
+    }
+
+
     // center camera to this - starting location
     const position = [markerData[0].segments[0].lat, markerData[0].segments[0].lon]
 
@@ -126,14 +136,3 @@ export default class ItineraryContainer extends Component {
   }
 }
 
-/*<Marker
-  draggable={this.state.draggable}
-  onDragend={this.updatePosition}
-  position={markerPosition}
-  ref='marker'>
-  <Popup minWidth={90}>
-    <span onClick={this.toggleDraggable}>
-      {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
-    </span>
-  </Popup>
-</Marker>*/
