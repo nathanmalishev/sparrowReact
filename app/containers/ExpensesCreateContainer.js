@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router'
-import {postExpenses} from '../helpers/api'
+import {postExpenses, getGroup} from '../helpers/api'
 
 const styles = {
   container: {
@@ -20,7 +20,8 @@ export default class ExpensesCreateContainer extends Component {
       fee: '',
   	  paidby: '',
   	  involved: [],
-      createSuccess:false
+      createSuccess:false,
+      users: []
   	};
   	this.handleDescChange = this.handleDescChange.bind(this)
   	this.handleFeeChange = this.handleFeeChange.bind(this)
@@ -55,6 +56,19 @@ export default class ExpensesCreateContainer extends Component {
       newInv.splice(input.value, 1);
       this.setState({ involved: newInv });
     }
+  }
+
+  componentDidMount(){
+    this.setState({
+      users: this.props.users
+    })
+    getGroup(this.props.params.id)
+      .then((res)=>{
+        console.log(res)
+        this.setState({
+          users: res.data.group.users
+        })
+      })
   }
 
   handleSubmit(e){
@@ -94,7 +108,9 @@ export default class ExpensesCreateContainer extends Component {
         this.setState({
           createSuccess:true,
         });
-        this.forceUpdate();
+        setTimeout(()=>{
+          this.props.history.pushState(null, `group/${this.props.params.id}/expenses`)}
+          , 300)
       })
       .catch((err)=> {
         console.log(err);
@@ -105,14 +121,14 @@ export default class ExpensesCreateContainer extends Component {
 
 
   render() {
-  	const userList = this.props.users.map((user)=>{
+  	const userList = this.state.users.map((user)=>{
       return (
         <option key={user._id} value={JSON.stringify(user)}>
           {user.username.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + ' '}
         </option>
         )
     })
-  	const userCheck = this.props.users.map((user)=>{
+  	const userCheck = this.state.users.map((user)=>{
   	return (
         <div key={user._id}>
          <p key={user._id}>
