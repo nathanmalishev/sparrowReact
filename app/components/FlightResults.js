@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Accordion, Panel, Button} from 'react-bootstrap'
 import {addRoute} from '../helpers/api'
+import _ from 'lodash'
 
 
 export default class FlightResults extends Component {
@@ -10,7 +11,6 @@ export default class FlightResults extends Component {
   }
 
   routeDisplay(route) {
-    console.log(route)
     var segs = route.segments.map(function(seg) {
       return <li>{seg.kind}</li>;
     });
@@ -24,13 +24,14 @@ export default class FlightResults extends Component {
   }
 
   onRouteSelect(route) {
-    addRoute(this.props.groupId, route)
-      .then((res)=> {
-        console.log(res);
-      })
-      .catch((err)=> {
-        console.log(err);
-      });
+    const coord = route.segments.map((segment)=>{
+      if(!segment.tPos){
+        return false
+      }
+      return { lat: segment.tPos.split(',')[0], lon: segment.tPos.split(',')[1] }
+    })
+
+    this.props.onSelect(_.compact(coord))
   }
 
   render() {

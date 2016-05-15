@@ -24,7 +24,7 @@ export default class FlightContainer extends Component {
 
     getFlights(to,from)
       .then((data)=>{
-        console.log("API DATA")
+        console.log('API DATA')
         console.log(data)
         this.setState({
           to,
@@ -36,6 +36,12 @@ export default class FlightContainer extends Component {
 
   }
 
+  handleSelect(segments){
+    console.log('recived',segments)
+    segments.user = this.props.authUser;
+    console.log(segments)
+  }
+
   render() {
     console.log(this.props,'Flight container props')
     return (
@@ -45,7 +51,7 @@ export default class FlightContainer extends Component {
 
         {
           this.state.results === true
-            ? <FlightResults groupId={this.props.groupId} data={this.state.flightData}/>
+            ? <FlightResults groupId={this.props.groupId} data={this.state.flightData} onSelect={this.handleSelect.bind(this)}/>
             : <p></p>
         }
 

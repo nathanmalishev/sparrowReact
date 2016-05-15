@@ -43,15 +43,8 @@ export default class FlightSearchContainer extends Component {
       <form onSubmit={this.handleSubmit}
         className="form-signin col-md-6 col-md-offset-3 text-center"
         >
-            <h3>Enter to</h3>
-            <input
-              type="text"
-              placeholder="Paris"
-              value={this.state.to}
-              className="form-control"
-              onChange={this.handleToChange}
-            />
-            <h3>Enter from</h3>
+
+            <h3>from</h3>
             <input
               type="text"
               placeholder="Melbourne"
@@ -59,8 +52,16 @@ export default class FlightSearchContainer extends Component {
               value={this.state.from}
               onChange={this.handleFromChange}
             />
+            <h3>to</h3>
+            <input
+              type="text"
+              placeholder="Paris"
+              value={this.state.to}
+              className="form-control"
+              onChange={this.handleToChange}
+            />
 
-            <input type="submit" value="Post" className="ghost-button"
+            <input type="submit" value="GO" className="ghost-button"
               style={styles.button}/>
           </form>
 
