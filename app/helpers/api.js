@@ -73,9 +73,6 @@ export function postChat(groupId, chat) {
   });
 }
 
-
-
-
 export function postExpenses(groupId,expenses) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
@@ -110,7 +107,6 @@ export function getExpenses(groupId) {
     });
 }
 
-
 export function putExpenses(groupId,expenses) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
@@ -128,7 +124,6 @@ export function putExpenses(groupId,expenses) {
     console.log(err);
   });
 }
-
 
 export function deleteExpense(groupId,expense) {
   const token = window.localStorage.getItem('sparrow-travel-token');
@@ -148,12 +143,28 @@ export function deleteExpense(groupId,expense) {
   });
 }
 
-export function addRoute(groupId, route) {
+export function postRoute(groupId, route) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/route?access_token=${token}`;
-  return axios.put(url, {
+  return axios.post(url, {
     route
   })
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
+export function getRoutes(groupId) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/route?access_token=${token}`;
+  return axios.get(url)
   .then((res)=> {
     if (res === undefined) {
       throw 'response is undefined';
@@ -216,4 +227,3 @@ export function deleteUser(groupId){
     console.log(err);
   });
 }
-

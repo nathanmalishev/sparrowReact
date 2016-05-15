@@ -127,6 +127,28 @@ exports.postUser = function (req, res, next) {
   });
 };
 
+exports.postRoute = function (req, res, next) {
+  var group = req.group;
+
+  var route = req.body.route;
+
+  group.flights = _.concat(group.flights, route);
+  var newGroup = new Group(group);
+
+  newGroup.save(function (err, saved) {
+    if (err) {
+      next(err);
+    }
+    res.json(saved)
+    });
+};
+
+exports.getRoutes = function (req, res, next) {
+  var group = req.group;
+
+  res.json(group.flights)
+};
+
 exports.post = function (req, res, next) {
   var newGroup = req.body;
   //add the user to the group

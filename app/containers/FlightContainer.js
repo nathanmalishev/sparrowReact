@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FlightSearchContainer from './FlightSearchContainer'
 import {getFlights} from '../helpers/rome2rio'
+import {postRoute} from '../helpers/api'
 import FlightResults from '../components/FlightResults'
 
 export default class FlightContainer extends Component {
@@ -18,13 +19,11 @@ export default class FlightContainer extends Component {
   }
 
   onFlightClick(to, from) {
-    //TODO: make flight call API
     console.log(to+from)
-
-
+    
     getFlights(to,from)
       .then((data)=>{
-        console.log("API DATA")
+        console.log('API DATA')
         console.log(data)
         this.setState({
           to,
@@ -36,6 +35,18 @@ export default class FlightContainer extends Component {
 
   }
 
+  handleSelect(segments){
+    segments.user = this.props.authUser;
+
+    postRoute(this.props.params.id, segments)
+      .then((res)=>{
+        //data saved in db
+        setTimeout(()=>{
+          this.props.history.pushState(null, `group/${this.props.params.id}/itinerary`)}
+          , 300)
+      })
+  }
+
   render() {
     console.log(this.props,'Flight container props')
     return (
@@ -45,7 +56,7 @@ export default class FlightContainer extends Component {
 
         {
           this.state.results === true
-            ? <FlightResults groupId={this.props.groupId} data={this.state.flightData}/>
+            ? <FlightResults groupId={this.props.groupId} data={this.state.flightData} onSelect={this.handleSelect.bind(this)}/>
             : <p></p>
         }
 

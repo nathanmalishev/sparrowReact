@@ -13,24 +13,12 @@ var GroupSchema = new Schema({
     name: {
       type: String,
     },
-    flights: [{
-      users: [{ type: Schema.Types.ObjectId, ref: 'user' }],
-      date: {
-        type: Date,
-      },
-      data: { type: Schema.Types.Mixed },
-    }, ],
-    hotels: [{
-      users: [{ type: Schema.Types.ObjectId, ref: 'user' }],
-      dateFrom: {
-        type: Date,
-      },
-      dateTo: {
-        type: Date,
-      },
-      data: { type: Schema.Types.Mixed },
-    }, ],
+
   }, ],
+  flights: [{
+      user: { type: Schema.Types.ObjectId, ref: 'user' },
+      segments: [{ lat: {type:Number}, lon: {type:Number} }],
+    }, ],
   chat:[{
     username: {type:String},
     msg: {type:String}
