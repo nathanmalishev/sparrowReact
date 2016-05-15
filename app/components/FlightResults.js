@@ -7,8 +7,6 @@ export default class FlightResults extends React.Component {
 
   constructor(props) {
     super(props);
-    this.count = 0;
-    console.log(props, "res props")
   }
 
   routeDisplay(route) {
