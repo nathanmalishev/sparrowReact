@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 
 export default class DraggableExample extends Component {
   constructor() {
@@ -35,7 +35,7 @@ export default class DraggableExample extends Component {
     const markerPosition = [this.state.marker.lat, this.state.marker.lng];
 
     return (
-      <Map center={position} zoom={this.state.zoom}>
+      <Map center={position} zoom={this.state.zoom} zoomControl={false}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -51,6 +51,7 @@ export default class DraggableExample extends Component {
             </span>
           </Popup>
         </Marker>
+        <ZoomControl position='bottomright' />
       </Map>
     );
   }
