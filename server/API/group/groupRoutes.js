@@ -25,6 +25,6 @@ router.route('/:id/chat')
 router.route('/:id/settings')
   // .get(controller.getExpenses)
   .post(controller.postUser)
-
+  .delete(controller.deleteUser)
 
 module.exports = router;

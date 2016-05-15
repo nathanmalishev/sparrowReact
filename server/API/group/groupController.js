@@ -192,3 +192,33 @@ exports.deleteExpense = function (req, res, next) {
     }
   });
 };
+
+exports.deleteUser = function (req, res, next) {
+  var group = req.group;
+  var user = req.user;
+
+  group.users = _.remove(group.users, function (oldUser) {
+    return JSON.stringify(user._id) !== JSON.stringify(oldUser._id);
+  });
+
+  var newGroup = new Group(group);
+
+  newGroup.save(function (err, savedGroup) {
+    if (err) {
+      next(err);
+    }
+
+    user.groups = _.remove(user.groups, function (oldGroup) {
+      return JSON.stringify(oldGroup) !== JSON.stringify(savedGroup._id);
+    });
+
+    user.save(function (err, saved) {
+      if (err) {
+        next(err);
+      }
+
+      res.json(savedGroup);
+    });
+
+  });
+};

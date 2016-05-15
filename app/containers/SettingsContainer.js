@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
-import { getUsernames, postUser } from '../helpers/api';
+import { getUsernames, postUser,deleteUser } from '../helpers/api';
 import _ from 'lodash';
 var Modal = require('react-modal');
 
@@ -51,7 +51,8 @@ export let styles = {
       WebkitOverflowScrolling    : 'touch',
       borderRadius               : '4px',
       outline                    : 'none',
-      padding                    : '20px'
+      padding                    : '20px',
+      fontSize                   : '20px'
   }
   }
 };
@@ -150,6 +151,14 @@ export default class SettingsContainer extends Component {
     this.setState({modalIsOpen: false});
   }
 
+  onLeaveGroup(){
+    deleteUser(this.props.params.id)
+      .then((res)=>{
+        this.closeModal();
+        this.props.history.pushState(null, '/');
+      })
+  }
+
 
   render() {
     console.log(this.state.value);
@@ -197,7 +206,9 @@ export default class SettingsContainer extends Component {
           style={styles.modal}>
         <p>After you leave a group someone needs to invite you back</p>
         <button className='ghost-button' onClick={this.closeModal.bind(this)}>Close</button>
-        <button className='ghost-button' style={styles.danger}>Leave</button>
+        <button className='ghost-button' style={styles.danger} onClick={this.onLeaveGroup.bind(this)}>
+          Leave
+        </button>
         </Modal>
 
       </div>
