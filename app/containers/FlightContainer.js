@@ -44,7 +44,7 @@ export default class FlightContainer extends Component {
       .then((res)=>{
         //data saved in db
         setTimeout(()=>{
-          this.props.history.pushState(null, `group/${this.props.params.id}/itineray`)}
+          this.props.history.pushState(null, `group/${this.props.params.id}/itinerary`)}
           , 300)
       })
   }

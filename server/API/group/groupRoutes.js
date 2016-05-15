@@ -28,7 +28,7 @@ router.route('/:id/settings')
   .delete(controller.deleteUser)
 
 router.route('/:id/route')
-  // .get(controller.getExpenses)
+  .get(controller.getRoutes)
   .post(controller.postRoute)
 
 module.exports = router;

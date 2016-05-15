@@ -146,7 +146,7 @@ exports.postRoute = function (req, res, next) {
 exports.getRoutes = function (req, res, next) {
   var group = req.group;
 
-  res.json(group)
+  res.json(group.flights)
 };
 
 exports.post = function (req, res, next) {

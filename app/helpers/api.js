@@ -165,6 +165,22 @@ export function postRoute(groupId, route) {
   });
 }
 
+export function getRoutes(groupId) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/route?access_token=${token}`;
+  return axios.get(url)
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
 export function getUsernames(){
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/users?access_token=${token}`;

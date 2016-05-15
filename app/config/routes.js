@@ -10,7 +10,7 @@ import SignUpContainer from '../containers/SignUpContainer';
 import ForgotContainer from '../containers/ForgotContainer';
 import ChatContainer from '../containers/ChatContainer';
 import SettingsContainer from '../containers/SettingsContainer'
-
+import ItineraryContainer from '../containers/ItineraryContainer';
 
 const routes = (
   <Router history={hashHistory}>
@@ -20,6 +20,7 @@ const routes = (
         <IndexRoute component={FlightContainer}/>
         <Route path='settings' component={SettingsContainer}/>
         <Route path='flights' component={FlightContainer}/>
+        <Route path='itinerary' component={ItineraryContainer}/>
         <Route path='chat' component={ChatContainer}/>
         <Route path='expenses' component={ExpensesContainer}/>
           <Route path='newexpense' component={ExpensesCreateContainer}/>
