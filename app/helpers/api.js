@@ -147,11 +147,12 @@ export function deleteExpense(groupId,expense) {
   });
 }
 
-export function addRoute(groupId, route) {
+export function addRoute(groupId, userId, route) {
   const token = window.localStorage.getItem('sparrow-travel-token');
-  const url = `${_baseURL}api/groups/${groupId}/destinations/${0}/flights/${0}/data?access_token=${token}`;
+  const url = `${_baseURL}api/groups/${groupId}/?access_token=${token}`;
   return axios.put(url, {
-    route
+    data: route,
+    user: userId
   })
   .then((res)=> {
     if (res === undefined) {
