@@ -19,10 +19,8 @@ export default class FlightContainer extends Component {
   }
 
   onFlightClick(to, from) {
-    //TODO: make flight call API
     console.log(to+from)
-
-
+    
     getFlights(to,from)
       .then((data)=>{
         console.log('API DATA')

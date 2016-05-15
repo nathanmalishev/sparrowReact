@@ -2,7 +2,25 @@ import React, { Component } from 'react';
 import {getRoutes} from '../helpers/api'
 import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 
-export default class DraggableExample extends Component {
+// const MyPopupMarker = ({ layerContainer, map, position, children }) => (
+//   <Marker draggable={this.state.draggable} onDragend={this.updatePosition} position={markerPosition} ref='marker'>
+//     <Popup minWidth={90}>
+//       <span onClick={this.toggleDraggable}>
+//         {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
+//         {children}
+//       </span>
+//     </Popup>
+//   </Marker>
+// );
+//
+// const MyMarkersList = ({ markers }) => {
+//   const items = markers.map(({ key, props }) => (
+//     <Marker draggable={this.state.draggable} onDragend={this.updatePosition} position={markerPosition} ref='marker'/>
+//   ));
+//   return <div style={{display: 'none'}}>{items}</div>;
+// };
+
+export default class ItineraryContainer extends Component {
   constructor() {
     super();
 
@@ -12,10 +30,10 @@ export default class DraggableExample extends Component {
         lng: -0.09,
       },
       marker: {
-        lat: 51.505,
-        lng: -0.09,
+        lat: -37.67041,
+        lng: 144.8489,
       },
-      zoom: 13,
+      zoom: 3,
       segments:[],
       draggable: true,
     };
@@ -32,29 +50,112 @@ export default class DraggableExample extends Component {
     };
   }
 
-  componentDidMount(){
+  componentWillMount() {
+    // Load data ahead of time otherwise will run into issues when accessing
+    // the js object
     this.setState({
       segments: this.props.flights
     })
 
-    getRoutes(this.props.params.id)
-      .then((res)=>{
-        console.log(res)
-        this.setState({
-          segments: res.data
-        })
+    getRoutes(this.props.params.id).then((res) => {
+      console.log(res)
+      this.setState({
+        segments: res.data
       })
+    })
+  }
+
+  componentDidMount(){
+    // var baseC = this.state.segments;
+    // var i;
+    //
+    // console.log('Begin Test');
+    //
+    // for (i = 0; i < baseC.length; i++) {
+    //   console.log(baseC[i].segments[0]) // origin
+    //   console.log(baseC[i].segments[0].lat)
+    //   console.log(baseC[i].segments[0].lon)
+    //   console.log(baseC[i].segments[1]) // desintation
+    //   console.log(baseC[i].segments[1].lat)
+    //   console.log(baseC[i].segments[1].lon)
+    // }
   }
 
   render() {
     const position = [this.state.center.lat, this.state.center.lng];
     const markerPosition = [this.state.marker.lat, this.state.marker.lng];
 
+    // const markers = [
+    //   {key: 'marker1', position: [51.5, -0.1], children: 'My first popup'},
+    //   {key: 'marker2', position: [51.51, -0.1], children: 'My second popup'},
+    //   {key: 'marker3', position: [51.49, -0.05], children: 'My third popup'},
+    // ];
+    //
+    // var baseC = this.state.segments[0]; // type is object
+    //
+    // console.log('test');
+    // console.log(baseC);
+
+    var baseC = this.state.segments;
+
+    var markers = []; // array of all markers to be loaded for the group
+    for (var i = 0; i < baseC.length; i++) {
+      // origin
+      markers.push(
+        <Marker
+          draggable={this.state.draggable}
+          position={[baseC[i].segments[0].lat, baseC[i].segments[0].lon]}
+          ref='marker'>
+          <Popup minWidth={100}>
+            <span onClick={this.toggleDraggable}>
+              {/*{this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}*/}
+              ORIGIN
+            </span>
+          </Popup>
+        </Marker>
+      );
+
+      // destination
+      markers.push(
+        <Marker
+          draggable={this.state.draggable}
+          position={[baseC[i].segments[1].lat, baseC[i].segments[1].lon]}
+          ref='marker'>
+          <Popup minWidth={100}>
+            <span onClick={this.toggleDraggable}>
+              {/*{this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}*/}
+              DESTINATION
+            </span>
+          </Popup>
+        </Marker>
+      );
+    }
+
     return (
+
+      // console.log('Segments Below'),
+      // console.log(this.state.segments[0]),
+      // console.log('Segments Above'),
+
+
+
 
       <div>
 
-      {JSON.stringify(this.state.segments)}
+      {/*{JSON.parse(this.state.segments)}*/}
+
+      {/*{JSON.stringify(baseC)}*/}
+
+      {/*<p>{baseC.segments}</p>*/}
+
+
+
+
+
+      {/*{JSON.stringify(this.state.segments[0])}*/}
+
+      {/*var parsed = {JSON.parse(JSON.stringify(this.state.segments))}*/}
+      {/*<p>{parsed[0]}</p>*/}
 
 
       <Map center={position} zoom={this.state.zoom} zoomControl={false}>
@@ -64,7 +165,7 @@ export default class DraggableExample extends Component {
             OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com
             /attributions">CartoDB</a>'
         />
-        <Marker
+        {/*<Marker
           draggable={this.state.draggable}
           onDragend={this.updatePosition}
           position={markerPosition}
@@ -74,7 +175,11 @@ export default class DraggableExample extends Component {
               {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
             </span>
           </Popup>
-        </Marker>
+        </Marker>*/}
+
+        {markers}
+
+
         <ZoomControl position='bottomright' />
       </Map>
 
