@@ -87,7 +87,6 @@ class Main extends Component{
 
   }
 
-
   render() {
     const displayPage = ()=>{
       if(this.state.authenticated === true){
