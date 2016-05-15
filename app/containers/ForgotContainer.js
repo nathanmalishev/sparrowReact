@@ -78,10 +78,10 @@ export default class ForgotContainer extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Reset your password!</h2>
+      <div className="login-card">
         <form className="form-signin" onSubmit={this.handleSubmit}>
-            Username
+        <h2 className="text-nowrap text-center">Reset Password</h2>
+        <hr/>
             <input
               type="text"
               placeholder="Username"
@@ -90,33 +90,31 @@ export default class ForgotContainer extends Component {
               onChange={this.handleUserChange}
             />
              <div className="divider" />
-            Email
             <input
               type="email"
-              placeholder="email"
+              placeholder="Email"
               className="form-control"
               value={this.state.email}
               onChange={this.handleEmailChange}
             />
 
             <div className="divider" />
-            New Password
             <input
-              type="text"
-              placeholder="Password"
+              type="password"
+              placeholder="New Password"
               className="form-control"
               value={this.state.password}
               onChange={this.handlePassChange}
             />
-              <button className="btn btn-danger btn-block btn-lg btn-signup"
+              <button className="ghost-button"
                     type="submit" value="Post">
-                Reset password
+                RESET
               </button>
+              <button className="ghost-button" onClick={this.props.onForgotClick}>CANCEL</button>
 
           </form>
 
         <SignUpMessage attempt={this.state.attempt} success={this.state.success}/>
-      <button className="btn" onClick={this.props.onForgotClick}>Back</button>
       </div>
     );
   }
