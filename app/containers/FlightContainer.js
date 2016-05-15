@@ -45,7 +45,9 @@ export default class FlightContainer extends Component {
 
         {
           this.state.results === true
-            ? <FlightResults groupId={this.props.groupId} data={this.state.flightData}/>
+
+            ? <FlightResults groupId={this.props.groupId} userId={this.props.authUser._id} data={this.state.flightData}/>
+
             : <p></p>
         }
 

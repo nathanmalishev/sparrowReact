@@ -147,11 +147,13 @@ export function deleteExpense(groupId,expense) {
   });
 }
 
-export function addRoute(groupId, route) {
+
+export function addRoute(groupId, userId, route) {
   const token = window.localStorage.getItem('sparrow-travel-token');
-  const url = `${_baseURL}api/groups/${groupId}/route?access_token=${token}`;
+  const url = `${_baseURL}api/groups/${groupId}/?access_token=${token}`;
   return axios.put(url, {
-    route
+    data: route,
+    user: userId
   })
   .then((res)=> {
     if (res === undefined) {
@@ -164,6 +166,8 @@ export function addRoute(groupId, route) {
     console.log(err);
   });
 }
+<<<<<<< HEAD
+=======
 
 export function getUsernames(){
   const token = window.localStorage.getItem('sparrow-travel-token');
@@ -216,3 +220,4 @@ export function deleteUser(groupId){
   });
 }
 
+>>>>>>> 1530473c259ab92aaef60e7745ff4b5cb31b9f1e
