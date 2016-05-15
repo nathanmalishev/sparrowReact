@@ -5,11 +5,14 @@ Be sure to download, node (& npm) and mongodb.
 
 To locall test you need to run, node, webpack and mongo.
 
-Open 3 terminals
-Run - mongod
-Run - node index.js
-Run - webpack-dev-server
+First run 'npm install' in the root directory
 
+then open 3 terminals
+Run - 'mongod'
+Run - 'node index.js'
+Run - 'webpack-dev-server'
+
+Proced to http://localhost:8080/
 
 # Guide to Dev
 
