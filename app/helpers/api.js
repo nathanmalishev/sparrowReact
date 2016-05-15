@@ -147,6 +147,7 @@ export function deleteExpense(groupId,expense) {
   });
 }
 
+
 export function addRoute(groupId, userId, route) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/?access_token=${token}`;
@@ -165,3 +166,58 @@ export function addRoute(groupId, userId, route) {
     console.log(err);
   });
 }
+<<<<<<< HEAD
+=======
+
+export function getUsernames(){
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/users?access_token=${token}`;
+  return axios.get(url)
+    .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
+
+export function postUser(groupId,user) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/settings?access_token=${token}`;
+  return axios.post(url, {
+    user
+  })
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
+export function deleteUser(groupId){
+    const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/settings?access_token=${token}`;
+  return axios.delete(url)
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
+>>>>>>> 1530473c259ab92aaef60e7745ff4b5cb31b9f1e

@@ -23,7 +23,7 @@ exports.params = function (req, res, next, id) {
 };
 
 exports.getOne = function (req, res, next) {
-  res.json({group: req.group, user:req.user.toJson()});
+  res.json({ group: req.group, user: req.user.toJson() });
 };
 
 exports.get = function (req, res, next) {
@@ -35,18 +35,16 @@ exports.get = function (req, res, next) {
     .populate(fields_to_polulate, 'username')
     .exec()
     .then(function (groups) {
-      res.json({groups: groups, user:req.user.toJson()});
+      res.json({ groups: groups, user: req.user.toJson() });
     }, function (err) {
 
       next(err);
     });
 };
 
-
-exports.getExpenses = function (req, res, next){
+exports.getExpenses = function (req, res, next) {
   res.send(req.group.expenses);
-}
-
+};
 
 exports.delete = function (req, res, next) {
   res.send('to do');
@@ -59,12 +57,12 @@ exports.put = function (req, res, next) {
 
   var update = req.body;
 
-  console.log('group',group)
-  console.log('update',update)
+  console.log('group', group);
+  console.log('update', update);
   group = _.merge(group, update);
   var newGroup = new Group(group);
 
-  console.log('after merge group',group)
+  console.log('after merge group', group);
 
   group.save(function (err, saved) {
     if (err) {
@@ -75,31 +73,59 @@ exports.put = function (req, res, next) {
   });
 };
 
-
-exports.postChat = function(req, res, next){
+exports.postChat = function (req, res, next) {
   var group = req.group;
 
   var chat = req.body;
-  console.log('group',group)
-  console.log('chat',chat)
+  console.log('group', group);
+  console.log('chat', chat);
   group.chat = _.concat(group.chat, chat);
   var newGroup = new Group(group);
 
-  console.log('after merge group',group)
+  console.log('after merge group', group);
 
-  group.save(function(err, saved){
-    if(err){
+  group.save(function (err, saved) {
+    if (err) {
       next(err);
-    }else{
+    }else {
       res.json(saved);
     }
-  })
+  });
+};
 
+exports.postUser = function (req, res, next) {
+  var group = req.group;
 
-}
+  var user = req.body;
 
+  console.log('group', group);
+  console.log('user', user);
 
+  group.users = _.concat(group.users, user.user);
+  var newGroup = new Group(group);
 
+  newGroup.save(function (err, saved) {
+    if (err) {
+      next(err);
+    }
+
+    // user.user.groups= (mongoose.Types.ObjectId(newGroup._id));
+    User.findById(user.user._id, function (err, user) {
+      if (err) {
+        console.log(err);
+        next(err);
+      }
+
+      user.groups.push(mongoose.Types.ObjectId(newGroup._id));
+      user.save(function (err, saved) {
+        if (err) {next(err);}
+
+        res.json(newGroup);
+      });
+
+    });
+  });
+};
 
 exports.post = function (req, res, next) {
   var newGroup = req.body;
@@ -129,36 +155,33 @@ exports.post = function (req, res, next) {
     });
 };
 
-
-
-exports.postExpenses = function(req, res, next){
+exports.postExpenses = function (req, res, next) {
   var group = req.group;
   var newExpenses = req.body;
 
-  console.log('group ', group.expenses)
-  console.log('new expenses ', newExpenses.expenses)
+  console.log('group ', group.expenses);
+  console.log('new expenses ', newExpenses.expenses);
 
   group.expenses = _.concat(group.expenses, newExpenses.expenses);
-  console.log('merged after ', group)
-  group.save(function(err,savedGroup){
-    if(err){next(err);}
+  console.log('merged after ', group);
+  group.save(function (err, savedGroup) {
+    if (err) {next(err);}
 
     res.status(201).send(savedGroup);
-  })
-}
-
+  });
+};
 
 exports.deleteExpense = function (req, res, next) {
   var group = req.group;
 
   var expense = req.body.expense;
 
-
-  group.expenses = _.remove(group.expenses, function(oldExpense){
-    console.log(expense)
-    console.log(oldExpense)
-    return JSON.stringify(expense) !== JSON.stringify(oldExpense)
+  group.expenses = _.remove(group.expenses, function (oldExpense) {
+    console.log(expense);
+    console.log(oldExpense);
+    return JSON.stringify(expense) !== JSON.stringify(oldExpense);
   });
+
   var newGroup = new Group(group);
 
   newGroup.save(function (err, saved) {
@@ -167,5 +190,35 @@ exports.deleteExpense = function (req, res, next) {
     }else {
       res.json(saved);
     }
+  });
+};
+
+exports.deleteUser = function (req, res, next) {
+  var group = req.group;
+  var user = req.user;
+
+  group.users = _.remove(group.users, function (oldUser) {
+    return JSON.stringify(user._id) !== JSON.stringify(oldUser._id);
+  });
+
+  var newGroup = new Group(group);
+
+  newGroup.save(function (err, savedGroup) {
+    if (err) {
+      next(err);
+    }
+
+    user.groups = _.remove(user.groups, function (oldGroup) {
+      return JSON.stringify(oldGroup) !== JSON.stringify(savedGroup._id);
+    });
+
+    user.save(function (err, saved) {
+      if (err) {
+        next(err);
+      }
+
+      res.json(savedGroup);
+    });
+
   });
 };

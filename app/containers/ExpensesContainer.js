@@ -107,7 +107,7 @@ export default class ExpensesContainer extends Component {
         <table className="table">
         <thead>
           <tr>
-            <th>User</th>
+            <th>Lender</th>
             <th>Owes</th>
             <th>Amount</th>
             <th colSpan="2">

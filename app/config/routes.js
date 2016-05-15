@@ -9,6 +9,8 @@ import ExpensesCreateContainer from '../containers/ExpensesCreateContainer';
 import SignUpContainer from '../containers/SignUpContainer';
 import ForgotContainer from '../containers/ForgotContainer';
 import ChatContainer from '../containers/ChatContainer';
+import SettingsContainer from '../containers/SettingsContainer'
+
 
 const routes = (
   <Router history={hashHistory}>
@@ -16,6 +18,7 @@ const routes = (
       <IndexRoute component={HomeContainer} />
       <Route path='group/:id' component={GroupContainer}>
         <IndexRoute component={FlightContainer}/>
+        <Route path='settings' component={SettingsContainer}/>
         <Route path='flights' component={FlightContainer}/>
         <Route path='chat' component={ChatContainer}/>
         <Route path='expenses' component={ExpensesContainer}/>

@@ -63,14 +63,6 @@ class PasswordContainer extends Component{
             SIGN UP
             </button>
 
-            <button className="ghost-button">
-              <span className="fa fa-facebook"></span>
-            </button>
-
-            <button className="ghost-button">
-              <span className="fa fa-google"></span>
-            </button>
-
           </form>
 
           <br/>
