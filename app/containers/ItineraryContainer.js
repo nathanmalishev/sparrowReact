@@ -33,7 +33,7 @@ export default class ItineraryContainer extends Component {
         lat: -37.67041,
         lng: 144.8489,
       },
-      zoom: 3,
+      zoom: 2,
       segments:[],
       draggable: true,
     };
@@ -82,7 +82,7 @@ export default class ItineraryContainer extends Component {
   }
 
   render() {
-    const position = [this.state.center.lat, this.state.center.lng];
+    // const position = [this.state.center.lat, this.state.center.lng];
     const markerPosition = [this.state.marker.lat, this.state.marker.lng];
 
     // const markers = [
@@ -97,6 +97,9 @@ export default class ItineraryContainer extends Component {
     // console.log(baseC);
 
     var baseC = this.state.segments;
+
+    // center camera to this - starting location
+    const position = [baseC[0].segments[0].lat, baseC[0].segments[0].lon]
 
     var markers = []; // array of all markers to be loaded for the group
     for (var i = 0; i < baseC.length; i++) {
@@ -130,6 +133,8 @@ export default class ItineraryContainer extends Component {
         </Marker>
       );
     }
+
+    // const position = [this.state.center.lat, this.state.center.lng];
 
     return (
 
