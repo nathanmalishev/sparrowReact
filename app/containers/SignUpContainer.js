@@ -113,7 +113,7 @@ export default class SignUpContainer extends Component {
             </div>
             <div className="form-group">
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 placeholder="Password"
                 value={this.state.password}
@@ -121,9 +121,6 @@ export default class SignUpContainer extends Component {
                 id="password"
                 required
               />
-            </div>
-            <div className="form-group">
-              <input type="text" className="form-control" placeholder="Repeat Password" required/>
             </div>
             <div className="checkbox">
               <label>
