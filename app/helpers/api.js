@@ -72,9 +72,6 @@ export function postChat(groupId, chat) {
   });
 }
 
-
-
-
 export function postExpenses(groupId,expenses) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
@@ -109,7 +106,6 @@ export function getExpenses(groupId) {
     });
 }
 
-
 export function putExpenses(groupId,expenses) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/expenses?access_token=${token}`;
@@ -127,7 +123,6 @@ export function putExpenses(groupId,expenses) {
     console.log(err);
   });
 }
-
 
 export function deleteExpense(groupId,expense) {
   const token = window.localStorage.getItem('sparrow-travel-token');
@@ -231,4 +226,3 @@ export function deleteUser(groupId){
     console.log(err);
   });
 }
-
