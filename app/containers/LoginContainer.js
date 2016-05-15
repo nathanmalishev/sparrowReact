@@ -27,7 +27,7 @@ class Main extends Component{
       authenticated: false,
       message: '',
       signUp:false,
-      forgot:false
+      forgot:false,
     };
 
     this.onLoginClick = this.onLoginClick.bind(this);
@@ -54,7 +54,7 @@ class Main extends Component{
           this.setState({
             authenticated: true,
             signUp:false,
-            forgot:false
+            forgot:false,
           });
           return
         }else{

@@ -33,19 +33,13 @@ export default class FlightSearchContainer extends Component {
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
-            Enter to
-            <input
-              type="text"
-              value={this.state.to}
-              onChange={this.handleToChange}
-            />
-            Enter from
+          <b> From </b>
             <input
               type="text"
               value={this.state.from}
               onChange={this.handleFromChange}
             />
-
+            <b> To   </b>
             <input type="submit" value="Post" />
           </form>
 

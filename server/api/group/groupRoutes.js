@@ -14,6 +14,17 @@ router.route('/:id')
 router.route('/:id/expenses')
   .get(controller.getExpenses)
   .post(controller.postExpenses)
+  .put(controller.put)
+  .patch(controller.deleteExpense)
 
+
+router.route('/:id/chat')
+  // .get(controller.getExpenses)
+  .post(controller.postChat)
+
+router.route('/:id/settings')
+  // .get(controller.getExpenses)
+  .post(controller.postUser)
+  .delete(controller.deleteUser)
 
 module.exports = router;

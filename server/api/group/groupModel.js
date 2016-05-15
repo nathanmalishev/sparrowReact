@@ -31,19 +31,24 @@ var GroupSchema = new Schema({
       data: { type: Schema.Types.Mixed },
     }, ],
   }, ],
-  //chat
+  chat:[{
+    username: {type:String},
+    msg: {type:String}
+  }
+  ],
   expenses: [
   {
     lender: {
-      _id: {type: Schema.Types.ObjectId, ref: 'user' },
+      _id: {type: Schema.Types.ObjectId, ref: 'user'},
       username: {type: String},
     },
     lendee: {
-      _id: {type: Schema.Types.ObjectId, ref: 'user' },
+      _id: {type: Schema.Types.ObjectId, ref: 'user'},
       username: {type: String},
     },
-    amount: { type: Number },
-    note: {type:String}
+    amount: { type: Number, required:true },
+    settled: {type:Boolean, required:true},
+    desc: {type:String}
   },
   ],
 });

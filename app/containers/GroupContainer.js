@@ -17,14 +17,16 @@ class GroupContainer extends Component {
   componentDidMount() {
     //split id as there is two
     getGroup(this.props.routeParams.id)
-      .then((res)=> {
-        if (res.statusText === 'OK') {
-          this.setState({
-            loading: false,
-            groupData: res.data,
-            currentDestination: res.data.destinations[0],
-          });
-          console.log(res);
+      .then((res)=>{
+        if(res){
+          if(res.statusText === 'OK'){
+            this.setState({
+              loading:false,
+              groupData: res.data.group,
+              currentDestination: res.data.group.destinations[0],
+              authUser: res.data.user
+            })
+          }
         }
 
       });
@@ -38,8 +40,6 @@ class GroupContainer extends Component {
   }
 
   render() {
-    console.log("GROUP DATA", this.state.groupData.expenses)
-    console.log(this.props.children.type.name)
     return (
       <div>
       {
@@ -53,12 +53,17 @@ class GroupContainer extends Component {
                 currentDestination={this.state.currentDestination}
                 onDestinationClick={this.handleDestinationClick}
                 routeParams={this.props.routeParams}
+                authUser={this.state.authUser}
               />
            {
             React.cloneElement(this.props.children,
-              { destination:this.state.currentDestination,
+              {
+                groupId:this.state.groupData._id,
+                destination:this.state.currentDestination,
                 users:this.state.groupData.users,
-                expenses:this.state.groupData.expenses
+                loggedInUser: this.props.loggedInUser,
+                authUser:this.state.authUser,
+                chat:this.state.groupData.chat
               }
             )}
             </div>

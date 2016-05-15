@@ -25,6 +25,9 @@ const styles = {
     display:'flex',
     flexDirection:'row'
 
+  },
+  username:{
+    fontSize:'16px'
   }
 };
 
@@ -47,18 +50,22 @@ class Group extends Component{
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
+
               <a className="navbar-brand navbar-link" href="#">
                 Sparrow
               </a>
+              <p className="navbar-brand" style={styles.username}>
+                - Welcome {this.props.authUser.username}
+              </p>
             </div>
 
             <div className="collapse navbar-collapse" id="navcol-1">
               <ul className="nav navbar-nav navbar-right">
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/flights'}>Flights</Link></li>
-                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/hotels'}>Hotels</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/itinerary'}>Itinerary</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/chat'}>Chat</Link></li>
                 <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/expenses'}>Expenses</Link></li>
+                <li role="presentation"><Link to={'group/'+this.props.routeParams.id+'/settings'}>Settings</Link></li>
                 <li role="presentation"><a onClick={logout}>Logout</a></li>
               </ul>
             </div>
