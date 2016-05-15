@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 
+
+const styles = {
+  button: {
+    marginTop:'30px',
+    marginBottom:'20px'
+  }
+}
+
 export default class FlightSearchContainer extends Component {
   constructor() {
     super();
@@ -32,21 +40,29 @@ export default class FlightSearchContainer extends Component {
   render() {
     return (
       <div>
-      <form onSubmit={this.handleSubmit}>
-            Enter to
+      <form onSubmit={this.handleSubmit}
+        className="form-signin col-md-6 col-md-offset-3 text-center"
+        >
+
+            <h3>from</h3>
             <input
               type="text"
-              value={this.state.to}
-              onChange={this.handleToChange}
-            />
-            Enter from
-            <input
-              type="text"
+              placeholder="Melbourne"
+              className="form-control"
               value={this.state.from}
               onChange={this.handleFromChange}
             />
+            <h3>to</h3>
+            <input
+              type="text"
+              placeholder="Paris"
+              value={this.state.to}
+              className="form-control"
+              onChange={this.handleToChange}
+            />
 
-            <input type="submit" value="Post" />
+            <input type="submit" value="GO" className="ghost-button"
+              style={styles.button}/>
           </form>
 
       </div>

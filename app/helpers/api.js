@@ -147,12 +147,28 @@ export function deleteExpense(groupId,expense) {
   });
 }
 
-export function addRoute(groupId, route) {
+export function postRoute(groupId, route) {
   const token = window.localStorage.getItem('sparrow-travel-token');
   const url = `${_baseURL}api/groups/${groupId}/route?access_token=${token}`;
-  return axios.put(url, {
+  return axios.post(url, {
     route
   })
+  .then((res)=> {
+    if (res === undefined) {
+      throw 'response is undefined';
+    }
+
+    return res;
+  })
+  .catch((err)=> {
+    console.log(err);
+  });
+}
+
+export function getRoutes(groupId) {
+  const token = window.localStorage.getItem('sparrow-travel-token');
+  const url = `${_baseURL}api/groups/${groupId}/route?access_token=${token}`;
+  return axios.get(url)
   .then((res)=> {
     if (res === undefined) {
       throw 'response is undefined';

@@ -27,4 +27,8 @@ router.route('/:id/settings')
   .post(controller.postUser)
   .delete(controller.deleteUser)
 
+router.route('/:id/route')
+  .get(controller.getRoutes)
+  .post(controller.postRoute)
+
 module.exports = router;
