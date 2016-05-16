@@ -1,3 +1,3 @@
 export const config = {
-  url: 'https://sparrow-travel.herokuapp.com/',
+  url: window.location.origin+'/',
 };
