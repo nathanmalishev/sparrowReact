@@ -3,17 +3,17 @@ import React, { Component } from 'react'
 import {Accordion, Panel, Button, Tab, Nav, Row, Col, NavItem} from 'react-bootstrap'
 
 import {addRoute} from '../helpers/api'
-
+// This handles the output from Rome2Rio, formating it into tabs for the different routes 
 export default class FlightResults extends React.Component {
 
   constructor(props) {
     super(props);
-
+    // Maintain reference to the navigation bars
     this.count = 0;
     this.count2 = 0;
     console.log(props, "res props")
   }
-
+  // displays the sub tabs for the route
   routeDisplay(route) {
     this.count2 = 0;
     return (
@@ -37,7 +37,7 @@ export default class FlightResults extends React.Component {
       </Tab.Pane>
     )
   }
-
+  // displays the tab name for the segments
   segDisplayTab(seg) {
     return (
     <NavItem eventKey={this.count2++}>
@@ -45,6 +45,7 @@ export default class FlightResults extends React.Component {
     </NavItem>
     );
   }
+  // Display the segment
   segDisplay(seg) {
       <Tab.Pane eventKey={this.count2++}>
       <div>
@@ -52,7 +53,7 @@ export default class FlightResults extends React.Component {
       </div>
       </Tab.Pane>
   }
-
+  // Display the route name and navigation button
   routeDisplayTab(route) {
     return (
     <NavItem eventKey={this.count++}>
@@ -60,7 +61,7 @@ export default class FlightResults extends React.Component {
     </NavItem>
     );
   }
-
+  // saving route data to database
   onRouteSelect(route) {
     addRoute(this.props.groupId, this.props.userId, route).then((res)=> {
       console.log(res);
@@ -69,7 +70,7 @@ export default class FlightResults extends React.Component {
       console.log(err);
     });
   }
-
+  // Rendering everything 
   render() {
     this.count=0;
     return (
