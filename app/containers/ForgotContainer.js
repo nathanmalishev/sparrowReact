@@ -87,7 +87,7 @@ export default class ForgotContainer extends Component {
             <input
               type="text"
               placeholder="Username"
-              autofocus className="form-control"
+              autofocus className="sparrow-form-control"
               value={this.state.username}
               onChange={this.handleUserChange}
             />
@@ -95,7 +95,7 @@ export default class ForgotContainer extends Component {
             <input
               type="email"
               placeholder="Email"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.email}
               onChange={this.handleEmailChange}
             />
@@ -104,10 +104,12 @@ export default class ForgotContainer extends Component {
             <input
               type="password"
               placeholder="New Password"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.password}
               onChange={this.handlePassChange}
             />
+            
+            <div className="divider" />
               <button className="ghost-button"
                     type="submit" value="Post">
                 RESET

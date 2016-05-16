@@ -81,10 +81,10 @@ class HomeConatiner extends Component {
       {
         this.state.createNewGroup === true
         ? <CreateGroupContainer onSubmitGroup={this.handleSubmitGroup}/>
-        : <button className='ghost-button' onClick={this.handleGroupClick}>Create new group</button>
+        : <button className='ghost-button' onClick={this.handleGroupClick}>CREATE NEW GROUP</button>
       }
       <br/>
-      <button className='ghost-button' onClick={logout}>Logout</button>
+      <button className='ghost-button' onClick={logout}>LOGOUT</button>
       <br/>
       <br/>
       <br/>
