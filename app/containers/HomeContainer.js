@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getGroups, createGroup } from '../helpers/api';
+import { logout } from '../helpers/auth';
 import GroupTab from '../components/GroupTab';
 import CreateGroupContainer from './createGroupContainer';
 import _ from 'lodash'
@@ -82,6 +83,7 @@ class HomeConatiner extends Component {
         : <button className='ghost-button' onClick={this.handleGroupClick}>Create new group</button>
       }
       <br/>
+      <button className='ghost-button' onClick={logout}>Logout</button>
       <br/>
       <br/>
       <br/>
