@@ -33,8 +33,6 @@ export default class FlightContainer extends Component {
         flightData: data.data
       })
     })
-
-    console.log(flightData, 'test')
   }
 
   handleSelect(segments){

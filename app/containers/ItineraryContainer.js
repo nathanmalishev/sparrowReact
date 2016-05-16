@@ -7,7 +7,6 @@ const styles = {
   popup: {
     alignItems: 'center',
     border: '1px',
-
   }
 }
 
@@ -54,12 +53,20 @@ export default class ItineraryContainer extends Component {
 
   render() {
     var markerData = this.state.segments;
-
+    var melbournePos = [-37.8141, 144.9633]
 
     if(!markerData[0]){
       return (
           <div>
-            <p>Please find a flight</p>
+            <Map center={melbournePos} zoom={2} zoomControl={false}>
+              <TileLayer
+                url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+                attribution='&copy; <a href="http://www.openstreetmap.org/copyright">
+                  OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com
+                  /attributions">CartoDB</a>'
+              />
+              <ZoomControl position='bottomright' />
+            </Map>
           </div>
         )
     }
@@ -118,4 +125,3 @@ export default class ItineraryContainer extends Component {
     );
   }
 }
-
