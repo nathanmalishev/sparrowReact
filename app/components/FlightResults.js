@@ -15,12 +15,23 @@ export default class FlightResults extends Component {
 
   routeDisplay(route) {
     var segs = route.segments.map(function(seg) {
-      return <li>{seg.kind}</li>;
+      return (
+        <div>
+          <h6>LEG {route.segments.indexOf(seg) + 1}</h6>
+          <h5><strong> {seg.kind.toUpperCase()}</strong> - {seg.duration + seg.transferDuration} minutes</h5>
+          <ul>
+          <li>${seg.indicativePrice.price + ' ' + seg.indicativePrice.currency}</li>
+          {/*sName for stations || sCode for flights*/}
+          <li>{seg.sName || seg.sCode} &#8594; {seg.tName || seg.tCode}</li>
+          </ul>
+        </div>
+      )
     });
     return (
       <Panel header={route.name} eventKey={this.count++}>
-        <p> Duration : {route.duration} minutes, Price: ${route.indicativePrice.price} </p>
-        <ul>{segs}</ul>
+        <h4>Duration (Travel & Transfer Time): {route.duration} minutes</h4>
+        <h4>Total Price: ${route.indicativePrice.price + ' ' + route.indicativePrice.currency}</h4>
+        {segs}
         <Button onClick={ () => { this.onRouteSelect(route) } }> Select </Button>
         {this.state.message}
       </Panel>
@@ -41,13 +52,18 @@ export default class FlightResults extends Component {
     })
   }
 
+
+
   render() {
     this.count=0;
+
+    console.log('test');
+    console.log(this.props.data.routes);
+
     return (
       <div className="col-md-12">
       <Accordion>
-      {this.props.data.routes.map(this.routeDisplay, this)}
-
+        {this.props.data.routes.map(this.routeDisplay, this)}
       </Accordion>
       </div>
     )

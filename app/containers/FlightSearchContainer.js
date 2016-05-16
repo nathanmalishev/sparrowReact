@@ -45,7 +45,6 @@ export default class FlightSearchContainer extends Component {
       <form onSubmit={this.handleSubmit}
         className="form-signin col-md-6 col-md-offset-3 text-center"
         >
-
             <h3>from</h3>
             <input
               type="text"
@@ -66,7 +65,6 @@ export default class FlightSearchContainer extends Component {
             <input type="submit" value="GO" className="ghost-button"
               style={styles.button}/>
           </form>
-
       </div>
     );
   }
