@@ -9,7 +9,7 @@ export default class FlightResults extends Component {
   constructor() {
     super();
     this.state = {
-      message:''
+      selectVal: 'SELECT'
     }
   }
 
@@ -31,8 +31,7 @@ export default class FlightResults extends Component {
         <h4 className="text-left">Duration (Travel & Transfer Time): {route.duration} minutes</h4>
         <h4 className="text-left">Total Price: ${route.indicativePrice.price + ' ' + route.indicativePrice.currency}</h4>
         {segs}
-        <input type="submit" className="ghost-button" onClick={ () => { this.onRouteSelect(route) } } value="SELECT"/>
-        {this.state.message}
+        <input type="submit" className="ghost-button" onClick={ () => { this.onRouteSelect(route) } } value={this.state.selectVal}/>
       </Panel>
     );
   }
@@ -47,17 +46,12 @@ export default class FlightResults extends Component {
 
     this.props.onSelect({segments:_.compact(coord)})
     this.setState({
-      message:'  selected!'
+      selectVal:'SELECTED'
     })
   }
 
-
-
   render() {
     this.count=0;
-
-    console.log('test');
-    console.log(this.props.data.routes);
 
     return (
       <div className="col-md-12">
