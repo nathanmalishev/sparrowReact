@@ -9,9 +9,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 5,
-    // color: 'black',
     width:'80%',
-    // backgroundColor:'grey'
   },
   destinations: {
     display:'flex',
@@ -31,9 +29,7 @@ const styles = {
   }
 };
 
-
 class Group extends Component{
-
 
   render(){
     const listDestinations = this.props.destinations.map((elem)=>{
@@ -76,23 +72,4 @@ class Group extends Component{
   }
 }
 
-
 export default Group
-
-// TO-DO: Make navbar repsonosive for all screensizes - collapsable
-// TO-DO: Make onClick have hover for usability - logout button
-
-// <div style={styles.container}>
-//           <div style={styles.destinations}>
-//             {listDestinations}
-//           </div>
-//           <div style={styles.header}>
-//             <Link to={'group/'+this.props.routeParams.id+'/flights'}>
-//               Flights
-//             </Link>
-//             <p>Hotels</p>
-//             <p>Itinerary</p>
-//             <p>Chat</p>
-//             <p>Expenses</p>
-//           </div>
-//       </div>

@@ -84,15 +84,15 @@ export default class SignUpContainer extends Component {
           <form className="form-signin" onSubmit={this.handleSubmit}>
             <h2 className="text-nowrap text-center">Sign Up</h2><hr/>
             <div className="form-group">
-              <input type="text" className="form-control" placeholder="First Name" required/>
+              <input type="text" className="sparrow-form-control" placeholder="First Name" required/>
             </div>
             <div className="form-group">
-              <input type="text" className="form-control" placeholder="Last Name" required/>
+              <input type="text" className="sparrow-form-control" placeholder="Last Name" required/>
             </div>
             <div className="form-group">
               <input
                 type="text"
-                className="form-control"
+                className="sparrow-form-control"
                 placeholder="Username"
                 value={this.state.username}
                 onChange={this.handleUserChange}
@@ -103,7 +103,7 @@ export default class SignUpContainer extends Component {
             <div className="form-group">
               <input
                 type="text"
-                className="form-control"
+                className="sparrow-form-control"
                 placeholder="Email Address"
                 value={this.state.email}
                 onChange={this.handleEmailChange}
@@ -114,7 +114,7 @@ export default class SignUpContainer extends Component {
             <div className="form-group">
               <input
                 type="password"
-                className="form-control"
+                className="sparrow-form-control"
                 placeholder="Password"
                 value={this.state.password}
                 onChange={this.handlePassChange}
