@@ -18,17 +18,6 @@ export default class ItineraryContainer extends Component {
       segments:[],
       draggable: true,
     };
-
-    this.toggleDraggable = () => {
-      this.setState({draggable: !this.state.draggable});
-    };
-
-    this.updatePosition = () => {
-      const { lat, lng } = this.refs.marker.getLeafletElement().getLatLng();
-      this.setState({
-        marker: {lat, lng},
-      });
-    };
   }
 
   componentWillMount() {
@@ -50,6 +39,8 @@ export default class ItineraryContainer extends Component {
     var markerData = this.state.segments;
     var melbournePos = [-37.8141, 144.9633]
 
+    // if no flight data is currently present
+    // return an empty map that's centered on Melbourne
     if(!markerData[0]){
       return (
           <div>
@@ -75,13 +66,11 @@ export default class ItineraryContainer extends Component {
       // origin
       markers.push(
         <Marker
-          draggable={this.state.draggable}
           position={[markerData[i].segments[0].lat, markerData[i].segments[0].lon]}
           ref='marker'>
           <Popup minWidth={120}>
             <span onClick={this.toggleDraggable}>
-            <h3><strong>Location Name</strong></h3>
-            <h3>ORIGIN</h3>
+            <h5>{markerData[i].segments[0].lat},{markerData[i].segments[0].lon}</h5>
             </span>
           </Popup>
         </Marker>
@@ -90,13 +79,11 @@ export default class ItineraryContainer extends Component {
       // destination
       markers.push(
         <Marker
-          draggable={this.state.draggable}
           position={[markerData[i].segments[1].lat, markerData[i].segments[1].lon]}
           ref='marker'>
           <Popup minWidth={120}>
             <span onClick={this.toggleDraggable}>
-            <h3><strong>Location Name</strong></h3>
-            <h3>DESTINATION</h3>
+            <h5>{markerData[i].segments[1].lat},{markerData[i].segments[1].lon}</h5>
             </span>
           </Popup>
         </Marker>

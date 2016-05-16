@@ -9,7 +9,7 @@ export default class FlightResults extends Component {
   constructor() {
     super();
     this.state = {
-      selectVal: 'SELECT'
+      selectVal: 'SELECT' // value for the text in select button
     }
   }
 
@@ -17,6 +17,7 @@ export default class FlightResults extends Component {
     var segs = route.segments.map(function(seg) {
       return (
         <div className="text-left">
+          {/*Information for the particular segment in the trip*/}
           <ul>
             <h5>LEG {route.segments.indexOf(seg) + 1}<strong> {seg.kind.toUpperCase()}</strong> - {seg.duration + seg.transferDuration} minutes</h5>
             <h6>&#8226; ${seg.indicativePrice.price + ' ' + seg.indicativePrice.currency}</h6>
@@ -52,7 +53,6 @@ export default class FlightResults extends Component {
 
   render() {
     this.count=0;
-
     return (
       <div className="col-md-12">
       <Accordion className="text-nowrap text-center">

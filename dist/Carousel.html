@@ -15,17 +15,17 @@
     var currentPanels = 0;
 
     function initCarousel(){
-    
+
     //creating the panels of the carousel
     //setting dimensions,properties and images
     for (var i = 0; i<5; i++){
     var node = document.createElement("img");
-    
+
     node.style.width  = "200px";
     node.style.height = "250px";
     node.style.border = "thick solid black";
 
-    
+
     if (i==0) {
         node.setAttribute("src","https://dl.dropboxusercontent.com/s/1sl2yla34stxvcj/nathan.jpeg?dl=0");
 
@@ -44,9 +44,6 @@
         node.setAttribute("src","https://dl.dropboxusercontent.com/s/knpzklrlfqfv220/hao.jpg?dl=0");
     }
 
-
-    
-    
     // These are needed to properly position panels in parent div
     node.style.position = "absolute";
     node.style.display = "block";
@@ -58,7 +55,6 @@
     // Add panel to carousel
     addPanel(node);
     }
-    
 
 }
 
@@ -69,14 +65,12 @@ function addPanel(node){
     node.className += "carousel-panel";
     node.setAttribute("index", currentPanels++);
 
-    
     caro.appendChild(node);
     placePanel(node);
-    
 
 }
 
-//placing the panels in the 
+//placing the panels in the
 function placePanel(node){
 
     var angle = getRotationAngle();
@@ -91,12 +85,10 @@ function placePanel(node){
 //spinning the carousel
 //dir takes values 1 or -1 depending on direction
 function spin(dir){
-    
 
     var angle      = getRotationAngle();
     var translateZ = getTranslationZ();
 
-    
     for (var i = NUM_PANELS-1; i > -1; i--){
     var node = document.querySelector('[index="' + i + '"]');
     node.style.setProperty("-webkit-transform","rotateY(" + ((i+(dir*1)).mod(NUM_PANELS) * angle) + "deg" + ") translateZ(" + translateZ + "px" + ")");
@@ -122,34 +114,34 @@ function keyCommand(event){
         }
         scroller++;
         if (scroller==0) {
-            paragraph.innerHTML = "Nathan is a postgraduate student pursuing his Master's of Engineering(Software). " + 
+            paragraph.innerHTML = "Nathan is a postgraduate student pursuing his Master's of Engineering(Software). " +
             "He is also our group leader and came up with the technologies we are using for our website. " +
             "He is managing most of our meetups and is bringing crucial ideas to the team. His tasks involve the implementation " +
             "of the flight and accomodation APIs, server and database setups and Authorisations.";
-            
+
         }
         if (scroller==1) {
             paragraph.innerHTML = "Michael is a 3rd year Software Engineering student. Michael is a true artist when it comes to User Interface. " +
             "That's why we as a team have decided to let him work on our front end implementation, working mostly on the design of our pages. "+
             "He has also been tasked with building the Money Tracker that is keeps track of a traveler's expenses and loans.";
-            
+
         }
         if(scroller==2){
             paragraph.innerHTML = "Oliver came up with the travel website idea. He has been " +
             "working on many startups and even won the General Electric Hackathon last year.";
-            
+
         }
         if(scroller==3){
             paragraph.innerHTML = "David is a 3rd year Software Engineering student. "+
             "He has mainly worked on the Carousel and web page design. He has started computing "+"at an early age and hopes to get more involved in the field of "+
             "artificial intelligence in the future.";
-            
+
         }
         if(scroller==4){
             paragraph.innerHTML = "Hao is the president of CISSA, the Computing and Information Systems Students Association. He is regularly involved in Hackathons and competitions, planning events and connect students that are interested in Computer Science. His main work for our application was the Itinerary part and getting the map on the page.";
             scroller = -1;
         }
-       
+
     spin(-1);
     }
 
@@ -163,33 +155,33 @@ function keyCommand(event){
             scroller =3;
         }
         if (scroller==0) {
-            paragraph.innerHTML = "Nathan is a postgraduate student pursuing his Master's of Engineering(Software). " + 
+            paragraph.innerHTML = "Nathan is a postgraduate student pursuing his Master's of Engineering(Software). " +
             "He is also our group leader and came up with the technologies we are using for our website. " +
             "He is managing most of our meetups and is bringing crucial ideas to the team. His tasks involve the implementation " +
             "of the flight and accomodation APIs, server and database setups and Authorisations.";
-            
+
         }
         if (scroller==1) {
             paragraph.innerHTML = "Michael is a 3rd year Software Engineering student. Michael is a true artist when it comes to User Interface." +
             "That's why we as a team have decided to let him work on our front end implementation, working mostly on the design of our pages. "+
             "He has also been tasked with building the Money Tracker that keeps track of a traveler's expenses and loans.";
-            
+
         }
         if(scroller==2){
             paragraph.innerHTML = "Oliver came up with the travel website idea. He has been " +
             "working on many startups and even won the General Electric Hackathon last year. ";
-            
+
         }
         if(scroller==3){
             paragraph.innerHTML = "David is a 3rd year Software Engineering student. "+
             "He has mainly worked on the Carousel and web page design. He has started computing "+"at an early age and hopes to get more involved in the field of "+
             "artificial intelligence in the future.";
-            
+
         }
         if (scroller==-1){
             paragraph.innerHTML = "Hao is the president of CISSA, the Computing and Information Systems Students Association. He is regularly involved in Hackathons and competitions, planning events and connect students that are interested in Computer Science. His main work for our application was the Itinerary part and getting the map on the page.";
             scroller= 5
-            
+
         }
     spin(1);
     }
@@ -204,7 +196,7 @@ function getRotationAngle(){
 }
 //change z value when function is called
 function getTranslationZ(){
-    
+
     return  Math.round((PANEL_SIZE / 2) / Math.tan(Math.PI / 6));
 }
 
@@ -218,7 +210,7 @@ Number.prototype.mod = function(n) {
     <!--styling the text container-->
     <style>
 
-    
+
     #paragraph {
     position: relative;
     height: 200px;
@@ -246,7 +238,6 @@ Number.prototype.mod = function(n) {
     </div>
 
     </div>
-
 
     <!--carousel container displaying the paragraphs-->
     <div style="height:300px;width:100%;">
