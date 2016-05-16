@@ -49,7 +49,7 @@ export default class FlightSearchContainer extends Component {
             <input
               type="text"
               placeholder="Melbourne"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.from}
               onChange={this.handleFromChange}
             />
@@ -58,7 +58,7 @@ export default class FlightSearchContainer extends Component {
               type="text"
               placeholder="Paris"
               value={this.state.to}
-              className="form-control"
+              className="sparrow-form-control"
               onChange={this.handleToChange}
             />
 

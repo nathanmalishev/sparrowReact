@@ -16,23 +16,22 @@ export default class FlightResults extends Component {
   routeDisplay(route) {
     var segs = route.segments.map(function(seg) {
       return (
-        <div>
-          <h6>LEG {route.segments.indexOf(seg) + 1}</h6>
-          <h5><strong> {seg.kind.toUpperCase()}</strong> - {seg.duration + seg.transferDuration} minutes</h5>
+        <div className="text-left">
           <ul>
-          <li>${seg.indicativePrice.price + ' ' + seg.indicativePrice.currency}</li>
-          {/*sName for stations || sCode for flights*/}
-          <li>{seg.sName || seg.sCode} &#8594; {seg.tName || seg.tCode}</li>
+            <h5>LEG {route.segments.indexOf(seg) + 1}<strong> {seg.kind.toUpperCase()}</strong> - {seg.duration + seg.transferDuration} minutes</h5>
+            <h6>&#8226; ${seg.indicativePrice.price + ' ' + seg.indicativePrice.currency}</h6>
+            {/*sName for stations || sCode for flights*/}
+            <h6>&#8226; {seg.sName || seg.sCode} &#8594; {seg.tName || seg.tCode}</h6>
           </ul>
         </div>
       )
     });
     return (
       <Panel header={route.name} eventKey={this.count++}>
-        <h4>Duration (Travel & Transfer Time): {route.duration} minutes</h4>
-        <h4>Total Price: ${route.indicativePrice.price + ' ' + route.indicativePrice.currency}</h4>
+        <h4 className="text-left">Duration (Travel & Transfer Time): {route.duration} minutes</h4>
+        <h4 className="text-left">Total Price: ${route.indicativePrice.price + ' ' + route.indicativePrice.currency}</h4>
         {segs}
-        <Button onClick={ () => { this.onRouteSelect(route) } }> Select </Button>
+        <input type="submit" className="ghost-button" onClick={ () => { this.onRouteSelect(route) } } value="SELECT"/>
         {this.state.message}
       </Panel>
     );
@@ -62,7 +61,7 @@ export default class FlightResults extends Component {
 
     return (
       <div className="col-md-12">
-      <Accordion>
+      <Accordion className="text-nowrap text-center">
         {this.props.data.routes.map(this.routeDisplay, this)}
       </Accordion>
       </div>
