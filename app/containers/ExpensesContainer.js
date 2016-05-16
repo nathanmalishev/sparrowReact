@@ -36,12 +36,15 @@ export default class ExpensesContainer extends Component {
   	};
   }
 
+//Used to display the settled expenses
   handleDisplaySettled(){
     this.setState({
       displaySettled: !this.state.displaySettled
     })
   }
 
+//Function runs everytime page is loaded, sets the initial states
+//before user interaction
   componentDidMount(){
     getExpenses(this.props.params.id)
       .then((res)=>{
@@ -52,6 +55,7 @@ export default class ExpensesContainer extends Component {
       })
   }
 
+//Handles the settling of an expense
   handleSettle(expense){
     const newExpenses = this.state.expenses.map((oldExpense)=>{
       if(JSON.stringify(oldExpense) === JSON.stringify(expense)){
@@ -61,7 +65,7 @@ export default class ExpensesContainer extends Component {
       }
     })
 
-
+//Updates the expenses displayed with the new expenses if an expense is added/deleted
     putExpenses(this.props.params.id, newExpenses)
       .then((res)=>{
         this.setState({
@@ -70,6 +74,7 @@ export default class ExpensesContainer extends Component {
       })
   }
 
+//Handles the deletion of an expense
   handleDelete(expense){
     deleteExpense(this.props.params.id, expense)
       .then((res)=>{
@@ -82,7 +87,8 @@ export default class ExpensesContainer extends Component {
 
   render() {
 
-
+//Maps rows of the expenses table to userOwingRow
+//if it is a settled expense, it is not shown
     let userOwingRow = this.state.expenses.map((expense)=>{
       if(expense.settled === true && !this.state.displaySettled){
         return false

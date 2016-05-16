@@ -196,7 +196,7 @@ export default class SettingsContainer extends Component {
 
         <input
           type="submit"
-          className='ghost-button'
+          className='small-ghost-button'
           value="ADD"
           onClick={this.addUser.bind(this)}
         />

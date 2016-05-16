@@ -24,6 +24,8 @@ export function RenderRow({expense,onSettle,onDelete}){
     }
   }
 
+//Finds whether button should display Unsettle for a settled expense
+//otherwise Settle Up for an unsettled expense
   function calcSettleWord(settled){
     if(settled){
       return 'Unsettle'
