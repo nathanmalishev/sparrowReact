@@ -8,6 +8,8 @@ const styles = {
   }
 }
 
+//Flight Search Container handles the user inputs and calls
+//the function passed in as prop
 export default class FlightSearchContainer extends Component {
   constructor() {
     super();

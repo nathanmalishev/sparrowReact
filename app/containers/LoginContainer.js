@@ -87,6 +87,8 @@ class Main extends Component{
 
   }
 
+  //Render method based on the whether the user is authenticated is what
+  //the login container will render
   render() {
     const displayPage = ()=>{
       if(this.state.authenticated === true){

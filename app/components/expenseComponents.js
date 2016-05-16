@@ -12,6 +12,8 @@ const styles = {
   }
 }
 
+
+//renders the expense table and each row
 export function RenderRow({expense,onSettle,onDelete}){
 
   function calcTR(settled){

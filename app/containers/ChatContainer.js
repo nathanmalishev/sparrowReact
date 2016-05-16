@@ -24,10 +24,7 @@ export default class ChatContainer extends Component {
 
   componentDidMount(){
 
-    // const pubnubCONN = PUBNUB.init({
-    //   publish_key: 'pub-c-ceb946c9-cf37-48de-9420-c9722c4053ff',
-    //   subscribe_key: 'sub-c-d3f93cd2-1733-11e6-b700-0619f8945a4f'
-    // })
+    // Establish connection with pubnub
     this.state.pubnubCONN.channel_group_add_channel({
         channel: this.props.params.id,
         channel_group: 'global'

@@ -3,7 +3,7 @@ import {Accordion, Panel, Button} from 'react-bootstrap'
 import {addRoute} from '../helpers/api'
 import _ from 'lodash'
 
-
+//Renders flight results data passed to it
 export default class FlightResults extends Component {
 
   constructor() {

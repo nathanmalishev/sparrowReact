@@ -14,6 +14,7 @@ const styles = {
   },
 };
 
+//Is what is displayed on the root directory renders the each possible group
 class HomeConatiner extends Component {
 
   constructor() {

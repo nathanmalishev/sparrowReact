@@ -25,7 +25,7 @@ const styles = {
 
 
 
-
+//Expenses container handles fetching expenses and decieding what to render
 export default class ExpensesContainer extends Component {
   constructor() {
     super();

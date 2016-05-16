@@ -8,6 +8,7 @@ const styles = {
   }
 }
 
+//renders just the chat input
 export default class ChatInput extends Component {
 
   constructor(){

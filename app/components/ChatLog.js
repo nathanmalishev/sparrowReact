@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react'
 
+
+//renders just the chat log and messages
 export default function ChatLog ({messages, authUser}) {
   console.log('messages', messages)
   const messageList = messages.map((message)=>{
