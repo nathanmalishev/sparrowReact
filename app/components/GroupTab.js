@@ -9,10 +9,6 @@ const styles = {
     alignItems: 'center',
     maxWidth: 1000,
     color: 'black',
-    // margin:'20px',
-    // border: '2px solid black',
-    // border-radius: '10px',
-    // backgroundColor:'lightgrey'
   }
 }
 
