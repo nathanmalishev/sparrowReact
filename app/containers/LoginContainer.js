@@ -87,7 +87,6 @@ class Main extends Component{
 
   }
 
-
   //Render method based on the whether the user is authenticated is what
   //the login container will render
   render() {
@@ -124,15 +123,8 @@ class Main extends Component{
       // <div style={styles.container}>
         // <div style={styles.header}>
       <div className="container">
-          <h2 className="text-nowrap text-center">Sparrow Travel</h2>
-          {
-            this.state.authenticated === true
-            ? <p onClick={logout}>Logout</p>
-            : <p></p>
-          }
+        <h2 className="text-nowrap text-center">Sparrow Travel</h2>
         {displayPage()}
-
-
       </div>
     );
   }

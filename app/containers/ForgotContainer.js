@@ -15,7 +15,6 @@ function SignUpMessage({attempt,success}){
   return <div>{message()}</div>
 }
 
-
 //Forgot container handles the users input and sends
 //api callt o reset users password
 export default class ForgotContainer extends Component {

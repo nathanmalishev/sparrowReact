@@ -1,23 +1,24 @@
 import React, { Component, PropTypes } from 'react';
-import { getGroup } from '../helpers/api';
-import Group from '../components/Group';
+import {getGroup} from '../helpers/api'
+import Group from '../components/Group'
+
 
 
 //Group container handles rendering the top bar through group
 //and then renders the child component passed in through routes
 class GroupContainer extends Component {
 
-  constructor() {
+  constructor(){
     super();
     this.state = {
-      loading: true,
+      loading:true,
       groupData: {},
-      currentDestination: {},
-    };
-    this.handleDestinationClick = this.handleDestinationClick.bind(this);
+      currentDestination: {}
+    }
+    this.handleDestinationClick = this.handleDestinationClick.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount(){
     //split id as there is two
     getGroup(this.props.routeParams.id)
       .then((res)=>{
@@ -32,13 +33,13 @@ class GroupContainer extends Component {
           }
         }
 
-      });
+      })
   }
 
   handleDestinationClick(destination){
     this.setState({
-      currentDestination: destination,
-    });
+      currentDestination: destination
+    })
 
   }
 
@@ -80,7 +81,7 @@ class GroupContainer extends Component {
 }
 
 GroupContainer.contextTypes = {
-  router: React.PropTypes.object.isRequired,
-};
+  router: React.PropTypes.object.isRequired
+}
 
 export default GroupContainer;

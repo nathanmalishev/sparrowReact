@@ -23,6 +23,8 @@ const styles = {
   }
 };
 
+
+
 //Expenses container handles fetching expenses and decieding what to render
 export default class ExpensesContainer extends Component {
   constructor() {
@@ -79,6 +81,7 @@ export default class ExpensesContainer extends Component {
 
 
   render() {
+
 
     let userOwingRow = this.state.expenses.map((expense)=>{
       if(expense.settled === true && !this.state.displaySettled){

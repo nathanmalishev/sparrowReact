@@ -3,7 +3,6 @@ import {getRoutes} from '../helpers/api'
 import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 
 
-
 const styles = {
   popup: {
     alignItems: 'center',
