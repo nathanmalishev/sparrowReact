@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {getRoutes} from '../helpers/api'
-import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
-
+import { Map, TileLayer, Marker, Popup, ZoomControl, Polyline } from 'react-leaflet';
 
 const styles = {
   popup: {
@@ -47,10 +46,6 @@ export default class ItineraryContainer extends Component {
     })
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     var markerData = this.state.segments;
     var melbournePos = [-37.8141, 144.9633]
@@ -71,10 +66,10 @@ export default class ItineraryContainer extends Component {
         )
     }
 
-
     // center camera to this - starting location
     const position = [markerData[0].segments[0].lat, markerData[0].segments[0].lon]
 
+    var polyLine = [];  // array of all the coordinates for the lines to be drawn
     var markers = []; // array of all markers to be loaded for the group
     for (var i = 0; i < markerData.length; i++) {
       // origin
@@ -106,6 +101,12 @@ export default class ItineraryContainer extends Component {
           </Popup>
         </Marker>
       );
+
+      // populate the line array
+      polyLine.push(
+        [markerData[i].segments[0].lat,markerData[i].segments[0].lon],
+        [markerData[i].segments[1].lat,markerData[i].segments[1].lon]
+      );
     }
 
     return (
@@ -118,6 +119,7 @@ export default class ItineraryContainer extends Component {
               /attributions">CartoDB</a>'
           />
           {markers}
+          <Polyline color='aqua' positions={polyLine} />
           <ZoomControl position='bottomright' />
         </Map>
 
