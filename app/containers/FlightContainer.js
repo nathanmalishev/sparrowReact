@@ -4,6 +4,9 @@ import {getFlights} from '../helpers/rome2rio'
 import {postRoute} from '../helpers/api'
 import FlightResults from '../components/FlightResults'
 
+
+//Flight Container handles fetching flight data and then render the results through
+//a comonent
 export default class FlightContainer extends Component {
   constructor() {
     super();
@@ -20,7 +23,7 @@ export default class FlightContainer extends Component {
 
   onFlightClick(to, from) {
     console.log(to+from)
-    
+
     getFlights(to,from)
       .then((data)=>{
         console.log('API DATA')

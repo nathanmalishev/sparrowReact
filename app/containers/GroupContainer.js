@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { getGroup } from '../helpers/api';
 import Group from '../components/Group';
 
+
+//Group container handles rendering the top bar through group
+//and then renders the child component passed in through routes
 class GroupContainer extends Component {
 
   constructor() {
@@ -56,6 +59,8 @@ class GroupContainer extends Component {
                 authUser={this.state.authUser}
               />
            {
+            //This is the children element passed in from routes.js
+            //we want to pass in any props it will need
             React.cloneElement(this.props.children,
               {
                 groupId:this.state.groupData._id,

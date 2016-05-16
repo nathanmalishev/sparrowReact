@@ -5,7 +5,6 @@ var groupsRoute = require('./group/groupRoutes');
 var auth = require('./auth/auth');
 var User = require('./user/userModel');
 var getUserList = require('./user/userController').getUserList
-var carousal = require('./carousal').carousal
 
 authMiddleware = [auth.decodeToken(), auth.getFreshUser()];
 
@@ -20,6 +19,5 @@ router.use('/groups', authMiddleware, groupsRoute);
 
 router.use('/users', authMiddleware, getUserList);
 
-router.use('/carousal', carousal);
 
 module.exports = router;

@@ -2,23 +2,7 @@ import React, { Component } from 'react';
 import {getRoutes} from '../helpers/api'
 import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 
-// const MyPopupMarker = ({ layerContainer, map, position, children }) => (
-//   <Marker draggable={this.state.draggable} onDragend={this.updatePosition} position={markerPosition} ref='marker'>
-//     <Popup minWidth={90}>
-//       <span onClick={this.toggleDraggable}>
-//         {this.state.draggable ? 'DRAG MARKER' : 'MARKER FIXED'}
-//         {children}
-//       </span>
-//     </Popup>
-//   </Marker>
-// );
-//
-// const MyMarkersList = ({ markers }) => {
-//   const items = markers.map(({ key, props }) => (
-//     <Marker draggable={this.state.draggable} onDragend={this.updatePosition} position={markerPosition} ref='marker'/>
-//   ));
-//   return <div style={{display: 'none'}}>{items}</div>;
-// };
+
 
 const styles = {
   popup: {

@@ -5,4 +5,6 @@ require('./bootstrap-social.css');
 require('./main.css');
 require('./sparrow.css');
 
+
+// Entry to our application, routes handles client side routing
 ReactDOM.render(routes, document.getElementById('app'))

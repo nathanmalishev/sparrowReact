@@ -12,6 +12,10 @@ import ChatContainer from '../containers/ChatContainer';
 import SettingsContainer from '../containers/SettingsContainer'
 import ItineraryContainer from '../containers/ItineraryContainer';
 
+
+//Hierachy of routes, renders based on what the browser can find
+
+
 const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={LoginContainer}>
