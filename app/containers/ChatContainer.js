@@ -18,7 +18,8 @@ export default class ChatContainer extends Component {
       pubnubCONN :PUBNUB.init({
         publish_key: 'pub-c-ceb946c9-cf37-48de-9420-c9722c4053ff',
         subscribe_key: 'sub-c-d3f93cd2-1733-11e6-b700-0619f8945a4f'
-      })
+      }),
+      rendered:false
     }
   }
 
@@ -26,30 +27,43 @@ export default class ChatContainer extends Component {
     console.log(this.props.groupName)
     const CHANNEL_GROUP = this.props.groupName.split(' ').join('_');
     // Establish connection with pubnub
-    this.state.pubnubCONN.channel_group_add_channel({
+    // this.state.pubnubCONN.channel_group_add_channel({
+    //     channel: this.props.params.id,
+    //     channel_group: CHANNEL_GROUP
+    // });
+
+    if(this.state.rendered === false){
+      this.state.pubnubCONN.subscribe({
         channel: this.props.params.id,
-        channel_group: CHANNEL_GROUP
-    });
-
-    this.state.pubnubCONN.subscribe({
-      channel_group: CHANNEL_GROUP,
-      callback:(m)=>{
-        this.state.messageLog.global.push(m)
-        this.setState({
-          messageLog: this.state.messageLog
-        })
-
-        postChat(this.props.params.id, m)
-          .then((res)=>{
-            console.log(res)
+        channel_group: CHANNEL_GROUP,
+        callback:(m)=>{
+          console.log(m)
+          this.state.messageLog.global.push(m)
+          this.setState({
+            messageLog: this.state.messageLog
           })
-      }
-    })
+
+          console.log('posting message')
+          postChat(this.props.params.id, m)
+            .then((res)=>{
+              console.log(res)
+            })
+        }
+      })
+    }
     this.setState({
       currentUser: {username:'Group',_id:'0'},
       messageLog: {global:this.props.chat},
-      isLoading: false
+      isLoading: false,
+      rendered:true
     })
+  }
+
+  componentWillUnmount(){
+    this.state.pubnubCONN.unsubscribe({
+      channel: this.props.params.id,
+      channel_group: this.props.groupName.split(' ').join('_')
+    });
   }
 
   handleChangeUser(user){
