@@ -23,15 +23,16 @@ export default class ChatContainer extends Component {
   }
 
   componentDidMount(){
-
+    console.log(this.props.groupName)
+    const CHANNEL_GROUP = this.props.groupName.split(' ').join('_');
     // Establish connection with pubnub
     this.state.pubnubCONN.channel_group_add_channel({
         channel: this.props.params.id,
-        channel_group: 'global'
+        channel_group: CHANNEL_GROUP
     });
 
     this.state.pubnubCONN.subscribe({
-      channel_group: 'global',
+      channel_group: CHANNEL_GROUP,
       callback:(m)=>{
         this.state.messageLog.global.push(m)
         this.setState({
