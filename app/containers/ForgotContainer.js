@@ -16,7 +16,7 @@ function SignUpMessage({attempt,success}){
 }
 
 //Forgot container handles the users input and sends
-//api callt o reset users password
+//api call to reset users password
 export default class ForgotContainer extends Component {
   constructor() {
     super();
@@ -77,7 +77,6 @@ export default class ForgotContainer extends Component {
       })
   }
 
-
   render() {
     return (
       <div className="login-card">
@@ -87,7 +86,7 @@ export default class ForgotContainer extends Component {
             <input
               type="text"
               placeholder="Username"
-              autofocus className="form-control"
+              autofocus className="sparrow-form-control"
               value={this.state.username}
               onChange={this.handleUserChange}
             />
@@ -95,7 +94,7 @@ export default class ForgotContainer extends Component {
             <input
               type="email"
               placeholder="Email"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.email}
               onChange={this.handleEmailChange}
             />
@@ -104,10 +103,12 @@ export default class ForgotContainer extends Component {
             <input
               type="password"
               placeholder="New Password"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.password}
               onChange={this.handlePassChange}
             />
+
+            <div className="divider" />
               <button className="ghost-button"
                     type="submit" value="Post">
                 RESET

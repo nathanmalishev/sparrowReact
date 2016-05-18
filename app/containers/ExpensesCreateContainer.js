@@ -44,6 +44,7 @@ export default class ExpensesCreateContainer extends Component {
     });
   }
 
+//updates data of who was involed based on the checkboxes
   handleInvolved(e){
   	var input = e.target;
     if (input.checked) {
@@ -58,6 +59,7 @@ export default class ExpensesCreateContainer extends Component {
     }
   }
 
+//initialises the data
   componentDidMount(){
     this.setState({
       users: this.props.users

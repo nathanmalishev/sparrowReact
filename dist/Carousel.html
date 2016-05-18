@@ -1,41 +1,10 @@
     <!DOCTYPE html>
     <html>
     <head>
-    <style>
-    .requirements{
-      max-width:350px;
-      padding:20px 40px;
-      margin:10px auto;
-      border-radius:2px;
-      text-align:center;
-      position:relative;
-      right:-43.5%;
-    }
-        .ghost-button {
-      display: inline-block;
-      width: 200px;
-      padding: 8px;
-      font-weight: bold;
-      color: black;
-      border: 2px solid black;
-      background-color: transparent;
-      text-align: center;
-      outline: none;
-      text-decoration: none;
-    }
 
-    .ghost-button:hover,
-    .ghost-button:active {
-      background-color: black;
-      border: 2px solid black;
-      color: ghostwhite;
-    }
-
-    </style>
-
-    <a href="/" class="requirements ghost-button">back</a>
     <script>
 
+    //initializing Constants
     var NUM_PANELS    = 5;
     var FULL_ROTATION = 360; // degrees
     var PANEL_SIZE    = 200; // pixels
@@ -47,9 +16,8 @@
 
     function initCarousel(){
 
-    // These are just test elements, they can be anything.
-    // But change PANEL_SIZE to match
-    // ------------------------
+    //creating the panels of the carousel
+    //setting dimensions,properties and images
     for (var i = 0; i<5; i++){
     var node = document.createElement("img");
 
@@ -59,25 +27,22 @@
 
 
     if (i==0) {
-        node.setAttribute("src","nathan.jpeg");
+        node.setAttribute("src","https://dl.dropboxusercontent.com/s/1sl2yla34stxvcj/nathan.jpeg?dl=0");
 
     }
     else if (i==1) {
-        node.setAttribute("src","michael.jpg");
+        node.setAttribute("src","https://dl.dropboxusercontent.com/s/7m5phhnug7ftgbn/michael.jpg?dl=0");
     }
     else if (i==2) {
-        node.setAttribute("src","oliver.jpg");
+        node.setAttribute("src","https://dl.dropboxusercontent.com/s/yrzle124ih5566o/oliver.jpg?dl=0");
     }
     else if (i==3) {
-        node.setAttribute("src","david.jpg");
+        node.setAttribute("src","https://dl.dropboxusercontent.com/s/md7lwt24b8zss37/david.jpg?dl=0");
     }
 
     else{
-        node.setAttribute("src","hao.jpg");
+        node.setAttribute("src","https://dl.dropboxusercontent.com/s/knpzklrlfqfv220/hao.jpg?dl=0");
     }
-
-
-    //------------------------------
 
     // These are needed to properly position panels in parent div
     node.style.position = "absolute";
@@ -91,7 +56,6 @@
     addPanel(node);
     }
 
-
 }
 
 function addPanel(node){
@@ -101,13 +65,12 @@ function addPanel(node){
     node.className += "carousel-panel";
     node.setAttribute("index", currentPanels++);
 
-
     caro.appendChild(node);
     placePanel(node);
 
-
 }
 
+//placing the panels in the
 function placePanel(node){
 
     var angle = getRotationAngle();
@@ -119,11 +82,12 @@ function placePanel(node){
 
 }
 
+//spinning the carousel
+//dir takes values 1 or -1 depending on direction
 function spin(dir){
 
     var angle      = getRotationAngle();
     var translateZ = getTranslationZ();
-
 
     for (var i = NUM_PANELS-1; i > -1; i--){
     var node = document.querySelector('[index="' + i + '"]');
@@ -140,6 +104,7 @@ function spin(dir){
     }
 }
 
+//scroller checks which panel is displayed t oadjust with text
 var scroller = 0;
 function keyCommand(event){
     var paragraph = document.getElementById("paragraph");
@@ -162,15 +127,18 @@ function keyCommand(event){
 
         }
         if(scroller==2){
-            paragraph.innerHTML = "Oliver";
+            paragraph.innerHTML = "Oliver came up with the travel website idea. He has been " +
+            "working on many startups and even won the General Electric Hackathon last year.";
 
         }
         if(scroller==3){
-            paragraph.innerHTML = "David";
+            paragraph.innerHTML = "David is a 3rd year Software Engineering student. "+
+            "He has mainly worked on the Carousel and web page design. He has started computing "+"at an early age and hopes to get more involved in the field of "+
+            "artificial intelligence in the future.";
 
         }
         if(scroller==4){
-            paragraph.innerHTML = "Hao";
+            paragraph.innerHTML = "Hao is the president of CISSA, the Computing and Information Systems Students Association. He is regularly involved in Hackathons and competitions, planning events and connect students that are interested in Computer Science. His main work for our application was the Itinerary part and getting the map on the page.";
             scroller = -1;
         }
 
@@ -194,21 +162,24 @@ function keyCommand(event){
 
         }
         if (scroller==1) {
-            paragraph.innerHTML = "Michael is a 3rd year Software Engineering student. Michael is a true artist when it comes to User Experience. " +
+            paragraph.innerHTML = "Michael is a 3rd year Software Engineering student. Michael is a true artist when it comes to User Interface." +
             "That's why we as a team have decided to let him work on our front end implementation, working mostly on the design of our pages. "+
-            "He has also been tasked with building the Money Tracker that is keeps track of a traveler's expenses and loans.";
+            "He has also been tasked with building the Money Tracker that keeps track of a traveler's expenses and loans.";
 
         }
         if(scroller==2){
-            paragraph.innerHTML = "Oliver";
+            paragraph.innerHTML = "Oliver came up with the travel website idea. He has been " +
+            "working on many startups and even won the General Electric Hackathon last year. ";
 
         }
         if(scroller==3){
-            paragraph.innerHTML = "David";
+            paragraph.innerHTML = "David is a 3rd year Software Engineering student. "+
+            "He has mainly worked on the Carousel and web page design. He has started computing "+"at an early age and hopes to get more involved in the field of "+
+            "artificial intelligence in the future.";
 
         }
         if (scroller==-1){
-            paragraph.innerHTML = "Hao";
+            paragraph.innerHTML = "Hao is the president of CISSA, the Computing and Information Systems Students Association. He is regularly involved in Hackathons and competitions, planning events and connect students that are interested in Computer Science. His main work for our application was the Itinerary part and getting the map on the page.";
             scroller= 5
 
         }
@@ -217,13 +188,13 @@ function keyCommand(event){
 }
 
 
-
+//setting the angle the carousel should rotate
 function getRotationAngle(){
 
     return FULL_ROTATION/NUM_PANELS;
 
 }
-
+//change z value when function is called
 function getTranslationZ(){
 
     return  Math.round((PANEL_SIZE / 2) / Math.tan(Math.PI / 6));
@@ -236,8 +207,7 @@ Number.prototype.mod = function(n) {
 
     </script>
 
-
-
+    <!--styling the text container-->
     <style>
 
 
@@ -256,20 +226,20 @@ Number.prototype.mod = function(n) {
 
     </head>
 
+    <!--loading the carousel into HTML body-->
     <body onload="initCarousel()">
 
+    <!--setting properties of div container-->
     <div style="height: 500px; width:100%; perspective: 800px; perspective-origin: 53% 50%; margin: 0px auto; position:relative; outline:none" onkeydown="keyCommand(event)"tabindex="1">
 
-
-
-
-
+    <!--carousel container-->
     <div id="carousel" style="height:100%; width:100%; transform-style: preserve-3d; -webkit-transition: -webkit-transform 1s; position:absolute;">
 
     </div>
 
     </div>
 
+    <!--carousel container displaying the paragraphs-->
     <div style="height:300px;width:100%;">
 
         <p id="paragraph">Please click on the picture to proceed, then use the left

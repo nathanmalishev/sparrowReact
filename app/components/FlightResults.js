@@ -9,20 +9,30 @@ export default class FlightResults extends Component {
   constructor() {
     super();
     this.state = {
-      message:''
+      selectVal: 'SELECT' // value for the text in select button
     }
   }
 
   routeDisplay(route) {
     var segs = route.segments.map(function(seg) {
-      return <li>{seg.kind}</li>;
+      return (
+        <div className="text-left">
+          {/*Information for the particular segment in the trip*/}
+          <ul>
+            <h5>LEG {route.segments.indexOf(seg) + 1}<strong> {seg.kind.toUpperCase()}</strong> - {seg.duration + seg.transferDuration} minutes</h5>
+            <h6>&#8226; ${seg.indicativePrice.price + ' ' + seg.indicativePrice.currency}</h6>
+            {/*sName for stations || sCode for flights*/}
+            <h6>&#8226; {seg.sName || seg.sCode} &#8594; {seg.tName || seg.tCode}</h6>
+          </ul>
+        </div>
+      )
     });
     return (
       <Panel header={route.name} eventKey={this.count++}>
-        <p> Duration : {route.duration} minutes, Price: ${route.indicativePrice.price} </p>
-        <ul>{segs}</ul>
-        <Button onClick={ () => { this.onRouteSelect(route) } }> Select </Button>
-        {this.state.message}
+        <h4 className="text-left">Duration (Travel & Transfer Time): {route.duration} minutes</h4>
+        <h4 className="text-left">Total Price: ${route.indicativePrice.price + ' ' + route.indicativePrice.currency}</h4>
+        {segs}
+        <input type="submit" className="ghost-button" onClick={ () => { this.onRouteSelect(route) } } value={this.state.selectVal}/>
       </Panel>
     );
   }
@@ -37,7 +47,7 @@ export default class FlightResults extends Component {
 
     this.props.onSelect({segments:_.compact(coord)})
     this.setState({
-      message:'  selected!'
+      selectVal:'SELECTED'
     })
   }
 
@@ -45,9 +55,8 @@ export default class FlightResults extends Component {
     this.count=0;
     return (
       <div className="col-md-12">
-      <Accordion>
-      {this.props.data.routes.map(this.routeDisplay, this)}
-
+      <Accordion className="text-nowrap text-center">
+        {this.props.data.routes.map(this.routeDisplay, this)}
       </Accordion>
       </div>
     )

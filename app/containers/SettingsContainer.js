@@ -12,23 +12,24 @@ export let styles = {
 
   highlightedItem: {
     color: 'white',
-    background: 'hsl(200, 50%, 50%)',
+    background: 'rgb(0,0,0)',
     padding: '2px 6px',
     cursor: 'default',
   },
 
-  menu: {
-    border: 'solid 1px #ccc',
-  },
   container: {
     display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
     margin: 'auto',
   },
+
   danger: {
     backgroundColor: '#e74c3c',
   },
+
   modal:{
     overlay : {
       position          : 'fixed',
@@ -36,24 +37,26 @@ export let styles = {
       left              : 0,
       right             : 0,
       bottom            : 0,
-      backgroundColor   : 'rgba(255, 255, 255, 0.75)',
+      backgroundColor   : 'rgba(0, 0, 0, 0.5)',
 
     },
     content : {
       position                   : 'absolute',
-      top                        : '120px',
-      left                       : '120px',
-      right                      : '120px',
-      bottom                     : '120px',
+      alignItems                 : 'center',
+      textAlign                  : 'center',
+      top                        : '40%',
+      left                       : '10%',
+      right                      : '10%',
+      bottom                     : '40%',
       border                     : '1px solid #ccc',
       background                 : '#fff',
       overflow                   : 'auto',
       WebkitOverflowScrolling    : 'touch',
-      borderRadius               : '4px',
+      borderRadius               : '2px',
       outline                    : 'none',
       padding                    : '20px',
       fontSize                   : '20px'
-  }
+    }
   }
 };
 
@@ -164,10 +167,15 @@ export default class SettingsContainer extends Component {
     console.log(this.state.value);
     return (
       <div style={styles.container}>
-      <h2>Add users to group</h2>
-      <label htmlFor="">Select User</label>
-      <Autocomplete
+        <h2>Add users to group</h2>
+        <label htmlFor="">Select User</label>
+
+        <row>
+
+        <Autocomplete
           ref="autocomplete"
+          height="44px"
+          className='sparrow-form-control'
           value={this.state.value}
           items={this.state.usernames}
           getItemValue={(item) => item.username}
@@ -178,39 +186,44 @@ export default class SettingsContainer extends Component {
               style={isHighlighted ? styles.highlightedItem : styles.item}
               key={item.abbr}
               id={item.abbr}
-            >{item.username}</div>
+            >
+              {item.username}
+            </div>
           )}
         />
 
-            <input
-              type="submit"
-              className='ghost-button'
-              value="Add"
-              onClick={this.addUser.bind(this)}
-            />
+        <div className="divider" />
+
+        <input
+          type="submit"
+          className='small-ghost-button'
+          value="ADD"
+          onClick={this.addUser.bind(this)}
+        />
+
+        </row>
 
         {
           this.state.message
         }
 
-
         <h2>Leave group</h2>
         <button className='ghost-button' style={styles.danger}
           onClick={this.openModal.bind(this)}>
-          Leave Group
+          LEAVE GROUP
         </button>
+
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={styles.modal}>
-        <p>After you leave a group someone needs to invite you back</p>
-        <button className='ghost-button' onClick={this.closeModal.bind(this)}>Close</button>
-        <button className='ghost-button' style={styles.danger} onClick={this.onLeaveGroup.bind(this)}>
-          Leave
-        </button>
+          <p>After you leave a group, you won't be able to rejoin unless invited again.</p>
+          <button className='ghost-button' onClick={this.closeModal.bind(this)}>Close</button>
+          <button className='ghost-button' style={styles.danger} onClick={this.onLeaveGroup.bind(this)}>
+            Leave
+            </button>
         </Modal>
-
       </div>
     );
   }

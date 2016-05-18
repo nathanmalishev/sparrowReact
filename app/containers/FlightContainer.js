@@ -23,37 +23,33 @@ export default class FlightContainer extends Component {
   onFlightClick(to, from) {
     console.log(to+from)
 
-    getFlights(to,from)
-      .then((data)=>{
-        console.log('API DATA')
-        console.log(data)
-        this.setState({
-          to,
-          from,
-          results: true,
-          flightData: data.data
-        })
+    getFlights(to,from).then((data)=>{
+      console.log('API DATA')
+      console.log(data)
+      this.setState({
+        to,
+        from,
+        results: true,
+        flightData: data.data
       })
-
+    })
   }
 
   handleSelect(segments){
     segments.user = this.props.authUser;
 
-    postRoute(this.props.params.id, segments)
-      .then((res)=>{
-        //data saved in db
-        setTimeout(()=>{
-          this.props.history.pushState(null, `group/${this.props.params.id}/itinerary`)}
-          , 300)
-      })
+    postRoute(this.props.params.id, segments).then((res)=>{
+      //data saved in db
+      setTimeout(()=>{
+        this.props.history.pushState(null, `group/${this.props.params.id}/itinerary`)}
+        , 300)
+    })
   }
 
   render() {
     console.log(this.props,'Flight container props')
     return (
       <div>
-
         <FlightSearchContainer handleFlightClick={this.onFlightClick} destination={this.props.destination}/>
 
         {
@@ -61,10 +57,7 @@ export default class FlightContainer extends Component {
             ? <FlightResults groupId={this.props.groupId} data={this.state.flightData} onSelect={this.handleSelect.bind(this)}/>
             : <p></p>
         }
-
       </div>
     );
   }
 }
-
-//data={this.state.flightData}

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {getRoutes} from '../helpers/api'
-import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
-
+import { Map, TileLayer, Marker, Popup, ZoomControl, Polyline } from 'react-leaflet';
 
 const styles = {
   popup: {
     alignItems: 'center',
     border: '1px',
-
   }
 }
 
@@ -19,17 +17,6 @@ export default class ItineraryContainer extends Component {
       zoom: 2,
       segments:[],
       draggable: true,
-    };
-
-    this.toggleDraggable = () => {
-      this.setState({draggable: !this.state.draggable});
-    };
-
-    this.updatePosition = () => {
-      const { lat, lng } = this.refs.marker.getLeafletElement().getLatLng();
-      this.setState({
-        marker: {lat, lng},
-      });
     };
   }
 
@@ -48,38 +35,42 @@ export default class ItineraryContainer extends Component {
     })
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     var markerData = this.state.segments;
+    var melbournePos = [-37.8141, 144.9633]
 
-
+    // if no flight data is currently present
+    // return an empty map that's centered on Melbourne
     if(!markerData[0]){
       return (
           <div>
-            <p>Please find a flight</p>
+            <Map center={melbournePos} zoom={2} zoomControl={false}>
+              <TileLayer
+                url='http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+                attribution='&copy; <a href="http://www.openstreetmap.org/copyright">
+                  OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com
+                  /attributions">CartoDB</a>'
+              />
+              <ZoomControl position='bottomright' />
+            </Map>
           </div>
         )
     }
 
-
     // center camera to this - starting location
     const position = [markerData[0].segments[0].lat, markerData[0].segments[0].lon]
 
+    var polyLine = [];  // array of all the coordinates for the lines to be drawn
     var markers = []; // array of all markers to be loaded for the group
     for (var i = 0; i < markerData.length; i++) {
       // origin
       markers.push(
         <Marker
-          draggable={this.state.draggable}
           position={[markerData[i].segments[0].lat, markerData[i].segments[0].lon]}
           ref='marker'>
           <Popup minWidth={120}>
             <span onClick={this.toggleDraggable}>
-            <h3><strong>Location Name</strong></h3>
-            <h3>ORIGIN</h3>
+            <h5>{markerData[i].segments[0].lat},{markerData[i].segments[0].lon}</h5>
             </span>
           </Popup>
         </Marker>
@@ -88,16 +79,20 @@ export default class ItineraryContainer extends Component {
       // destination
       markers.push(
         <Marker
-          draggable={this.state.draggable}
           position={[markerData[i].segments[1].lat, markerData[i].segments[1].lon]}
           ref='marker'>
           <Popup minWidth={120}>
             <span onClick={this.toggleDraggable}>
-            <h3><strong>Location Name</strong></h3>
-            <h3>DESTINATION</h3>
+            <h5>{markerData[i].segments[1].lat},{markerData[i].segments[1].lon}</h5>
             </span>
           </Popup>
         </Marker>
+      );
+
+      // populate the line array
+      polyLine.push(
+        [markerData[i].segments[0].lat,markerData[i].segments[0].lon],
+        [markerData[i].segments[1].lat,markerData[i].segments[1].lon]
       );
     }
 
@@ -111,6 +106,7 @@ export default class ItineraryContainer extends Component {
               /attributions">CartoDB</a>'
           />
           {markers}
+          <Polyline color='aqua' positions={polyLine} />
           <ZoomControl position='bottomright' />
         </Map>
 
@@ -118,4 +114,3 @@ export default class ItineraryContainer extends Component {
     );
   }
 }
-

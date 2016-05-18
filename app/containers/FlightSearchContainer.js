@@ -45,12 +45,11 @@ export default class FlightSearchContainer extends Component {
       <form onSubmit={this.handleSubmit}
         className="form-signin col-md-6 col-md-offset-3 text-center"
         >
-
             <h3>from</h3>
             <input
               type="text"
               placeholder="Melbourne"
-              className="form-control"
+              className="sparrow-form-control"
               value={this.state.from}
               onChange={this.handleFromChange}
             />
@@ -59,14 +58,13 @@ export default class FlightSearchContainer extends Component {
               type="text"
               placeholder="Paris"
               value={this.state.to}
-              className="form-control"
+              className="sparrow-form-control"
               onChange={this.handleToChange}
             />
 
             <input type="submit" value="GO" className="ghost-button"
               style={styles.button}/>
           </form>
-
       </div>
     );
   }
